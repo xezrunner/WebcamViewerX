@@ -98,6 +98,10 @@
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
       <Name>XeZrunner.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebcamViewerX.Theming\WebcamViewerX.Theming.csproj">
+      <Project>{60315f98-f69a-4209-8c80-cbce225f4ff8}</Project>
+      <Name>WebcamViewerX.Theming</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

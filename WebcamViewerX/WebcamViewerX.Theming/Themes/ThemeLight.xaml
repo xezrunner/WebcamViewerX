@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="AccentColor" Color="#0277BD" />
+
+    <SolidColorBrush x:Key="Background" Color="White" />
+    <SolidColorBrush x:Key="Foreground" Color="Black" />
+
+    <!--#region Foreground secondaries -->
+    <SolidColorBrush x:Key="Foreground_Secondary" Color="#525252" />
+
+    <SolidColorBrush x:Key="Foreground_Titlebar" Color="#464646" />
+    <!--#endregion-->
+
+    <!--#region Background secondaries -->
+    <SolidColorBrush x:Key="Background_Secondary" Color="#E6E6E6" />
+    <!--#endregion-->
+
+</ResourceDictionary>

@@ -7,11 +7,23 @@
         xmlns:local="clr-namespace:WebcamViewerX"
         mc:Ignorable="d"
         Title="MainWindow" Width="875" Height="667"
-        AllowsTransparency="True" Background="{x:Null}" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        AllowsTransparency="True" Background="{x:Null}" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        PreviewKeyDown="window_PreviewKeyDown">
+
+    <Window.Resources>
+        
+        <!-- Theme -->
+        <ResourceDictionary x:Name="themeDictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Window.Resources>
 
     <!-- This is our shadow for now. -->
     <!-- TODO: use proper, native OS window behavior -->
-    <Border Margin="10" Background="White"
+    <Border Margin="10" Background="{DynamicResource Background}"
             BorderBrush="#1F3F3F3F" BorderThickness="1">
         <Border.Effect>
             <DropShadowEffect Opacity="0.3" BlurRadius="10" ShadowDepth="0" />
@@ -20,8 +32,55 @@
         <!-- Main container -->
         <Grid>
             
+            <!-- Temporary -->
+            <TextBlock Foreground="{DynamicResource Foreground}" FontSize="14"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,50,18,0"
+                       TextWrapping="Wrap">
+                <TextBlock Foreground="{DynamicResource AccentColor}" FontSize="22">Hello early tester!</TextBlock>
+                <LineBreak/>
+                Press
+                <TextBlock Foreground="{DynamicResource AccentColor}">Q</TextBlock>
+                to change the theme to 
+                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Light</TextBlock>
+                , or press 
+                <TextBlock Foreground="{DynamicResource AccentColor}">E</TextBlock>
+                to change the theme to 
+                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Dark</TextBlock>
+                
+                <LineBreak/>
+                
+                The changes you make <Italic>should</Italic> be saved, so be sure to test restarting the app after changing the theme!
+                
+                <LineBreak/>
+                <LineBreak/>
+                
+                Some notes for myself:
+                <LineBreak/>
+                • Use localization for actual non-placeholder text (that includes the application title!). Develop a development style where localization is strongly focused on, so we don't end up forgetting about localization like in the previous version of Webcam Viewer.
+                <LineBreak/>
+                • Implement proper window behavior. If you try and maximize this window, you'll notice it doesn't fully fit the screen... classic WPF basic borderless window implementation...
+                <LineBreak/>
+                • Animate theme changes. This is my current idea right now:
+                
+                <LineBreak/>
+                
+                <TextBlock Foreground="{DynamicResource Foreground_Secondary}" Margin="10,0,0,0">
+                1. We change the theme.
+                <LineBreak/>
+                2. We take a screenshot of the app in that exact moment <Italic>before</Italic> the theme change, and display it in front of everything.
+                <LineBreak/>
+                3. We do the theme change.
+                <LineBreak/>
+                4. Now we fade out the screenshot.
+                </TextBlock>
+                
+                <LineBreak/>
+                This should give us a nice fade effect as the theme changes.
+                
+            </TextBlock>
+            
             <!-- Titlebar -->
-            <xz_window:TitlebarControl x:Name="titlebar" Foreground="Black" />
+            <xz_window:TitlebarControl x:Name="titlebar" Foreground="{DynamicResource Foreground_Titlebar}" Background="{DynamicResource Background_Secondary}" />
 
         </Grid>
 
