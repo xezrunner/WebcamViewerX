@@ -1,12 +1,30 @@
-﻿<Window x:Class="WebcamViewerX.MainWindow"
+﻿<Window x:Name="window" x:Class="WebcamViewerX.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xz_window="clr-namespace:XeZrunner.UI.Controls.Window_components;assembly=XeZrunner.UI"
         xmlns:local="clr-namespace:WebcamViewerX"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Width="875" Height="667"
+        AllowsTransparency="True" Background="{x:Null}" WindowStyle="None" WindowStartupLocation="CenterScreen">
+
+    <!-- This is our shadow for now. -->
+    <!-- TODO: use proper, native OS window behavior -->
+    <Border Margin="10" Background="White"
+            BorderBrush="#1F3F3F3F" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect Opacity="0.3" BlurRadius="10" ShadowDepth="0" />
+        </Border.Effect>
+
+        <!-- Main container -->
+        <Grid>
+            
+            <!-- Titlebar -->
+            <xz_window:TitlebarControl x:Name="titlebar" Foreground="Black" />
+
+        </Grid>
+
+    </Border>
+
 </Window>
