@@ -106,6 +106,10 @@
       <Project>{60315f98-f69a-4209-8c80-cbce225f4ff8}</Project>
       <Name>WebcamViewerX.Theming</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebcamViewerX.ViewManagement\WebcamViewerX.ViewManagement.csproj">
+      <Project>{a2bc337d-8c2f-4c28-a342-83d791f950e0}</Project>
+      <Name>WebcamViewerX.ViewManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

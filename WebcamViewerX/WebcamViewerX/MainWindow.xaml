@@ -34,6 +34,7 @@
 
         <!-- Main container -->
         <Grid>
+
             <!-- Temporary -->
             <ScrollViewer x:Name="temp_scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
@@ -55,6 +56,18 @@
                 <LineBreak/>
                 
                 The changes you make <Italic>should</Italic> be saved, so be sure to test restarting the app after changing the theme!
+                        
+                <LineBreak/>
+                <LineBreak/>
+                        
+                Press
+                <TextBlock Foreground="{DynamicResource AccentColor}">Y</TextBlock>
+                to change the View to
+                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Home.</TextBlock>
+                Press
+                <TextBlock Foreground="{DynamicResource AccentColor}">X</TextBlock>
+                to change the View to 
+                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Settings.</TextBlock>
                 
                 <LineBreak/>
                 <LineBreak/>
@@ -101,6 +114,9 @@
 
                 </StackPanel>
             </ScrollViewer>
+
+            <!-- Frames container-->
+            <Grid x:Name="frameContainer" />
 
             <!-- Titlebar -->
             <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"

@@ -13,12 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebcamViewerX.ViewManagement;
 
 namespace WebcamViewerX
 {
     public partial class MainWindow : Window
     {
         Theming.ThemeManager ThemeManager;
+        ViewManager ViewManager = new ViewManager();
+        Views Views = new Views();
 
         public MainWindow()
         {
@@ -45,15 +48,67 @@ namespace WebcamViewerX
 
         #endregion
 
+        #region View management
+        public View CurrentView;
+
+        public void SwitchPage(View view)
+        {
+            // TODO: remove temp
+            temp_scrollviewer.Visibility = Visibility.Collapsed;
+
+            view = ViewManager.GetView(view);
+
+            Frame frame = null;
+            string frame_name = view.DevName + "_Frame";
+
+            // Try to get the Frame for the View.
+            // If there's no Frame, create one.
+            foreach (Frame containedFrame in frameContainer.Children)
+            {
+                if (containedFrame.Name == frame_name)
+                    frame = containedFrame;
+            }
+
+            if (frame == null)
+            {
+                frame = new Frame() { Name = frame_name };
+                frameContainer.Children.Add(frame);
+            }
+
+            // Frame Content
+            if (frame.Content != view.Page)
+                frame.Content = view.Page;
+
+            // Set Frame to be visible.
+            foreach (Frame visframe in frameContainer.Children)
+            {
+                if (visframe.Name != frame_name)
+                    visframe.Visibility = Visibility.Hidden;
+                else
+                    visframe.Visibility = Visibility.Visible;
+            }
+
+            CurrentView = view;
+        }
+        #endregion
+
+        // temporary debug stuff
         private void window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            // temporary debug stuff
-
+            // Themes
             if (e.Key == Key.Q)
                 ThemeManager.Config_SetTheme(Theming.ThemeManager.Theme.Light);
 
             if (e.Key == Key.E)
                 ThemeManager.Config_SetTheme(Theming.ThemeManager.Theme.Dark);
+
+            // View changing
+
+            if (e.Key == Key.Y)
+                SwitchPage(Views.HomeView);
+
+            if (e.Key == Key.X)
+                SwitchPage(Views.SettingsView);
         }
     }
 }
