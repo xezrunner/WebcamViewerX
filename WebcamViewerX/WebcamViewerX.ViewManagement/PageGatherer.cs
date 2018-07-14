@@ -22,10 +22,7 @@ namespace WebcamViewerX.ViewManagement
                     return new Page();
 
                 case "Home":
-                    return new Page()
-                    {
-                        Content = new TextBlock() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, Text = "Home", FontSize = 18 }
-                    };
+                    return new WebcamViewerX.Home.MainView();
 
                 case "Settings":
                     return new Page()

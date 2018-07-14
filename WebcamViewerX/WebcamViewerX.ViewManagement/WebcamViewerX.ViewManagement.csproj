@@ -61,6 +61,10 @@
     <Compile Include="Views.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebcamViewerX.Home\WebcamViewerX.Home.csproj">
+      <Project>{75d85539-8a3a-49f8-92d2-b7beb21ff4d8}</Project>
+      <Name>WebcamViewerX.Home</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
       <Name>WebcamViewerX.Localization</Name>
