@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,9 @@ namespace WebcamViewerX
 
         public MainWindow()
         {
+            // MUI debug
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+
             InitializeComponent();
 
             ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager

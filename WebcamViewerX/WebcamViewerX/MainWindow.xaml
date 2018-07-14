@@ -4,21 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xz_window="clr-namespace:XeZrunner.UI.Controls.Window_components;assembly=XeZrunner.UI"
-        xmlns:local="clr-namespace:WebcamViewerX"
+        xmlns:localization="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
         mc:Ignorable="d"
-        Title="MainWindow" Width="875" Height="667"
-        AllowsTransparency="True" Background="{x:Null}" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="{x:Static localization:Resources.AppTitle}" Width="875" Height="667"
+        AllowsTransparency="True" Background="{x:Null}" Foreground="{DynamicResource Foreground}"
+        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        
         PreviewKeyDown="window_PreviewKeyDown">
 
     <Window.Resources>
-        
+
         <!-- Theme -->
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
+
     </Window.Resources>
 
     <!-- This is our shadow for now. -->
@@ -80,7 +82,8 @@
             </TextBlock>
             
             <!-- Titlebar -->
-            <xz_window:TitlebarControl x:Name="titlebar" Foreground="{DynamicResource Foreground_Titlebar}" Background="{DynamicResource Background_Secondary}" />
+            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
+                                       Foreground="{DynamicResource Foreground_Titlebar}" Background="{DynamicResource Background_Secondary}" />
 
         </Grid>
 

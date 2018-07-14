@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{610B3747-8C39-4BC5-BBE0-5FEC5FE4FA6B}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>WebcamViewerX</RootNamespace>
-    <AssemblyName>WebcamViewerX</AssemblyName>
+    <ProjectGuid>{C843E00A-25D6-4047-AAFE-499D0FD2EDB6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WebcamViewerX.Localization</RootNamespace>
+    <AssemblyName>WebcamViewerX.Localization</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -49,63 +52,22 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Application\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Application\Resources.fr.resx" />
+    <EmbeddedResource Include="Application\Resources.hu.resx" />
+    <EmbeddedResource Include="Application\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Segoe MDL2 Assets.ttf" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
-      <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
-      <Name>XeZrunner.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
-      <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
-      <Name>WebcamViewerX.Localization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebcamViewerX.Theming\WebcamViewerX.Theming.csproj">
-      <Project>{60315f98-f69a-4209-8c80-cbce225f4ff8}</Project>
-      <Name>WebcamViewerX.Theming</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
