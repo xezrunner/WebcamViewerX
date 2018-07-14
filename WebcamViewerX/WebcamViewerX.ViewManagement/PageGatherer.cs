@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace WebcamViewerX.ViewManagement
 {
@@ -22,13 +16,10 @@ namespace WebcamViewerX.ViewManagement
                     return new Page();
 
                 case "Home":
-                    return new WebcamViewerX.Home.MainView();
+                    return new Home.MainView();
 
                 case "Settings":
-                    return new Page()
-                    {
-                        Content = new TextBlock() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, Text = "Settings", FontSize = 18 }
-                    };
+                    return new Settings.MainView();
             }
         }
     }

@@ -69,6 +69,10 @@
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
       <Name>WebcamViewerX.Localization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebcamViewerX.Settings\WebcamViewerX.Settings.csproj">
+      <Project>{1d5df9db-cafc-4d39-bd4e-1ff05b5e7ea6}</Project>
+      <Name>WebcamViewerX.Settings</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
