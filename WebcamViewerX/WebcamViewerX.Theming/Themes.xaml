@@ -3,7 +3,9 @@
                     xmlns:local="clr-namespace:WebcamViewerX.Theming">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Themes/ThemeLight.xaml" />
+        <!-- This can be freely changed during development, as it's going to be set by the Config during runtime anyway. -->
+        <!-- Useful to preview/debug themes from within the Designer. -->
+        <ResourceDictionary Source="Themes/ThemeDark.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
