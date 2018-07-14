@@ -1,0 +1,55 @@
+﻿<Page x:Name="main" x:Class="WebcamViewerX.Home.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WebcamViewerX.Home"
+      mc:Ignorable="d" 
+      d:DesignWidth="800" d:DesignHeight="600" 
+      Title="Webcam Viewer Home" Foreground="{DynamicResource Foreground}">
+
+    <Page.Resources>
+
+        <!-- Theme -->
+        <ResourceDictionary x:Name="themeDictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <!-- Main container -->
+    <Grid Background="{DynamicResource Background}">
+        
+        <!-- temporary -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.Row="0" Fill="{DynamicResource Background_Secondary}" />
+
+            <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15"
+                       Foreground="{DynamicResource Foreground_Secondary}" FontSize="15.5" TextWrapping="Wrap">
+                
+                <TextBlock Foreground="{DynamicResource Foreground}" FontSize="26">Welcome to the Home page!</TextBlock>
+                <LineBreak />
+                This is the Home page.
+                <LineBreak />
+                <LineBreak />
+                Right now, there's nothing on this page other than a titlebar tint and this text.
+                <LineBreak />
+                This page serves as a demo for the View manager, and as a placeholder for the future Home view.
+                <LineBreak />
+                <LineBreak />
+                Theming should work aswell, so be sure to press Q and E rapidly like a madman until the app crashes. Which it shouldn't.
+                
+            </TextBlock>
+                       
+
+        </Grid>
+        
+    </Grid>
+</Page>
