@@ -38,7 +38,7 @@ namespace WebcamViewerX.ViewManagement
         public bool HasTransitionAnimations()
         {
             object anim_in = Page.TryFindResource("Anim_In");
-            object anim_out = Page.TryFindResource("Anim_In");
+            object anim_out = Page.TryFindResource("Anim_Out");
 
             if (anim_in != null & anim_out != null)
                 return true;
