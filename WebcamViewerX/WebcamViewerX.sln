@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Localization"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Configuration", "WebcamViewerX.Configuration\WebcamViewerX.Configuration.csproj", "{B8C556DC-3F56-4C98-84B1-445A2B11AF64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Home", "WebcamViewerX.Home\WebcamViewerX.Home.csproj", "{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
