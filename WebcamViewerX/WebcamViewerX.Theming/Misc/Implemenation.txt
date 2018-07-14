@@ -1,0 +1,29 @@
+﻿---- XAML -----
+
+<!-- Theme -->
+<ResourceDictionary x:Name="themeDictionary">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+
+
+----- Code -----
+
+
+Theming.ThemeManager ThemeManager;
+
+public() 
+{
+	ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
+}
+
+#region Theming
+
+public void ThemeChangeHandler(object sender, EventArgs e)
+{
+themeDictionary.MergedDictionaries.Clear();
+themeDictionary.MergedDictionaries.Add((ResourceDictionary)sender);
+}
+
+#endregion
