@@ -76,7 +76,7 @@ namespace WebcamViewerX
             }
 
             // Frame Content
-            if (frame.Content != view.Page)
+            if (frame.Content == null) // if we were to check if the Frame's Content is the same as the View's Page object, there would be a noticable delay, or at least on my system.
                 frame.Content = view.Page;
 
             // Set Frame to be visible.
