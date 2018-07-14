@@ -7,13 +7,13 @@
     <SolidColorBrush x:Key="Foreground" Color="White" />
 
     <!--#region Foreground secondaries -->
-    <SolidColorBrush x:Key="Foreground_Secondary" Color="#7E7E7E" />
+    <SolidColorBrush x:Key="Foreground_Secondary" Color="#D0D0D0" />
 
     <SolidColorBrush x:Key="Foreground_Titlebar" Color="#FFFFFF" />
     <!--#endregion-->
 
     <!--#region Background secondaries -->
-    <SolidColorBrush x:Key="Background_Secondary" Color="#1A1A1A" />
+    <SolidColorBrush x:Key="Background_Secondary" Color="#222222" />
     <!--#endregion-->
 
 </ResourceDictionary>
