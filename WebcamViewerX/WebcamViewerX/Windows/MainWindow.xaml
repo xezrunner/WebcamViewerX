@@ -20,6 +20,18 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="xz_window:TitlebarControl">
+                <Setter Property="Foreground" Value="{DynamicResource Foreground}" />
+                <Setter Property="Background" Value="{x:Null}" />
+
+                <Setter Property="Generic_MouseOverBackgroundBrush" Value="{DynamicResource AccentColor}" />
+                <Setter Property="Generic_MouseDownBackgroundBrush" Value="{DynamicResource AccentColor}" />
+
+                <Setter Property="Generic_MouseOverForegroundBrush" Value="{DynamicResource AccentColor}" />
+                <Setter Property="Generic_MouseDownForegroundBrush" Value="{DynamicResource AccentColor}" />
+            </Style>
+
         </ResourceDictionary>
 
     </Window.Resources>
@@ -119,10 +131,11 @@
             <Grid x:Name="frameContainer" />
 
             <!-- Titlebar -->
-            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
-                                       Foreground="{DynamicResource Foreground_Titlebar}" Background="{DynamicResource Background_Secondary}" />
+                <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
+                                           
+                                           MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"/>
 
-        </Grid>
+            </Grid>
 
     </Border>
 

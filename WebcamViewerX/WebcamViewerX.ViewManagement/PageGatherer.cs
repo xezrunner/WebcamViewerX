@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace WebcamViewerX.ViewManagement
 {
@@ -10,6 +11,7 @@ namespace WebcamViewerX.ViewManagement
     {
         public Page GetViewPage(View view)
         {
+
             switch (view.DevName)
             {
                 default:

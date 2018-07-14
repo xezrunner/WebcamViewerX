@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using WebcamViewerX.Hooks;
 
 namespace WebcamViewerX.ViewManagement
 {
@@ -44,6 +45,11 @@ namespace WebcamViewerX.ViewManagement
                 return true;
             else
                 return false;
+        }
+
+        public MainWindowHooks Hooks
+        {
+            get { return (MainWindowHooks)Page.Tag; }
         }
 
         /// <summary>

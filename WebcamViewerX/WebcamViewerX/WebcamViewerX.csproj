@@ -89,6 +89,10 @@
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
       <Name>XeZrunner.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebcamViewerX.Hooks\WebcamViewerX.Hooks.csproj">
+      <Project>{62a6bbf1-ce2e-4dbd-8f96-bc491f6668bf}</Project>
+      <Name>WebcamViewerX.Hooks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
       <Name>WebcamViewerX.Localization</Name>

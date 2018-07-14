@@ -77,6 +77,10 @@
       <Project>{b8c556dc-3f56-4c98-84b1-445a2b11af64}</Project>
       <Name>WebcamViewerX.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebcamViewerX.Hooks\WebcamViewerX.Hooks.csproj">
+      <Project>{62a6bbf1-ce2e-4dbd-8f96-bc491f6668bf}</Project>
+      <Name>WebcamViewerX.Hooks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
       <Name>WebcamViewerX.Localization</Name>
@@ -94,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Subviews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\Segoe MDL2 Assets.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

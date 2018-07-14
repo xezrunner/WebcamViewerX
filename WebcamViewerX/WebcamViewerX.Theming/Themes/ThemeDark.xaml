@@ -16,4 +16,8 @@
     <SolidColorBrush x:Key="Background_Secondary" Color="#222222" />
     <!--#endregion-->
 
+    <!--#region Home -->
+    <SolidColorBrush x:Key="menu_Background" Color="#8F000000" />
+    <!--#endregion-->
+
 </ResourceDictionary>

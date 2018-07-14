@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WebcamViewerX.ViewManagement;
+using WebcamViewerX.Hooks;
+using System.Runtime.InteropServices;
 
 namespace WebcamViewerX
 {
@@ -90,8 +92,25 @@ namespace WebcamViewerX
 
             CurrentView = view;
         }
+
         #endregion
 
+        #region Hooks
+
+        #region Titlebar hooks
+
+        public event EventHandler RequestTitlebarAppTitleChange;
+        public event EventHandler RequestTitlebarAppTitleVisibilityChange;
+        public event EventHandler RequestTitlebarColorsChange;
+        public event EventHandler RequestTitlebarButtonsChange;
+        public event EventHandler RequestTitlebarSizeChange;
+        #endregion
+
+        #endregion
+
+        #region Window & Titlebar
+
+        #region Window events
         // temporary debug stuff
         private void window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -110,5 +129,22 @@ namespace WebcamViewerX
             if (e.Key == Key.X)
                 SwitchPage(Views.SettingsView);
         }
+
+
+        #endregion
+
+        #region Button click events
+        private void titlebar_MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentView.Hooks.TitlebarHooks.InvokeMenuButtonClick();
+        }
+
+        private void titlebar_BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentView.Hooks.TitlebarHooks.InvokeBackButtonClick();
+        }
+        #endregion
+
+        #endregion
     }
 }

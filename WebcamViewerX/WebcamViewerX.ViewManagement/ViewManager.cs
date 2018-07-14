@@ -51,7 +51,10 @@ namespace WebcamViewerX.ViewManagement
         /// <returns></returns>
         private Page GetViewPage(View view)
         {
-            return PageGatherer.GetViewPage(view);
+            Page page = PageGatherer.GetViewPage(view);
+            page.Tag = new Hooks.MainWindowHooks(); // Give hooks!
+
+            return page;
         }
     }
 }

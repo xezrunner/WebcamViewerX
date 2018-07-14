@@ -6,7 +6,7 @@
         <!-- This can be freely changed during development, as it's going to be set by the Config during runtime anyway. -->
         <!-- Useful to preview/debug themes from within the Designer. -->
         <!-- Also, it's really, really good to have a dark environment in the Designer too with the VS Dark theme.. -->
-        <ResourceDictionary Source="Themes/ThemeDark.xaml" />
+        <ResourceDictionary Source="Themes/ThemeLight.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
