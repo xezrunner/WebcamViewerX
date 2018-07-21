@@ -9,17 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XeZrunner.UI", "..\..\XeZru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Theming", "WebcamViewerX.Theming\WebcamViewerX.Theming.csproj", "{60315F98-F69A-4209-8C80-CBCE225F4FF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.ViewManagement", "WebcamViewerX.ViewManagement\WebcamViewerX.ViewManagement.csproj", "{A2BC337D-8C2F-4C28-A342-83D791F950E0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Localization", "WebcamViewerX.Localization\WebcamViewerX.Localization.csproj", "{C843E00A-25D6-4047-AAFE-499D0FD2EDB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Configuration", "WebcamViewerX.Configuration\WebcamViewerX.Configuration.csproj", "{B8C556DC-3F56-4C98-84B1-445A2B11AF64}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Home", "WebcamViewerX.Home\WebcamViewerX.Home.csproj", "{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Settings", "WebcamViewerX.Settings\WebcamViewerX.Settings.csproj", "{1D5DF9DB-CAFC-4D39-BD4E-1FF05B5E7EA6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Hooks", "WebcamViewerX.Hooks\WebcamViewerX.Hooks.csproj", "{62A6BBF1-CE2E-4DBD-8F96-BC491F6668BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +31,6 @@ Global
 		{60315F98-F69A-4209-8C80-CBCE225F4FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60315F98-F69A-4209-8C80-CBCE225F4FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60315F98-F69A-4209-8C80-CBCE225F4FF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2BC337D-8C2F-4C28-A342-83D791F950E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2BC337D-8C2F-4C28-A342-83D791F950E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2BC337D-8C2F-4C28-A342-83D791F950E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2BC337D-8C2F-4C28-A342-83D791F950E0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C843E00A-25D6-4047-AAFE-499D0FD2EDB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C843E00A-25D6-4047-AAFE-499D0FD2EDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C843E00A-25D6-4047-AAFE-499D0FD2EDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,24 +39,12 @@ Global
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75D85539-8A3A-49F8-92D2-B7BEB21FF4D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D5DF9DB-CAFC-4D39-BD4E-1FF05B5E7EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D5DF9DB-CAFC-4D39-BD4E-1FF05B5E7EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D5DF9DB-CAFC-4D39-BD4E-1FF05B5E7EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D5DF9DB-CAFC-4D39-BD4E-1FF05B5E7EA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62A6BBF1-CE2E-4DBD-8F96-BC491F6668BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62A6BBF1-CE2E-4DBD-8F96-BC491F6668BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62A6BBF1-CE2E-4DBD-8F96-BC491F6668BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62A6BBF1-CE2E-4DBD-8F96-BC491F6668BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_AutoCreateNewLanguageFiles = False
 		SolutionGuid = {EE621625-AACF-4708-A5D1-BA717E12680C}
+		RESX_AutoCreateNewLanguageFiles = False
 	EndGlobalSection
 EndGlobal

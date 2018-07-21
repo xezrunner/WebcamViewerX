@@ -13,9 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WebcamViewerX.ViewManagement;
-using WebcamViewerX.Hooks;
 using System.Runtime.InteropServices;
+using WebcamViewerX.ViewManagement;
 
 namespace WebcamViewerX
 {
@@ -35,12 +34,12 @@ namespace WebcamViewerX
             ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
         }
 
+        #region Theming
         // TODO: ThemeManager: make improvements, including Accent colors.
         // Right now, this is pretty much copy-paste from XesignPhotos.ThemeManager, and that app had/has a single accent color to worry about.
         // We're to be keeping all of the main UI from Webcam Viewer "9" (overviewy), but improving it *a lot*.
         // That means we're keeping the accent color choices, and perhaps we're even adding a third Black theme, as the new theme engine actually supports more than 2 themes already, theoretically.
         // I've had an idea for event-specific themes, such as for winter, Christmas etc... aswell..
-        #region Theming
 
         public void ThemeChangeHandler(object sender, EventArgs e)
         {
@@ -51,9 +50,14 @@ namespace WebcamViewerX
         #endregion
 
         #region View management
+
         public View CurrentView;
 
-        public void SwitchPage(View view)
+        /// <summary>
+        /// This changes the current View to the desired View.
+        /// </summary>
+        /// <param name="view"></param>
+        public void SwitchToView(View view)
         {
             // TODO: remove temp
             temp_scrollviewer.Visibility = Visibility.Collapsed;
@@ -82,29 +86,25 @@ namespace WebcamViewerX
                 frame.Content = view.Page;
 
             // Set Frame to be visible.
-            foreach (Frame visframe in frameContainer.Children)
-            {
-                if (visframe.Name != frame_name)
-                    visframe.Visibility = Visibility.Hidden;
-                else
-                    visframe.Visibility = Visibility.Visible;
-            }
+            RequestFrameVisibility(frame_name);
 
             CurrentView = view;
         }
 
-        #endregion
-
-        #region Hooks
-
-        #region Titlebar hooks
-
-        public event EventHandler RequestTitlebarAppTitleChange;
-        public event EventHandler RequestTitlebarAppTitleVisibilityChange;
-        public event EventHandler RequestTitlebarColorsChange;
-        public event EventHandler RequestTitlebarButtonsChange;
-        public event EventHandler RequestTitlebarSizeChange;
-        #endregion
+        /// <summary>
+        /// This cycles through the frames in the Frames container grid, and handles visibility depending on the given Frame target name.
+        /// </summary>
+        /// <param name="frameName">The target frame.</param>
+        public void RequestFrameVisibility(string frameName)
+        {
+            foreach (Frame visframe in frameContainer.Children)
+            {
+                if (visframe.Name != frameName)
+                    visframe.Visibility = Visibility.Hidden;
+                else
+                    visframe.Visibility = Visibility.Visible;
+            }
+        }
 
         #endregion
 
@@ -122,26 +122,21 @@ namespace WebcamViewerX
                 ThemeManager.Config_SetTheme(Theming.ThemeManager.Theme.Dark);
 
             // View changing
-
             if (e.Key == Key.Y)
-                SwitchPage(Views.HomeView);
-
-            if (e.Key == Key.X)
-                SwitchPage(Views.SettingsView);
+                SwitchToView(Views.Home);
         }
-
 
         #endregion
 
         #region Button click events
         private void titlebar_MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentView.Hooks.TitlebarHooks.InvokeMenuButtonClick();
+
         }
 
         private void titlebar_BackButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentView.Hooks.TitlebarHooks.InvokeBackButtonClick();
+
         }
         #endregion
 

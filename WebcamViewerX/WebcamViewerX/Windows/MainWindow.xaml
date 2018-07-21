@@ -117,10 +117,13 @@
 
                         <TextBlock Text="Button debug" Margin="10,-5,0,0" HorizontalAlignment="Left" />
 
-                        <buttons:NavMenuItem Margin="0,10,0,0" />
-                        <buttons:ListButton />
-                        <buttons:ActionButton />
-                        <buttons:Button />
+                        <buttons:NavMenuItem Margin="0,10,0,0" IsActive="True" />
+                        <buttons:ListButton Text="ListButton" />
+                        <buttons:ActionButton Text="ActionButton" />
+                        <buttons:Button Text="Button" />
+                        <buttons:ShortcutButton Text="ShortcutButton" />
+                        <buttons:CircularActionButton Text="CircularActionButton" />
+                        <buttons:SettingsItemTile Title="SettingsItemTile" />
 
                     </StackPanel>
 

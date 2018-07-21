@@ -53,6 +53,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Home\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -61,6 +65,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Home\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewManagement\PageGatherer.cs" />
+    <Compile Include="ViewManagement\View.cs" />
+    <Compile Include="ViewManagement\ViewManager.cs" />
+    <Compile Include="ViewManagement\Views.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -89,9 +100,9 @@
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
       <Name>XeZrunner.UI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebcamViewerX.Hooks\WebcamViewerX.Hooks.csproj">
-      <Project>{62a6bbf1-ce2e-4dbd-8f96-bc491f6668bf}</Project>
-      <Name>WebcamViewerX.Hooks</Name>
+    <ProjectReference Include="..\WebcamViewerX.Configuration\WebcamViewerX.Configuration.csproj">
+      <Project>{b8c556dc-3f56-4c98-84b1-445a2b11af64}</Project>
+      <Name>WebcamViewerX.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
@@ -101,10 +112,9 @@
       <Project>{60315f98-f69a-4209-8c80-cbce225f4ff8}</Project>
       <Name>WebcamViewerX.Theming</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebcamViewerX.ViewManagement\WebcamViewerX.ViewManagement.csproj">
-      <Project>{a2bc337d-8c2f-4c28-a342-83d791f950e0}</Project>
-      <Name>WebcamViewerX.ViewManagement</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Settings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
