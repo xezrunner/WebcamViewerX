@@ -34,21 +34,6 @@ namespace WebcamViewerX
             ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
         }
 
-        #region Theming
-        // TODO: ThemeManager: make improvements, including Accent colors.
-        // Right now, this is pretty much copy-paste from XesignPhotos.ThemeManager, and that app had/has a single accent color to worry about.
-        // We're to be keeping all of the main UI from Webcam Viewer "9" (overviewy), but improving it *a lot*.
-        // That means we're keeping the accent color choices, and perhaps we're even adding a third Black theme, as the new theme engine actually supports more than 2 themes already, theoretically.
-        // I've had an idea for event-specific themes, such as for winter, Christmas etc... aswell..
-
-        public void ThemeChangeHandler(object sender, EventArgs e)
-        {
-            themeDictionary.MergedDictionaries.Clear();
-            themeDictionary.MergedDictionaries.Add((ResourceDictionary)sender);
-        }
-
-        #endregion
-
         #region View management
 
         public View CurrentView;
@@ -88,6 +73,7 @@ namespace WebcamViewerX
             // Set Frame to be visible.
             RequestFrameVisibility(frame_name);
 
+            // Set CurrentView to our new View
             CurrentView = view;
         }
 
