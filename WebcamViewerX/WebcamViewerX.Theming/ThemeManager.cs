@@ -7,6 +7,11 @@ using System.Windows;
 
 namespace WebcamViewerX.Theming
 {
+    // TODO: ThemeManager: make improvements, including Accent colors.
+    // Right now, this is pretty much copy-paste from XesignPhotos.ThemeManager, and that app had/has a single accent color to worry about.
+    // We're to be keeping all of the main UI from Webcam Viewer "9" (overviewy), but improving it *a lot*.
+    // That means we're keeping the accent color choices, and perhaps we're even adding a third Black theme, as the new theme engine actually supports more than 2 themes already, theoretically.
+    // I've had an idea for event-specific themes, such as for winter, Christmas etc... aswell..
     public class ThemeManager
     {
         public Config Config = Config.Default;
@@ -19,6 +24,8 @@ namespace WebcamViewerX.Theming
 
         public ResourceDictionary Dictionary;
 
+        XeZrunner.UI.Theming.ThemeManager XZ_ThemeManager = new XeZrunner.UI.Theming.ThemeManager(null);
+
         public ThemeManager(ResourceDictionary _dict)
         {
             Dictionary = _dict;
@@ -28,6 +35,8 @@ namespace WebcamViewerX.Theming
 
             Config.Default.PropertyChanged += Config_PropertyChanged;
         }
+
+        public bool ListenToConfigChange { get; set; } = true;
 
         /// <summary>
         /// Returns a Theme property from a string, if valid argument is given.
@@ -60,6 +69,8 @@ namespace WebcamViewerX.Theming
             ResourceDictionary newMergedDictionary = new ResourceDictionary() { Source = new Uri(String.Format("pack://application:,,,/WebcamViewerX.Theming;component/Themes/Theme{0}.xaml", theme.ToString())) };
             // add new theme dictionary
             Dictionary.MergedDictionaries.Add(newMergedDictionary);
+
+            XZ_ThemeManager.Config_SetTheme(XZ_ThemeManager.GetThemeFromString(Config.theme));
         }
 
         /// <summary>
@@ -68,7 +79,7 @@ namespace WebcamViewerX.Theming
         /// </summary>
         private void Config_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "theme")
+            if (ListenToConfigChange & e.PropertyName == "theme")
                 RequestThemeChange(GetThemeFromString(Config.theme));
         }
 
@@ -78,18 +89,20 @@ namespace WebcamViewerX.Theming
         /// <param name="theme">The theme to set.</param>
         /// <param name="apply">Controls whether to apply the theme right away.</param>
         /// <param name="save">Controls whether to save the theme change permanently.</param>
-        public void Config_SetTheme(Theme theme, bool apply = true, bool save = true)
+        public void Config_SetTheme(Theme theme, bool save = true)
         {
             // TODO: might need cross-project QuickConfig compatibility with this.
             // XesignPhotos QC Editor already has color-picker and changing capability.
 
-            // set the config value
-            Config.Default.theme = theme.ToString();
+            // set the config value. we're already listening to config-changing so no need to apply theme.
             if (save)
+            {
+                Config.Default.theme = theme.ToString();
                 Config.Save();
+            }
 
-            // apply the theme
-            if (apply)
+            // apply the theme if not saving
+            if (!save)
                 RequestThemeChange(theme);
         }
     }

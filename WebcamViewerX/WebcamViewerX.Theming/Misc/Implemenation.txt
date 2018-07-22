@@ -18,12 +18,10 @@ public()
 	ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
 }
 
-#region Theming
+----- Custom fast keyboard thing, do not use unless you understand this -----
 
-public void ThemeChangeHandler(object sender, EventArgs e)
+public()
 {
-themeDictionary.MergedDictionaries.Clear();
-themeDictionary.MergedDictionaries.Add((ResourceDictionary)sender);
+	Theming.ThemeManager ThemeManager;
+	ThemeManager = new Theming.ThemeManager(themeDictionary);
 }
-
-#endregion
