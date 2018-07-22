@@ -12,12 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebcamViewerX.ViewManagement;
 
 namespace WebcamViewerX.Home
 {
     public partial class MainView : Page
     {
         Theming.ThemeManager ThemeManager;
+
+        View View;
+        MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
 
         public MainView()
         {
@@ -26,15 +30,18 @@ namespace WebcamViewerX.Home
             ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
         }
 
-        #region Theming
-
-        public void ThemeChangeHandler(object sender, EventArgs e)
+        private void main_Loaded(object sender, RoutedEventArgs e)
         {
-            themeDictionary.MergedDictionaries.Clear();
-            themeDictionary.MergedDictionaries.Add((ResourceDictionary)sender);
+            View = (View)this.Tag;
         }
 
-        #endregion
+        private void main_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (this.IsVisible)
+                MainWindow.RequestTitlebarThemeChange("Dark"); // force dark titlebar theme because of dark titlebar tint
+            else
+                MainWindow.RequestTitlebarThemeChange(); // reset titlebar theme
+        }
 
         #region Menu
 

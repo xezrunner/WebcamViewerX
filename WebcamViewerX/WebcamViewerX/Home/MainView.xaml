@@ -1,4 +1,4 @@
-﻿<Page x:Class="WebcamViewerX.Home.MainView"
+﻿<Page x:Name="main" x:Class="WebcamViewerX.Home.MainView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,9 @@
       xmlns:local="clr-namespace:WebcamViewerX.Home"
       mc:Ignorable="d" 
       d:DesignWidth="800" d:DesignHeight="600"
-      Title="Home" Foreground="{DynamicResource Foreground}">
+      Title="Home" Foreground="{DynamicResource Foreground}"
+      
+      Loaded="main_Loaded" IsVisibleChanged="main_IsVisibleChanged">
 
     <Page.Resources>
 
@@ -16,6 +18,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+
         </ResourceDictionary>
 
     </Page.Resources>
@@ -23,10 +27,16 @@
     <!-- Main container -->
     <Grid Background="{DynamicResource Background}">
 
-        <!-- Sub-main container -->
-        <Grid x:Name="grid_SubMainContainer">
+        <!-- Content container -->
+        <Grid x:Name="grid_ContentContainer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            <Grid x:Name="grid_Image" Margin="0,32,0,0">
+            <Rectangle Fill="Black" Grid.Row="0" />
+
+            <Grid x:Name="grid_Image" Grid.Row="1">
                 <!-- placeholder -->
                 <Rectangle Fill="#00213F" />
             </Grid>
@@ -120,9 +130,9 @@
                     <StackPanel x:Name="menu_cameralist_StackPanel">
                         <TextBlock Foreground="{DynamicResource Foreground_Secondary}" HorizontalAlignment="Left" Text="Cameras" FontSize="14" Margin="15,0,0,10" />
 
-                        <xz_buttons:NavMenuItem Icon="" IsActive="True" Text="Camera #1" />
-                        <xz_buttons:NavMenuItem Icon="" Text="Camera #2" />
-                        <xz_buttons:NavMenuItem Icon="" Text="Camera #3" />
+                        <xz_buttons:ListButton Icon="" IsActive="True" Text="Camera #1" />
+                        <xz_buttons:ListButton Icon="" Text="Camera #2" />
+                        <xz_buttons:ListButton Icon="" Text="Camera #3" />
                     </StackPanel>
                 </ScrollViewer>
 
