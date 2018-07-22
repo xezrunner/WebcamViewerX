@@ -1,0 +1,45 @@
+﻿<Page x:Name="main" x:Class="WebcamViewerX.Settings.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
+      xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
+      xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignWidth="800" d:DesignHeight="600"
+      Title="Home" Foreground="{DynamicResource Foreground}"
+      
+      Loaded="main_Loaded">
+
+    <Page.Resources>
+
+        <!-- Theme -->
+        <ResourceDictionary x:Name="themeDictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+
+
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <!-- Main container -->
+    <Grid Background="{DynamicResource Background}">
+
+        <!-- Content container -->
+        <Grid x:Name="grid_ContentContainer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="#0F000000" Visibility="Hidden" />
+
+        </Grid>
+
+
+    </Grid>
+</Page>

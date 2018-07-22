@@ -25,7 +25,7 @@ namespace WebcamViewerX.ViewManagement
                     return new Home.MainView();
 
                 case "Settings":
-                    return new Page();
+                    return new Settings.MainView();
             }
         }
     }

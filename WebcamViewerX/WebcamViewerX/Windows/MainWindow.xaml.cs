@@ -111,6 +111,29 @@ namespace WebcamViewerX
         #region Window & Titlebar
 
         #region Window events
+
+        public event RoutedEventHandler MenuButtonClick;
+        public event RoutedEventHandler BackButtonClick;
+
+        public void RequestTitleChange(string title)
+        {
+            titlebar.AppTitle = title;
+        }
+
+        /// <summary>
+        /// Change the titlebar theme.
+        /// </summary>
+        /// <param name="theme">The theme to change to. (use null to restore to global theme)</param>
+        public void RequestTitlebarThemeChange(string theme = null)
+        {
+            if (theme == null)
+                titlebar.Theme = null;
+            if (theme == "Light")
+                titlebar.Theme = XeZrunner.UI.Theming.ThemeManager.Theme.Light;
+            if (theme == "Dark")
+                titlebar.Theme = XeZrunner.UI.Theming.ThemeManager.Theme.Dark;
+        }
+
         // temporary debug stuff
         private void window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -124,6 +147,9 @@ namespace WebcamViewerX
             // View changing
             if (e.Key == Key.Y)
                 SwitchToView(Views.Home);
+
+            if (e.Key == Key.X)
+                SwitchToView(Views.Settings);
         }
 
         #endregion
