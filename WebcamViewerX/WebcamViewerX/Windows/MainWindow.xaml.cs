@@ -143,12 +143,12 @@ namespace WebcamViewerX
         #region Button click events
         private void titlebar_MenuButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuButtonClick?.Invoke(sender ,e);
         }
 
         private void titlebar_BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            BackButtonClick?.Invoke(sender, e);
         }
         #endregion
 
