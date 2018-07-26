@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
+      xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:WebcamViewerX.Home"
       mc:Ignorable="d" 
       d:DesignWidth="800" d:DesignHeight="600"
-      Title="Home" Foreground="{DynamicResource Foreground}"
+      Title="Home" Foreground="{DynamicResource Foreground}" ClipToBounds="True"
       
       Loaded="main_Loaded" IsVisibleChanged="main_IsVisibleChanged">
 
@@ -44,31 +46,21 @@
         </Grid>
 
         <!-- Menu -->
-        <Grid x:Name="grid_Menu" Visibility="Visible"
-              HorizontalAlignment="Left" Width="375" ClipToBounds="True">
-            <Grid.ColumnDefinitions>
-                <!-- Menu content -->
-                <ColumnDefinition />
-                <!-- Menu shadow -->
-                <ColumnDefinition x:Name="menu_coldef_shadow" Width="15" />
-            </Grid.ColumnDefinitions>
+        <xz_controls:MenuControl x:Name="Menu"
+                                 Background="{DynamicResource Menu_Background}" Foreground="{DynamicResource Foreground}"
+                                 HorizontalAlignment="Left" ExpandedWidth="365" TitlebarHeight="32">
+            <xz_controls:MenuControl.Resources>
 
-            <!-- Backplate -->
-            <Rectangle Fill="{DynamicResource Menu_Background}" />
+                <sys:String x:Key="camera_Name">Camera name</sys:String>
+                <sys:String x:Key="camera_Url">https://camera-url.com/camera-1.jpg</sys:String>
+                <sys:String x:Key="camera_Owner">szebi_xezrunner</sys:String>
+                <sys:String x:Key="camera_Location">[X] Slovakia</sys:String>
 
-            <!-- Content -->
-            <Grid Margin="0,32,0,0">
-                <Grid.RowDefinitions>
-                    <!-- Camera info -->
-                    <RowDefinition Height="Auto" />
-                    <!-- Camera list -->
-                    <RowDefinition Height="Auto" />
-                    <!-- Bottom shortcuts -->
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            </xz_controls:MenuControl.Resources>
 
+            <xz_controls:MenuControl.Top>
                 <!-- Info grid -->
-                <Grid x:Name="menu_infoGrid" Grid.Row="0" Margin="15,10">
+                <Grid Grid.Row="0" Margin="15,10">
                     <Grid.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="14" />
@@ -89,72 +81,67 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock x:Name="menu_info_cameraName" Grid.Row="0"
-                               Text="Camera name" />
+                    <TextBlock Grid.Row="0"
+                               Text="{DynamicResource camera_Name}" />
 
-                    <TextBlock x:Name="menu_info_cameraURL" Grid.Row="1"
-                               Text="https://camera-url.com/camera-1.jpg" />
+                    <TextBlock Grid.Row="1"
+                               Text="{DynamicResource camera_Url}" />
 
-                    <TextBlock x:Name="menu_info_cameraOwner" Grid.Row="2"
-                               Text="szebi_xezrunner" />
+                    <TextBlock Grid.Row="2"
+                               Text="{DynamicResource camera_Owner}" />
 
-                    <TextBlock x:Name="menu_info_cameraLocation" Grid.Row="3"
-                               Text="[X] Slovakia" />
+                    <TextBlock Grid.Row="3"
+                               Text="{DynamicResource camera_Location}" />
 
                     <!-- Actions -->
 
-                    <Grid x:Name="menu_info_actionsGrid" Grid.Row="4"
+                    <Grid Grid.Row="4"
                                   Margin="0,10,0,0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                            <xz_buttons:CircularActionButton x:Name="menu_localSaveButton"
-                                                             Icon="&#xe74e;" Text="Save image" />
+                            <xz_buttons:CircularActionButton Icon="&#xe74e;" Text="Save image"
+                                                             
+                                                             Click="menu_localSaveButton_Click"/>
 
-                            <xz_buttons:CircularActionButton x:Name="menu_archiveorgSaveButton"
-                                                             Margin="8,0,0,0"
-                                                             Icon="&#xe78b;" Text="Save on archive.org" />
+                            <xz_buttons:CircularActionButton Margin="8,0,0,0"
+                                                             Icon="&#xe78b;" Text="Save on archive.org"
+                                                             
+                                                             Click="menu_archiveorgSaveButton_Click"/>
 
-                            <xz_buttons:CircularActionButton x:Name="menu_bothSaveButton"
-                                                             Margin="8,0,0,0"
-                                                             Icon="&#xe17d;" Text="Save everywhere" />
+                            <xz_buttons:CircularActionButton Margin="8,0,0,0"
+                                                             Icon="&#xe17d;" Text="Save everywhere"
+                                                             
+                                                             Click="menu_bothSaveButton_Click"/>
 
                         </StackPanel>
                     </Grid>
 
                 </Grid>
+            </xz_controls:MenuControl.Top>
 
+            <xz_controls:MenuControl.Middle>
                 <!-- Camera list-->
-                <ScrollViewer x:Name="menu_cameralist_ScrollViewer" Grid.Row="1"
-                              HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <!-- TODO: placeholder, use actual control! -->
-                    <StackPanel x:Name="menu_cameralist_StackPanel">
-                        <TextBlock Foreground="{DynamicResource Foreground_Secondary}" HorizontalAlignment="Left" Text="Cameras" FontSize="14" Margin="15,0,0,10" />
+                <xz_controls:NavigationMenu CurrentSelection="0">
+                    <xz_controls:NavigationMenu.Items>
+                        <StackPanel Tag="Cameras">
+                            <!-- <TextBlock Foreground="{DynamicResource Foreground_Secondary}" HorizontalAlignment="Left" Text="Cameras" FontSize="14" Margin="23,0,0,10" /> -->
+                            <xz_buttons:NavMenuItem Icon="" Text="Camera #1" Height="35" />
+                            <xz_buttons:NavMenuItem Icon="" Text="Camera #2" Height="35" />
+                            <xz_buttons:NavMenuItem Icon="" Text="Camera #3" Height="35" />
+                        </StackPanel>
+                    </xz_controls:NavigationMenu.Items>
+                </xz_controls:NavigationMenu>
+            </xz_controls:MenuControl.Middle>
 
-                        <xz_buttons:ListButton Icon="" IsActive="True" Text="Camera #1" />
-                        <xz_buttons:ListButton Icon="" Text="Camera #2" />
-                        <xz_buttons:ListButton Icon="" Text="Camera #3" />
-                    </StackPanel>
-                </ScrollViewer>
-
+            <xz_controls:MenuControl.Bottom>
                 <!-- Bottom shortcuts -->
                 <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                    <xz_buttons:ShortcutButton x:Name="menu_SettingsButton" Icon="&#xe713;" Text="Settings" />
+                    <xz_buttons:ShortcutButton Icon="&#xe713;" Text="Settings"
+                                               
+                                               Click="menu_SettingsButton_Click"/>
                 </StackPanel>
-
-            </Grid>
-
-            <!-- Shadow -->
-            <Rectangle Grid.Column="1" Width="15" HorizontalAlignment="Left" >
-                <Rectangle.Fill>
-                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                        <GradientStop Color="#21000000" Offset="0"/>
-                        <!-- 21 -->
-                        <GradientStop Color="#00000000" Offset="1"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-
-        </Grid>
+            </xz_controls:MenuControl.Bottom>
+        </xz_controls:MenuControl>
 
     </Grid>
 </Page>

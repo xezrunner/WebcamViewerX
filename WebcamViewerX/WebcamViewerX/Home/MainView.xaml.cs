@@ -33,12 +33,23 @@ namespace WebcamViewerX.Home
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
             View = (View)this.Tag;
+
+            // close the menu by default
+            Menu.Animations = false;
+            Menu.Close();
+            Menu.Animations = true;
+
+            MainWindow.titlebar.MenuButton_Click += MenuButtonClick;
+            MainWindow.titlebar.BackButton_Click += BackButtonClick;
         }
 
         private void main_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (this.IsVisible)
+            {
                 MainWindow.RequestTitlebarThemeChange("Dark"); // force dark titlebar theme because of dark titlebar tint
+                MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
+            }
             else
                 MainWindow.RequestTitlebarThemeChange(); // reset titlebar theme
         }
@@ -47,27 +58,53 @@ namespace WebcamViewerX.Home
 
         bool IsMenuOpen
         {
-            get { return grid_Menu.IsVisible; }
+            get { return Menu.IsVisible; }
         }
 
         public void OpenMenu()
         {
-            MessageBox.Show("Debug: OpenMenu()!");
-            /*
-            Storyboard board = (Storyboard)FindResource("Menu_In");
-            board.Begin(); board.SetSpeedRatio(anim_speedratio);
-            */
+            Menu.Open();
         }
 
         public void CloseMenu()
         {
-            MessageBox.Show("Debug: CloseMenu()!");
-            /*
-            Storyboard board = (Storyboard)FindResource("Menu_Out");
-            board.Begin(); board.SetSpeedRatio(anim_speedratio);
-            */
+            Menu.Close();
+        }
+
+        void MenuButtonClick(object sender, RoutedEventArgs e)
+        {
+            OpenMenu();
+            MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
+            MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
+        }
+
+        void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            CloseMenu();
+            MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
+            MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
         }
 
         #endregion
+
+        private void menu_localSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menu_archiveorgSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menu_bothSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menu_SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
