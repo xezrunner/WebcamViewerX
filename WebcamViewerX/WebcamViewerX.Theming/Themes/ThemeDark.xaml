@@ -17,7 +17,7 @@
     <!--#endregion-->
 
     <!--#region Home -->
-    <SolidColorBrush x:Key="menu_Background" Color="#8F000000" />
+    <SolidColorBrush x:Key="Menu_Background" Color="#8F000000" />
     <!--#endregion-->
 
 </ResourceDictionary>
