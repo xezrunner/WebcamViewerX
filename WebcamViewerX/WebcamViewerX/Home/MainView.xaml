@@ -54,7 +54,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Backplate -->
-            <Rectangle Fill="{DynamicResource menu_Background}" />
+            <Rectangle Fill="{DynamicResource Menu_Background}" />
 
             <!-- Content -->
             <Grid Margin="0,32,0,0">
