@@ -30,5 +30,30 @@ namespace WebcamViewerX.Settings
         {
             
         }
+
+        private void NavigationMenu_SelectionChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.Close();
+        }
+
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.Open();
+        }
+
+        private void normalButton_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.Mode = XeZrunner.UI.Controls.MenuControl.MenuMode.Normal;
+        }
+
+        private void compactButton_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.Mode = XeZrunner.UI.Controls.MenuControl.MenuMode.Compact;
+        }
     }
 }

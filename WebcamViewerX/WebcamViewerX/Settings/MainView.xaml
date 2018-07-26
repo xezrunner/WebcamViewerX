@@ -7,8 +7,8 @@
       xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
       xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignWidth="800" d:DesignHeight="600"
-      Title="Home" Foreground="{DynamicResource Foreground}"
+      d:DesignWidth="850" d:DesignHeight="600"
+      Title="Home" Foreground="{DynamicResource Foreground}" ClipToBounds="True"
       
       Loaded="main_Loaded">
 
@@ -28,9 +28,13 @@
 
     <!-- Main container -->
     <Grid Background="{DynamicResource Background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
         <!-- Content container -->
-        <Grid x:Name="grid_ContentContainer">
+        <Grid x:Name="grid_ContentContainer" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32" />
                 <RowDefinition />
@@ -38,8 +42,57 @@
 
             <Rectangle Fill="#0F000000" Visibility="Hidden" />
 
+            <Grid Grid.Row="1">
+
+                <Frame x:Name="settingsFrameContainer" />
+
+                <StackPanel>
+                    <xz_buttons:Button x:Name="closeButton" Text="Close" Click="closeButton_Click" />
+                    <xz_buttons:Button x:Name="openButton" Text="Open" Click="openButton_Click" />
+
+                    <xz_buttons:Button x:Name="normalButton" Text="Normal" Click="normalButton_Click" />
+                    <xz_buttons:Button x:Name="compactButton" Text="Compact" Click="compactButton_Click" />
+                </StackPanel>
+
+            </Grid>
+
         </Grid>
 
+        <xz_controls:MenuControl x:Name="Menu"
+                                 Background="{DynamicResource Background}" Foreground="{DynamicResource Foreground}" ExpandedWidth="335" Mode="Compact" State="Open" ComapctWidth="55" TitlebarHeight="32">
+            <xz_controls:MenuControl.Top>
+                <Grid Margin="0" >
+                    <StackPanel Orientation="Horizontal">
+
+                        <xz_buttons:CircularActionButton Icon="&#xe72b;" Text=""
+                                                             Height="48" MinWidth="0" Width="57" Margin="0,8,8,8"/>
+
+                        <TextBlock Text="Settings"
+                                       FontFamily="Segoe UI Semibold" FontSize="16"
+                                       VerticalAlignment="Center" Margin="8,-2,0,0"/>
+
+                    </StackPanel>
+                </Grid>
+            </xz_controls:MenuControl.Top>
+
+            <xz_controls:MenuControl.Middle>
+                <xz_controls:NavigationMenu SelectionChanged="NavigationMenu_SelectionChanged"
+                                            Grid.Row="1">
+                    <StackPanel Tag="Webcams">
+                        <xz_buttons:NavMenuItem Text="Webcam editor" Icon="&#xe8fd;" />
+                        <xz_buttons:NavMenuItem Text="Viewer settings" Icon="&#xe960;" />
+                    </StackPanel>
+
+                    <StackPanel Tag="Personalization">
+                        <xz_buttons:NavMenuItem Text="User interface" Icon="&#xe2b1;" />
+                    </StackPanel>
+
+                    <StackPanel Tag="About &amp; updates">
+                        <xz_buttons:NavMenuItem Text="About application" Icon="&#xe946;" />
+                    </StackPanel>
+                </xz_controls:NavigationMenu>
+            </xz_controls:MenuControl.Middle>
+        </xz_controls:MenuControl>
 
     </Grid>
 </Page>
