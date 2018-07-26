@@ -37,11 +37,12 @@
         <Grid>
 
             <!-- Temporary -->
-            <ScrollViewer x:Name="temp_scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer x:Name="temp_scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                          Margin="0,32,0,0">
                 <StackPanel>
 
                     <TextBlock Foreground="{DynamicResource Foreground}" FontSize="14"
-                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,50,18,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,10,18,0"
                        TextWrapping="Wrap">
                 <TextBlock Foreground="{DynamicResource AccentColor}" FontSize="22">Hello early tester!</TextBlock>
                 <LineBreak/>
@@ -124,7 +125,8 @@
 
             <!-- Titlebar -->
                 <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
-                                           
+                                           Height="32"
+                                           MenuButtonVisibility="Collapsed"
                                            MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"/>
 
             </Grid>
