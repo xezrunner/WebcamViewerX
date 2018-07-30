@@ -75,7 +75,7 @@
     <Compile Include="Settings\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewManagement\PageGatherer.cs" />
+    <Compile Include="ViewManagement\ViewPageGatherer.cs" />
     <Compile Include="ViewManagement\View.cs" />
     <Compile Include="ViewManagement\ViewManager.cs" />
     <Compile Include="ViewManagement\Views.cs" />
