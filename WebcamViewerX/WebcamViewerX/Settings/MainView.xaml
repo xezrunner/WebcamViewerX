@@ -11,7 +11,6 @@
       d:DesignWidth="850" d:DesignHeight="600"
       Title="Home" Foreground="{DynamicResource Foreground}" ClipToBounds="True" xz_controlfx:PointerTracker.Enabled="True"
       
-      Loaded="main_Loaded">
       Loaded="main_Loaded" IsVisibleChanged="main_IsVisibleChanged">
 
     <Page.Resources>
@@ -51,6 +50,13 @@
             </Grid>
 
         </Grid>
+
+        <Rectangle Fill="{DynamicResource Background}">
+            <!-- <Rectangle.Effect>
+                <DropShadowEffect Direction="65" Opacity="0.1" BlurRadius="8" ShadowDepth="12" />
+            </Rectangle.Effect> -->
+        </Rectangle>
+        <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
 
         <xz_controls:MenuControl x:Name="Menu" Margin="0"
                                  Background="Transparent" Foreground="{DynamicResource Foreground}" ExpandedWidth="335" TitlebarHeight="25" xz_controlfx:PointerTracker.Enabled="False">
