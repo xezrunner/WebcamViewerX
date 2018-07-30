@@ -132,6 +132,10 @@
                                            MenuButtonVisibility="Collapsed"
                                            MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"/>
 
+            <!-- theme changing image -->
+            <Image x:Name="themechangeImage" Margin="-11" Visibility="Hidden" />
+
+        </Grid>
 
     </Border>
 

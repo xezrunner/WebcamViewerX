@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using WebcamViewerX.ViewManagement;
+using System.Windows.Media.Animation;
 
 namespace WebcamViewerX
 {
@@ -32,6 +33,7 @@ namespace WebcamViewerX
             InitializeComponent();
 
             ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
+            ThemeManager.ThemeChangeRequested += this.ThemeManager_ThemeChangeRequested;
         }
 
         #region View management
@@ -153,5 +155,21 @@ namespace WebcamViewerX
         #endregion
 
         #endregion
+
+        private async void ThemeManager_ThemeChangeRequested(object sender, EventArgs e)
+        {
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)Width, (int)Height, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(this);
+            PngBitmapEncoder pngimage = new PngBitmapEncoder();
+            themechangeImage.Source = BitmapFrame.Create(renderTargetBitmap);
+
+            themechangeImage.Visibility = Visibility.Visible;
+
+            DoubleAnimation anim = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3));
+            themechangeImage.BeginAnimation(OpacityProperty, anim);
+
+            await Task.Delay(TimeSpan.FromSeconds(.3));
+            themechangeImage.Visibility = Visibility.Hidden;
+        }
     }
 }
