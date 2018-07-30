@@ -9,7 +9,7 @@ namespace WebcamViewerX.ViewManagement
 {
     public class ViewManager
     {
-        PageGatherer PageGatherer = new PageGatherer();
+        ViewPageGatherer PageGatherer = new ViewPageGatherer();
 
         /// <summary>
         /// This gives the View object its Page if it doesn't have one already, and returns the View.

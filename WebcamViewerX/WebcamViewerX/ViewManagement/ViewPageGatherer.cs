@@ -11,7 +11,7 @@ namespace WebcamViewerX.ViewManagement
     /// This class serves its purpose to gather the Page objects for the Views.
     /// It's a seperate class so the ViewManager.cs doesn't get messy.
     /// </summary>
-    public class PageGatherer
+    public class ViewPageGatherer
     {
         public Page GetViewPage(View view)
         {
