@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -18,6 +19,10 @@ namespace WebcamViewerX.Settings
     public partial class MainView : Page
     {
         Theming.ThemeManager ThemeManager;
+        SubViewManager SubViewManager = new SubViewManager();
+        SubViews SubViews = new SubViews();
+
+        MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
 
         public MainView()
         {
@@ -28,22 +33,80 @@ namespace WebcamViewerX.Settings
 
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            Menu.GetNavigationMenu().SelectID(0);
         }
 
+        private void main_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            
+            // temporary
+            if (this.IsVisible)
+            {
+                MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
+                MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
+            }
+            else
+                MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
         }
 
         private void NavigationMenu_SelectionChanged(object sender, EventArgs e)
         {
+            int? id = Menu.GetNavigationMenu().CurrentSelection;
+            if (id != null)
+                SwitchToSubView(SubViews.GetSubViewFromID(id.Value));
+            else
+            { /* error! */ }
         }
 
+        #region Subview management
 
+        // Based on the main View management system
+
+        public SubView CurrentSubView;
+
+        public void SwitchToSubView(SubView subview)
         {
+            subview = SubViewManager.GetSubView(subview);
+
+            Frame frame = null;
+            string frame_name = subview.DevName + "_Frame";
+
+            foreach (Frame containedFrame in FramesContainer.Children)
+            {
+                if (containedFrame.Name == frame_name)
+                    frame = containedFrame;
+            }
+
+            if (frame == null)
+            {
+                frame = new Frame() { Name = frame_name };
+                FramesContainer.Children.Add(frame);
+            }
+
+            if (frame.Content == null)
+                frame.Content = subview.Page;
+
+            RequestFrameVisiblity(frame_name);
+
+            CurrentSubView = subview;
         }
 
+        public void RequestFrameVisiblity(string frameName)
         {
+            foreach (Frame visframe in FramesContainer.Children)
+            {
+                DoubleAnimation anim_in = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(.3));
+                DoubleAnimation anim_out = new DoubleAnimation(0, TimeSpan.FromSeconds(.2));
+
+                if (visframe.Name != frameName)
+                {
+                    if (visframe.Opacity != 0)
+                        visframe.BeginAnimation(OpacityProperty, anim_out);
+                }
+                else
+                    visframe.BeginAnimation(OpacityProperty, anim_in);
+            }
         }
+
+        #endregion
     }
 }

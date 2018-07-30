@@ -1,0 +1,81 @@
+﻿<Page x:Class="WebcamViewerX.Settings.Subviews.AboutApplicationSubView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
+      xmlns:xezui_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+      xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
+      mc:Ignorable="d" 
+      d:DesignWidth="500" d:DesignHeight="600" Background="Transparent"
+      Title="AboutApplicationSubView" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True">
+    <Page.Resources>
+
+        <ResourceDictionary x:Name="themeDictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <!-- Generic header -->
+            <RowDefinition Height="48" />
+            <!-- Content -->
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="1" Background="{DynamicResource Background}">
+            <!-- <Grid.Effect>
+                <DropShadowEffect Opacity="0.15" Direction="15" BlurRadius="6" ShadowDepth="3" />
+            </Grid.Effect> -->
+
+            <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
+
+            <TextBlock Text="About application"
+                   Foreground="{DynamicResource AccentColor}"
+                   VerticalAlignment="Center" Margin="25,0,0,0"
+                   FontSize="18" FontFamily="/Fonts/#Google Sans" FontWeight="Medium"/>
+
+        </Grid>
+
+        <!-- titlebar tint -->
+        <Rectangle Grid.Row="0" Fill="{DynamicResource Background_AppbarTitlebarTint}" />
+
+        <!-- Content -->
+        <Grid Margin="25,15,15,15" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <!-- Branding -->
+                <RowDefinition Height="Auto" />
+                <!-- Description -->
+                <RowDefinition Height="Auto" />
+                <!-- Buttons -->
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock FontFamily="/Fonts/#Google Sans" FontSize="48" Margin="-4,0,0,0" FontWeight="Light" Grid.Row="0" Visibility="Visible">Webcam Viewer X</TextBlock>
+
+            <TextBlock Grid.Row="1" TextWrapping="Wrap">
+            This is a description.
+            <LineBreak/>
+            Right now, it's describing what itself is, but in the future, it'll probably describe something more useful.
+            </TextBlock>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,15,0" Grid.Row="2">
+                <xezui_buttons:Button Text="Changelog" />
+                <xezui_buttons:Button Text="Credits" Margin="8,0,0,0" />
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</Page>

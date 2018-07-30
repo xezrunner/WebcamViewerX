@@ -61,6 +61,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Settings\Subviews\AboutApplicationSubView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\Subviews\HomeSettingsSubView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\Subviews\UserInterfaceSubView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\Subviews\WebcamEditorSubView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +90,22 @@
     </Compile>
     <Compile Include="Settings\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SubViewManagement\SubView.cs" />
+    <Compile Include="Settings\SubViewManagement\SubViewManager.cs" />
+    <Compile Include="Settings\SubViewManagement\SubViewPageGatherer.cs" />
+    <Compile Include="Settings\SubViewManagement\SubViews.cs" />
+    <Compile Include="Settings\Subviews\AboutApplicationSubView.xaml.cs">
+      <DependentUpon>AboutApplicationSubView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Subviews\HomeSettingsSubView.xaml.cs">
+      <DependentUpon>HomeSettingsSubView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Subviews\UserInterfaceSubView.xaml.cs">
+      <DependentUpon>UserInterfaceSubView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Subviews\WebcamEditorSubView.xaml.cs">
+      <DependentUpon>WebcamEditorSubView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewManagement\ViewPageGatherer.cs" />
     <Compile Include="ViewManagement\View.cs" />
@@ -101,6 +133,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Resource Include="Fonts\GoogleSans-Black.ttf" />
+    <Resource Include="Fonts\GoogleSans-BlackItalic.ttf" />
+    <Resource Include="Fonts\GoogleSans-Bold.ttf" />
+    <Resource Include="Fonts\GoogleSans-BoldItalic.ttf" />
+    <Resource Include="Fonts\GoogleSans-Italic.ttf" />
+    <Resource Include="Fonts\GoogleSans-Light.ttf" />
+    <Resource Include="Fonts\GoogleSans-LightItalic.ttf" />
+    <Resource Include="Fonts\GoogleSans-Medium.ttf" />
+    <Resource Include="Fonts\GoogleSans-MediumItalic.ttf" />
+    <Resource Include="Fonts\GoogleSans-Regular.ttf" />
+    <Resource Include="Fonts\GoogleSans-Thin.ttf" />
+    <Resource Include="Fonts\GoogleSans-ThinItalic.ttf" />
+    <Resource Include="Fonts\GoogleSansCondensed-Bold.ttf" />
+    <Resource Include="Fonts\GoogleSansCondensed-BoldItalic.ttf" />
+    <Resource Include="Fonts\GoogleSansCondensed-Italic.ttf" />
+    <Resource Include="Fonts\GoogleSansCondensed-Light.ttf" />
+    <Resource Include="Fonts\GoogleSansCondensed-LightItalic.ttf" />
+    <Resource Include="Fonts\GoogleSansCondensed-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">

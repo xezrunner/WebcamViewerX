@@ -12,6 +12,7 @@
       Title="Home" Foreground="{DynamicResource Foreground}" ClipToBounds="True" xz_controlfx:PointerTracker.Enabled="True"
       
       Loaded="main_Loaded">
+      Loaded="main_Loaded" IsVisibleChanged="main_IsVisibleChanged">
 
     <Page.Resources>
 
@@ -37,7 +38,7 @@
         <!-- Content container -->
         <Grid x:Name="grid_ContentContainer" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="32" />
+                <RowDefinition Height="0" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
