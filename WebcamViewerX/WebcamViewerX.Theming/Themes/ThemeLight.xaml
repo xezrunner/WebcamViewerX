@@ -14,6 +14,7 @@
 
     <!--#region Background secondaries -->
     <SolidColorBrush x:Key="Background_Secondary" Color="#E6E6E6" />
+    <SolidColorBrush x:Key="Background_AppbarTitlebarTint" Color="#F5F5F5" />
     <!--#endregion-->
     
     <!--#region Home -->
