@@ -38,6 +38,8 @@ namespace WebcamViewerX.Theming
 
         public bool ListenToConfigChange { get; set; } = true;
 
+        public event EventHandler ThemeChangeRequested;
+
         /// <summary>
         /// Returns a Theme property from a string, if valid argument is given.
         /// </summary>
@@ -63,6 +65,8 @@ namespace WebcamViewerX.Theming
         /// <param name="theme">The theme that we'll use to get its dictionary and swap it in.</param>
         public void RequestThemeChange(Theme theme)
         {
+            ThemeChangeRequested?.Invoke(this, null);
+
             // clear merged dictionaries of dictionary
             Dictionary.MergedDictionaries.Clear();
             // create new theme dictionary
