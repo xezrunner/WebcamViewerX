@@ -4,12 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xz_window="clr-namespace:XeZrunner.UI.Controls.Window_components;assembly=XeZrunner.UI"
+        xmlns:xz_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+        xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
+        xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
         xmlns:buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
         xmlns:localization="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
         mc:Ignorable="d"
         Title="{x:Static localization:Resources.AppTitle}" Width="875" Height="667"
         AllowsTransparency="True" Background="{x:Null}" Foreground="{DynamicResource Foreground}"
-        WindowStyle="None" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
         
         PreviewKeyDown="window_PreviewKeyDown">
 
@@ -38,13 +41,13 @@
 
             <!-- Temporary -->
             <ScrollViewer x:Name="temp_scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                          Margin="0,32,0,0">
+                          Margin="0,32,0,0" xz_controlfx:PointerTracker.Enabled="True">
                 <StackPanel>
 
                     <TextBlock Foreground="{DynamicResource Foreground}" FontSize="14"
                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,10,18,0"
                        TextWrapping="Wrap">
-                <TextBlock Foreground="{DynamicResource AccentColor}" FontSize="22">Hello early tester!</TextBlock>
+                <TextBlock Foreground="{DynamicResource AccentColor}" FontFamily="/Fonts/#Google Sans" FontWeight="Medium" FontSize="22">Hello early tester!</TextBlock>
                 <LineBreak/>
                 Press
                 <TextBlock Foreground="{DynamicResource AccentColor}">Q</TextBlock>
