@@ -1,13 +1,16 @@
-﻿<Page x:Class="WebcamViewerX.Settings.Subviews.UserInterfaceSubView"
+﻿<Page x:Name="main" x:Class="WebcamViewerX.Settings.Subviews.UserInterfaceSubView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
+      xmlns:xezui_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
       xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
       mc:Ignorable="d" 
       d:DesignWidth="500" d:DesignHeight="600"
-      Title="WebcamEditorSubView" Foreground="{DynamicResource Foreground}">
+      Title="WebcamEditorSubView" Foreground="{DynamicResource Foreground}"
+      
+      Loaded="main_Loaded">
     <Page.Resources>
 
         <ResourceDictionary x:Name="themeDictionary">
@@ -50,6 +53,23 @@
         <!-- Content -->
         <Grid Margin="25,15,15,15" Grid.Row="2">
 
+            <StackPanel xezui_controlfx:PointerTracker.Enabled="True">
+
+                <TextBlock>theme</TextBlock>
+                <StackPanel x:Name="themeStackPanel" Orientation="Horizontal">
+                    <RadioButton x:Name="theme_0" Content="Light" Foreground="{DynamicResource Foreground}" Click="theme_Click" />
+                    <RadioButton x:Name="theme_1" Content="Dark" Foreground="{DynamicResource Foreground}" Click="theme_Click" />
+                </StackPanel>
+
+                <TextBlock>controlfx</TextBlock>
+                <StackPanel x:Name="controlfxStackPanel" Orientation="Horizontal">
+                    <RadioButton x:Name="controlfx_P" Content="P" Foreground="{DynamicResource Foreground}" Click="controlfx_Click" />
+                    <RadioButton x:Name="controlfx_MM" Content="MM" Foreground="{DynamicResource Foreground}" Click="controlfx_Click" />
+                    <RadioButton x:Name="controlfx_Reveal" Content="Reveal" Foreground="{DynamicResource Foreground}" Click="controlfx_Click" />
+                </StackPanel>
+
+                <xezui_buttons:ActionButton x:Name="saveButton" HorizontalAlignment="Center" Margin="0,20,0,0" TextAlignment="Center" Icon="" Text="Save" Click="saveButton_Click" />
+            </StackPanel>
 
         </Grid>
 
