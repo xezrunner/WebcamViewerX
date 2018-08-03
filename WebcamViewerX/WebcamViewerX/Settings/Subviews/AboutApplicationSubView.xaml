@@ -6,6 +6,8 @@
       xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
       xmlns:xezui_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
       xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
+      xmlns:localization_app="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
+      xmlns:localization="clr-namespace:WebcamViewerX.Localization.Settings.AboutApplication;assembly=WebcamViewerX.Localization"
       mc:Ignorable="d" 
       d:DesignWidth="500" d:DesignHeight="600" Background="Transparent"
       Title="AboutApplicationSubView" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True">
@@ -41,7 +43,7 @@
 
             <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
 
-            <TextBlock Text="About application"
+            <TextBlock Text="{x:Static localization:Resources.Title}"
                    Foreground="{DynamicResource AccentColor}"
                    VerticalAlignment="Center" Margin="25,0,0,0"
                    FontSize="18" FontFamily="/Fonts/#Google Sans" FontWeight="Medium"/>
@@ -62,17 +64,15 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock FontFamily="/Fonts/#Google Sans" FontSize="48" Margin="-4,0,0,0" FontWeight="Light" Grid.Row="0" Visibility="Visible">Webcam Viewer X</TextBlock>
+            <TextBlock Text="{x:Static localization_app:Resources.AppTitle_Branding}" FontFamily="/Fonts/#Google Sans" FontSize="48" Margin="-4,0,0,0" FontWeight="Light" Grid.Row="0" Visibility="Visible"/>
 
-            <TextBlock Grid.Row="1" TextWrapping="Wrap">
-            This is a description.
-            <LineBreak/>
-            Right now, it's describing what itself is, but in the future, it'll probably describe something more useful.
-            </TextBlock>
+            <TextBlock Grid.Row="1"
+                       Text="{x:Static localization:Resources.Description}"
+                       TextWrapping="Wrap" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,15,0" Grid.Row="2">
-                <xezui_buttons:Button Text="Changelog" />
-                <xezui_buttons:Button Text="Credits" Margin="8,0,0,0" />
+                <xezui_buttons:Button Text="{x:Static localization:Resources.Changelog}" />
+                <xezui_buttons:Button Text="{x:Static localization:Resources.Credits}" Margin="8,0,0,0" />
             </StackPanel>
 
         </Grid>

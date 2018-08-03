@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
       xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
+      xmlns:localization="clr-namespace:WebcamViewerX.Localization.Settings.WebcamEditor;assembly=WebcamViewerX.Localization"
       mc:Ignorable="d" 
       d:DesignWidth="500" d:DesignHeight="600"
       Title="WebcamEditorSubView" Foreground="{DynamicResource Foreground}">
