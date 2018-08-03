@@ -90,7 +90,7 @@ namespace WebcamViewerX.Settings
             CurrentSubView = subview;
         }
 
-        public void RequestFrameVisiblity(string frameName)
+        public async void RequestFrameVisiblity(string frameName)
         {
             foreach (Frame visframe in FramesContainer.Children)
             {
@@ -100,13 +100,25 @@ namespace WebcamViewerX.Settings
                 if (visframe.Name != frameName)
                 {
                     if (visframe.Opacity != 0)
+                    {
                         visframe.BeginAnimation(OpacityProperty, anim_out);
+                        await Task.Delay(TimeSpan.FromSeconds(.2));
+                        visframe.Visibility = Visibility.Hidden;
+                    }
                 }
                 else
+                {
+                    visframe.Visibility = Visibility.Visible;
                     visframe.BeginAnimation(OpacityProperty, anim_in);
+                }
             }
         }
 
         #endregion
+
+        private void menu_backButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.SwitchToView(MainWindow.Views.Home);
+        }
     }
 }
