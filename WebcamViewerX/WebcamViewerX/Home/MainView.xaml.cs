@@ -39,6 +39,8 @@ namespace WebcamViewerX.Home
             Menu.Close();
             Menu.Animations = true;
 
+            anim_out_Icon_TextBlock.Visibility = Visibility.Hidden;
+
             MainWindow.titlebar.MenuButton_Click += MenuButtonClick;
             MainWindow.titlebar.BackButton_Click += BackButtonClick;
         }
@@ -64,11 +66,13 @@ namespace WebcamViewerX.Home
         public void OpenMenu()
         {
             Menu.Open();
+            anim_out_Icon_TextBlock.Visibility = Visibility.Visible;
         }
 
         public void CloseMenu()
         {
             Menu.Close();
+            anim_out_Icon_TextBlock.Visibility = Visibility.Hidden;
         }
 
         void MenuButtonClick(object sender, RoutedEventArgs e)
@@ -104,7 +108,7 @@ namespace WebcamViewerX.Home
 
         private void menu_SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.SwitchToView(MainWindow.Views.Settings);
         }
     }
 }
