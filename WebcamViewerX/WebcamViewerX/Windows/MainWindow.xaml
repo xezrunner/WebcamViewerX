@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xz_window="clr-namespace:XeZrunner.UI.Controls.Window_components;assembly=XeZrunner.UI"
         xmlns:xz_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+        xmlns:xz_popups="clr-namespace:XeZrunner.UI.Popups;assembly=XeZrunner.UI"
         xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
         xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
         xmlns:buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
@@ -14,6 +15,7 @@
         AllowsTransparency="True" Background="{x:Null}" Foreground="{DynamicResource Foreground}"
         WindowStyle="None" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
         
+        Loaded="window_Loaded"
         PreviewKeyDown="window_PreviewKeyDown">
 
     <Window.Resources>
@@ -82,23 +84,6 @@
                 • Use localization for actual non-placeholder text (that includes the application title!). Develop a development style where localization is strongly focused on, so we don't end up forgetting about localization like in the previous version of Webcam Viewer.
                 <LineBreak/>
                 • Implement proper window behavior. If you try and maximize this window, you'll notice it doesn't fully fit the screen... classic WPF basic borderless window implementation...
-                <LineBreak/>
-                • Animate theme changes. This is my current idea right now:
-                
-                <LineBreak/>
-                
-                <TextBlock Foreground="{DynamicResource Foreground_Secondary}" Margin="10,0,0,0">
-                1. We change the theme.
-                <LineBreak/>
-                2. We take a screenshot of the app in that exact moment <Italic>before</Italic> the theme change, and display it in front of everything.
-                <LineBreak/>
-                3. We do the theme change.
-                <LineBreak/>
-                4. Now we fade out the screenshot.
-                </TextBlock>
-                
-                <LineBreak/>
-                This should give us a nice fade effect as the theme changes.
                 
                 
                 
@@ -125,6 +110,9 @@
 
             <!-- Frames container-->
             <Grid x:Name="frameContainer" />
+
+            <!-- ContentDialogHost -->
+            <xz_popups:ContentDialogHost x:Name="contentdialogHost" />
 
             <!-- Titlebar -->
                 <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"

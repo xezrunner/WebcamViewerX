@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using WebcamViewerX.ViewManagement;
 using System.Windows.Media.Animation;
+using XeZrunner.UI.Popups;
 
 namespace WebcamViewerX
 {
@@ -23,17 +24,22 @@ namespace WebcamViewerX
     {
         Theming.ThemeManager ThemeManager;
         ViewManager ViewManager = new ViewManager();
-        Views Views = new Views();
+        public Views Views = new Views();
 
         public MainWindow()
         {
             // MUI debug
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu");
 
             InitializeComponent();
 
             ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
             ThemeManager.ThemeChangeRequested += this.ThemeManager_ThemeChangeRequested;
+        }
+
+        private void window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SwitchToView(Views.Home);
         }
 
         #region View management
@@ -44,10 +50,11 @@ namespace WebcamViewerX
         /// This changes the current View to the desired View.
         /// </summary>
         /// <param name="view"></param>
-        public void SwitchToView(View view)
+        public async void SwitchToView(View view)
         {
             // TODO: remove temp
             temp_scrollviewer.Visibility = Visibility.Collapsed;
+            frameContainer.Visibility = Visibility.Visible;
 
             view = ViewManager.GetView(view);
 
@@ -64,7 +71,7 @@ namespace WebcamViewerX
 
             if (frame == null)
             {
-                frame = new Frame() { Name = frame_name };
+                frame = new Frame() { Name = frame_name, Visibility = Visibility.Visible};
                 frameContainer.Children.Add(frame);
             }
 
@@ -72,11 +79,16 @@ namespace WebcamViewerX
             if (frame.Content == null) // if we were to check if the Frame's Content is the same as the View's Page object, there would be a noticable delay, or at least on my system.
                 frame.Content = view.Page;
 
-            // Set Frame to be visible.
-            RequestFrameVisibility(frame_name);
+            if (CurrentView != null)
+                await CurrentView.RequestAnimOutAnimation();
 
             // Set CurrentView to our new View
             CurrentView = view;
+
+            // Set Frame to be visible.
+            //RequestFrameVisibility(frame_name);
+
+            await view.RequestAnimInAnimation();
         }
 
         /// <summary>
@@ -138,6 +150,15 @@ namespace WebcamViewerX
 
             if (e.Key == Key.X)
                 SwitchToView(Views.Settings);
+            if (e.Key == Key.V)
+            {
+                frameContainer.Visibility = Visibility.Hidden;
+                temp_scrollviewer.Visibility = Visibility.Visible;
+            }
+
+            // Popup test
+            if (e.Key == Key.C)
+                ShowTextDialog("ContentDialog testing", "Hello!");
         }
 
         #endregion
@@ -145,7 +166,7 @@ namespace WebcamViewerX
         #region Button click events
         private void titlebar_MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuButtonClick?.Invoke(sender ,e);
+            MenuButtonClick?.Invoke(sender, e);
         }
 
         private void titlebar_BackButton_Click(object sender, RoutedEventArgs e)
@@ -153,6 +174,23 @@ namespace WebcamViewerX
             BackButtonClick?.Invoke(sender, e);
         }
         #endregion
+
+        public void ShowTextDialog(string Text)
+        {
+            ShowTextDialog("", Text);
+        }
+
+        public async void ShowTextDialog(string Title, string Text)
+        {
+            ContentDialog dialog = new ContentDialog()
+            {
+                Title = Title,
+                Content = Text,
+                PrimaryButtonText = "OK",
+                SecondaryButtonText = ""
+            };
+            await contentdialogHost.ShowDialog(dialog);
+        }
 
         #endregion
 
