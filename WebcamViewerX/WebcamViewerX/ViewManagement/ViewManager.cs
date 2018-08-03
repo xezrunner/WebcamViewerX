@@ -51,6 +51,7 @@ namespace WebcamViewerX.ViewManagement
         private Page GetViewPage(View view)
         {
             Page page = PageGatherer.GetViewPage(view);
+            page.Visibility = System.Windows.Visibility.Hidden;
             page.Tag = view; // give the Page the View so it can link up the navigation events
 
             return page;

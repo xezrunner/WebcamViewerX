@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace WebcamViewerX.ViewManagement
 {
@@ -32,11 +34,58 @@ namespace WebcamViewerX.ViewManagement
         /// </summary>
         public ViewTitlebarBehavior TitlebarBehavior;
 
+        public async Task RequestAnimInAnimation()
+        {
+            if (!GetHasTransitionAnimations().Value)
+                return;
+
+            Storyboard board = (Storyboard)Page.FindResource("Anim_In");
+
+            // we need a specific Duration in order for waiting to work
+            TimeSpan duration;
+
+            object setDuration = Page.TryFindResource("Anim_In_Duration");
+
+            if (setDuration != null)
+                duration = (TimeSpan)setDuration;
+            else
+                duration = board.Duration.TimeSpan;
+
+            board.Begin();
+
+            await Task.Delay(duration);
+        }
+
+        public async Task RequestAnimOutAnimation()
+        {
+            if (!GetHasTransitionAnimations().Value)
+                return;
+
+            Storyboard board = (Storyboard)Page.FindResource("Anim_Out");
+
+            // we need a specific Duration in order for waiting to work
+            TimeSpan duration;
+
+            object setDuration = Page.TryFindResource("Anim_Out_Duration");
+
+            if (setDuration != null)
+                duration = (TimeSpan)setDuration;
+            else
+                duration = board.Duration.TimeSpan;
+
+            board.Begin();
+
+            await Task.Delay(duration);
+        }
+
         /// <summary>
         /// Determines whether the View has its own transition animations.
         /// </summary>
-        public bool HasTransitionAnimations()
+        public bool? GetHasTransitionAnimations()
         {
+            if (Page == null)
+                return null;
+
             object anim_in = Page.TryFindResource("Anim_In");
             object anim_out = Page.TryFindResource("Anim_Out");
 
