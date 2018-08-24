@@ -4,18 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
+      xmlns:xezui_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
       xmlns:xezui_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
       xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
       xmlns:localization_app="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
       xmlns:localization="clr-namespace:WebcamViewerX.Localization.Settings.AboutApplication;assembly=WebcamViewerX.Localization"
       mc:Ignorable="d" 
       d:DesignWidth="500" d:DesignHeight="600" Background="Transparent"
-      Title="AboutApplicationSubView" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True">
+      Title="{x:Static localization:Resources.Title}" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True">
     <Page.Resources>
 
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="TextBlock">
@@ -35,26 +37,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <Grid Grid.Row="1" Background="{DynamicResource Background}">
-            <!-- <Grid.Effect>
-                <DropShadowEffect Opacity="0.15" Direction="15" BlurRadius="6" ShadowDepth="3" />
-            </Grid.Effect> -->
-
-            <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
-
-            <TextBlock Text="{x:Static localization:Resources.Title}"
-                   Foreground="{DynamicResource AccentColor}"
-                   VerticalAlignment="Center" Margin="25,0,0,0"
-                   FontSize="18" FontFamily="/Fonts/#Google Sans" FontWeight="Medium"/>
-
-        </Grid>
-
         <!-- titlebar tint -->
-        <Rectangle Grid.Row="0" Fill="{DynamicResource Background_AppbarTitlebarTint}" />
+        <Rectangle Grid.Row="0" Fill="Transparent" Opacity="0" />
 
         <!-- Content -->
-        <Grid Margin="25,15,15,15" Grid.Row="2">
+        <Grid Margin="25,15,15,15" Grid.Row="2" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <!-- Branding -->
                 <RowDefinition Height="Auto" />
@@ -74,6 +61,63 @@
                 <xezui_buttons:Button Text="{x:Static localization:Resources.Changelog}" />
                 <xezui_buttons:Button Text="{x:Static localization:Resources.Credits}" Margin="8,0,0,0" />
             </StackPanel>
+
+        </Grid>
+        
+        <!-- Content 2-->
+        <Grid Margin="25,15,15,15" VerticalAlignment="Top" Grid.Row="2" Visibility="Visible">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource Foreground_Secondary}" />
+                    <Setter Property="Padding" Value="4" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel Background="{DynamicResource Background}" Margin="1">
+                <StackPanel.Effect>
+                    <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
+                </StackPanel.Effect>
+
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="{DynamicResource Foreground_Secondary}"
+                           FontFamily="/Fonts/#Google Sans" FontWeight="Bold" FontSize="32"
+                           Margin="0,18,0,0"
+                           Text="{x:Static localization_app:Resources.AppTitle_Branding}"/>
+
+                <TextBlock HorizontalAlignment="Center"
+                           Foreground="{DynamicResource Foreground_Secondary}"
+                           FontFamily="/Fonts/#Google Sans" FontWeight="Bold" FontSize="14"
+                           Margin="0,-3,0,0"
+                           Text="by Xesign Software Inc."/>
+
+                <StackPanel Margin="14,0,0,0">
+                <TextBlock Margin="0,8,0,0">
+                    Application version:
+                    <Run Foreground="{DynamicResource Accent}" Text=" 0.1 alpha" />
+                </TextBlock>
+
+                <TextBlock>
+                    Prerelease channel:
+                    <Run Foreground="{DynamicResource Accent}" Text="master" />
+                </TextBlock>
+
+                <TextBlock>
+                    Number of cameras:
+                    <Run Foreground="{DynamicResource Accent}" Text="4" />
+                </TextBlock>
+                </StackPanel>
+
+                <TextBlock Foreground="{DynamicResource Foreground}" Margin="0,10,0,18" HorizontalAlignment="Center" TextAlignment="Left">
+                    This application is free and open source.
+                    <LineBreak/>
+                    Feel free to check out the project repository at <Hyperlink Foreground="{DynamicResource Accent}">github.com/XesignSoftware/WebcamViewerX</Hyperlink>
+                </TextBlock>
+
+            </StackPanel>
+
+            <Border BorderThickness="1" BorderBrush="{xezui_controlfx:RevealBrush Size=200}" Opacity="0.4"/>
 
         </Grid>
 

@@ -4,22 +4,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
+      xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
       xmlns:xezui_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
       xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
+      xmlns:localization="clr-namespace:WebcamViewerX.Localization.Settings.UserInterface;assembly=WebcamViewerX.Localization"
       mc:Ignorable="d" 
       d:DesignWidth="500" d:DesignHeight="600"
-      Title="WebcamEditorSubView" Foreground="{DynamicResource Foreground}"
+      Title="{x:Static localization:Resources.Title}" Background="Transparent" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True"
       
       Loaded="main_Loaded">
     <Page.Resources>
 
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14" />
+            </Style>
+
+            <Style TargetType="{x:Type xz_controls:RadioButton}">
+                <Setter Property="Margin" Value="0,0,8,0" />
             </Style>
 
         </ResourceDictionary>
@@ -35,41 +42,111 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <Grid Grid.Row="1" Background="{DynamicResource Background}">
-
-            <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
-
-            <TextBlock Text="User interface"
-                   Foreground="{DynamicResource AccentColor}"
-                   VerticalAlignment="Center" Margin="25,0,0,0"
-                   FontSize="18" FontFamily="/Fonts/#Google Sans" FontWeight="Medium"/>
-
-        </Grid>
-
         <!-- titlebar tint -->
         <Rectangle Grid.Row="0" Fill="{DynamicResource Background}" />
 
-        <!-- Content -->
-        <Grid Margin="25,15,15,15" Grid.Row="2">
+        <!-- Content
+        <Grid Margin="25,15,15,15" Grid.Row="2" Visibility="Collapsed">
 
-            <StackPanel xezui_controlfx:PointerTracker.Enabled="True">
+            <StackPanel>
+
+                <TextBlock Margin="0,0,0,8">XeZrunner.UI Debug toggles</TextBlock>
 
                 <TextBlock>theme</TextBlock>
                 <StackPanel x:Name="themeStackPanel" Orientation="Horizontal">
-                    <RadioButton x:Name="theme_0" Content="Light" Foreground="{DynamicResource Foreground}" Click="theme_Click" />
-                    <RadioButton x:Name="theme_1" Content="Dark" Foreground="{DynamicResource Foreground}" Click="theme_Click" />
+                    <xz_controls:RadioButton x:Name="theme_0" Text="Light" IsActiveChanged="theme_Click" />
+                    <xz_controls:RadioButton x:Name="theme_1" Text="Dark" IsActiveChanged="theme_Click" />
+                </StackPanel>
+
+                <TextBlock>accent</TextBlock>
+                <StackPanel x:Name="accentStackPanel" Orientation="Horizontal">
+                    <xz_controls:RadioButton Text="Teal" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Blue" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Green" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Orange" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Pink" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Purple" IsActiveChanged="accent_Click" />
                 </StackPanel>
 
                 <TextBlock>controlfx</TextBlock>
                 <StackPanel x:Name="controlfxStackPanel" Orientation="Horizontal">
-                    <RadioButton x:Name="controlfx_P" Content="P" Foreground="{DynamicResource Foreground}" Click="controlfx_Click" />
-                    <RadioButton x:Name="controlfx_MM" Content="MM" Foreground="{DynamicResource Foreground}" Click="controlfx_Click" />
-                    <RadioButton x:Name="controlfx_Reveal" Content="Reveal" Foreground="{DynamicResource Foreground}" Click="controlfx_Click" />
+                    <xz_controls:RadioButton x:Name="controlfx_P" Text="P" IsActiveChanged="controlfx_Click" />
+                    <xz_controls:RadioButton x:Name="controlfx_MM" Text="MM" IsActiveChanged="controlfx_Click" />
+                    <xz_controls:RadioButton x:Name="controlfx_Reveal" Text="Reveal" IsActiveChanged="controlfx_Click" />
                 </StackPanel>
 
                 <xezui_buttons:ActionButton x:Name="saveButton" HorizontalAlignment="Center" Margin="0,20,0,0" TextAlignment="Center" Icon="" Text="Save" Click="saveButton_Click" />
             </StackPanel>
+
+        </Grid> -->
+
+        <!-- Content 2-->
+        <Grid Margin="25,15,15,15" VerticalAlignment="Top" Grid.Row="2" Visibility="Visible">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource Foreground_Secondary}" />
+                    <Setter Property="Padding" Value="4" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel Background="{DynamicResource Background}" Margin="1">
+                <StackPanel.Effect>
+                    <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
+                </StackPanel.Effect>
+
+                <StackPanel Margin="10">
+
+                <TextBlock>
+                    <Run Foreground="{DynamicResource Accent}" Text="Theme" />
+                    <LineBreak />
+                    Choose between a lighter or darker shade of background.
+                </TextBlock>
+
+                <StackPanel x:Name="themeStackPanel" Orientation="Horizontal" Margin="4,5,0,0">
+                    <xz_controls:RadioButton x:Name="theme_0" Text="Light" IsActiveChanged="theme_Click" />
+                    <xz_controls:RadioButton x:Name="theme_1" Text="Dark" IsActiveChanged="theme_Click" />
+                </StackPanel>
+
+                <TextBlock Margin="0,10,0,0">
+                    <Run Foreground="{DynamicResource Accent}" Text="Accent color" />
+                    <LineBreak />
+                    The colorful elements of the application will follow this choice.
+                </TextBlock>
+
+                <StackPanel x:Name="accentStackPanel" Orientation="Horizontal" Margin="4,5,0,0">
+                    <xz_controls:RadioButton Text="Teal" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Blue" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Green" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Orange" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Pink" IsActiveChanged="accent_Click" />
+                    <xz_controls:RadioButton Text="Purple" IsActiveChanged="accent_Click" />
+                </StackPanel>
+
+                <TextBlock Margin="0,10,0,0">
+                    <Run Foreground="{DynamicResource Accent}" Text="Control effects" />
+                    <LineBreak />
+                    You can have fun with either a flashlight, or a puddle of water.
+                </TextBlock>
+
+                <StackPanel x:Name="controlfxStackPanel" Orientation="Horizontal" Margin="4,5,0,0">
+                    <xz_controls:RadioButton x:Name="controlfx_P" Text="Ripple (wide)" IsActiveChanged="controlfx_Click" />
+                    <xz_controls:RadioButton x:Name="controlfx_MM" Text="Ripple (short)" IsActiveChanged="controlfx_Click" />
+                    <xz_controls:RadioButton x:Name="controlfx_Reveal" Text="Reveal Highlight" IsActiveChanged="controlfx_Click" />
+                </StackPanel>
+
+                <TextBlock Opacity="0.3" Margin="0,5,0,0">
+                    Note! These effects are under development. It is recommended to keep this at the default value to prevent crashes or locking yourself out of the application forever.
+                </TextBlock>
+
+                <xezui_buttons:Button x:Name="resetConfigButton" Text="Reset to default settings" Margin="0,20,0,0" Click="resetConfigButton_Click" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <Border BorderThickness="1" BorderBrush="{DynamicResource Foreground_Secondary}" Opacity="0.00"/>
 
         </Grid>
 

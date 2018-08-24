@@ -12,59 +12,84 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using XeZrunner.UI.Popups;
 
 namespace WebcamViewerX.Settings.Subviews
 {
     public partial class UserInterfaceSubView : Page
     {
         MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
-        Theming.ThemeManager ThemeManager;
+        XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
         public UserInterfaceSubView()
         {
             InitializeComponent();
-            ThemeManager = new Theming.ThemeManager(themeDictionary);
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
         }
 
         XeZrunner.UI.Configuration.Config Config = XeZrunner.UI.Configuration.Config.Default;
-        Theming.Config Theme_Config = Theming.Config.Default;
+        XeZrunner.UI.Theming.Config Theme_Config = XeZrunner.UI.Theming.Config.Default;
 
-        private void main_Loaded(object sender, RoutedEventArgs e)
+        private void main_Loaded(object sender, EventArgs e)
         {
             switch (Theme_Config.theme)
             {
                 case "Light":
-                    theme_0.IsChecked = true; break;
+                    theme_0.IsActive = true; break;
                 case "Dark":
-                    theme_1.IsChecked = true; break;
+                    theme_1.IsActive = true; break;
             }
 
             switch (Config.controlfx)
             {
                 case "P":
-                    controlfx_P.IsChecked = true; break;
+                    controlfx_P.IsActive = true; break;
                 case "MM":
-                    controlfx_MM.IsChecked = true; break;
+                    controlfx_MM.IsActive = true; break;
                 case "Reveal":
-                    controlfx_Reveal.IsChecked = true; break;
+                    controlfx_Reveal.IsActive = true; break;
             }
+
+            foreach (XeZrunner.UI.Controls.RadioButton button in accentStackPanel.Children)
+                if ((string)button.Text == Theme_Config.accent)
+                    button.IsActive = true;
         }
 
         void ValidateThemeChanges()
         {
-            foreach (RadioButton button in themeStackPanel.Children)
+            foreach (XeZrunner.UI.Controls.RadioButton button in themeStackPanel.Children)
             {
-                if (button.IsChecked.Value)
-                    Theme_Config.theme = (string)button.Content;
+                if (button.IsActive)
+                    Theme_Config.theme = (string)button.Text;
             }
         }
 
         void ValidateControlFXChanges()
         {
-            foreach (RadioButton button in controlfxStackPanel.Children)
+            int counter = 0;
+            foreach (XeZrunner.UI.Controls.RadioButton button in controlfxStackPanel.Children)
             {
-                if (button.IsChecked.Value)
-                    Config.controlfx = (string)button.Content;
+                if (button.IsActive)
+                {
+                    if (counter == 0)
+                        Config.controlfx = "P";
+                    if (counter == 1)
+                        Config.controlfx = "MM";
+                    if (counter == 2)
+                        Config.controlfx = "Reveal";
+
+                    break;
+                }
+                counter++;
+            }
+        }
+
+        void ValidateAccentChanges()
+        {
+            foreach (XeZrunner.UI.Controls.RadioButton button in accentStackPanel.Children)
+            {
+                if (button.IsActive)
+                    Theme_Config.accent = (string)button.Text;
             }
         }
 
@@ -76,19 +101,51 @@ namespace WebcamViewerX.Settings.Subviews
             MainWindow.ShowTextDialog("Changes saved",
                 "Current config values: \n\n" +
                 "theme: " + Theme_Config.theme + "\n" +
-                "accent: " + "" + "\n" +
+                "accent: " + "" + Theme_Config.accent + "\n" +
                 "controlfx: " + Config.controlfx + "\n"
                 );
         }
 
-        private void theme_Click(object sender, RoutedEventArgs e)
+        private void theme_Click(object sender, EventArgs e)
         {
             ValidateThemeChanges();
+            Theme_Config.Save();
         }
 
-        private void controlfx_Click(object sender, RoutedEventArgs e)
+        private void controlfx_Click(object sender, EventArgs e)
         {
             ValidateControlFXChanges();
+            Theme_Config.Save();
+        }
+
+        private void accent_Click(object sender, EventArgs e)
+        {
+            ValidateAccentChanges();
+            Theme_Config.Save();
+        }
+
+        private async void resetConfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog()
+            {
+                Title = "Reset theming engine",
+                Content = "Resetting the theming engine will return the following settings to their defaults: \n\n" +
+                "Theme: Light\n" +
+                "Accent color: Blue\n" +
+                "Control effects: Reveal Highlight",
+
+                PrimaryButtonText = "Reset configuration",
+                SecondaryButtonText = "Cancel"
+            };
+
+            if (await MainWindow.contentdialogHost.ShowDialog(dialog) == ContentDialogHost.ContentDialogResult.Primary)
+            {
+                ThemeManager.Config.Reset();
+                ThemeManager.Config.Save();
+
+                // reload this page
+                main_Loaded(this, null);
+            }
         }
     }
 }

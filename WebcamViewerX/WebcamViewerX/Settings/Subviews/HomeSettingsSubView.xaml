@@ -3,16 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xz_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
       xmlns:xezui_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
-      xmlns:local="clr-namespace:WebcamViewerX.Settings.Subviews"
+      xmlns:xezui_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
+      xmlns:localization="clr-namespace:WebcamViewerX.Localization.Settings.HomeSettings;assembly=WebcamViewerX.Localization"
       mc:Ignorable="d" 
-      d:DesignWidth="500" d:DesignHeight="600"
-      Title="WebcamEditorSubView" Foreground="{DynamicResource Foreground}">
+      d:DesignWidth="500" d:DesignHeight="600" xz_controlfx:PointerTracker.Enabled="True"
+      Title="{x:Static localization:Resources.Title}" Foreground="{DynamicResource Foreground}" Background="{DynamicResource Background}">
     <Page.Resources>
 
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="TextBlock">
@@ -32,24 +35,63 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <Grid Grid.Row="1" Background="{DynamicResource Background}">
-
-            <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
-
-            <TextBlock Text="Home settings"
-                   Foreground="{DynamicResource AccentColor}"
-                   VerticalAlignment="Center" Margin="25,0,0,0"
-                   FontSize="18" FontFamily="/Fonts/#Google Sans" FontWeight="Medium"/>
-
-        </Grid>
-
         <!-- titlebar tint -->
         <Rectangle Grid.Row="0" Fill="{DynamicResource Background}" />
 
         <!-- Content -->
-        <Grid Margin="25,15,15,15" Grid.Row="2">
+        <Grid Margin="25,15,25,15" Grid.Row="2" Visibility="Collapsed">
 
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <xezui_buttons:ToggleSwitchButton Title="Example Toggle Property" Icon="" Description="Clicking anywhere on this button will toggle the switch." />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <xezui_buttons:CheckBoxButton Title="Example Checkbox Property" Icon="" Description="Clicking anywhere on this button will toggle the checkbox." />
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+        <!-- Content 2-->
+        <Grid Margin="25,15,15,15" VerticalAlignment="Top" Grid.Row="2" Visibility="Visible">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource Foreground_Secondary}" />
+                    <Setter Property="Padding" Value="4" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel Background="{DynamicResource Background}" Margin="1">
+                <StackPanel.Effect>
+                    <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
+                </StackPanel.Effect>
+
+                <StackPanel Margin="8">
+
+                    <StackPanel>
+
+                    <TextBlock Foreground="{DynamicResource Accent}"
+                           FontSize="14" Padding="12,0,5,5"
+                           Text="Example controls" />
+
+                    <xezui_buttons:ToggleSwitchButton Title="Example Toggle Property" Icon="" Description="Clicking anywhere on this button will toggle the switch." />
+
+                    <xezui_buttons:CheckBoxButton Title="Example Checkbox Property" Icon="" Description="Clicking anywhere on this button will toggle the checkbox." />
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <Border BorderThickness="1" BorderBrush="{DynamicResource Foreground_Secondary}" Opacity="0.00"/>
 
         </Grid>
 

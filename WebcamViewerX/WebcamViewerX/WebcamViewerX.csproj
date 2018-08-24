@@ -161,13 +161,13 @@
       <Project>{b8c556dc-3f56-4c98-84b1-445a2b11af64}</Project>
       <Name>WebcamViewerX.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebcamViewerX.Engine\WebcamViewerX.Engine.csproj">
+      <Project>{422c4d02-1a71-490f-9f6c-1a7df5404897}</Project>
+      <Name>WebcamViewerX.Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
       <Name>WebcamViewerX.Localization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebcamViewerX.Theming\WebcamViewerX.Theming.csproj">
-      <Project>{60315f98-f69a-4209-8c80-cbce225f4ff8}</Project>
-      <Name>WebcamViewerX.Theming</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

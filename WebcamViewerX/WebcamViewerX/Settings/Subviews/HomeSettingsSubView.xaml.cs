@@ -17,12 +17,12 @@ namespace WebcamViewerX.Settings.Subviews
 {
     public partial class HomeSettingsSubView : Page
     {
-        Theming.ThemeManager ThemeManager;
+        XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
         public HomeSettingsSubView()
         {
             InitializeComponent();
-            ThemeManager = new Theming.ThemeManager(themeDictionary);
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
         }
     }
 }

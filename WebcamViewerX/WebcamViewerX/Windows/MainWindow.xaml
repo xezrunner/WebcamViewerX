@@ -8,12 +8,11 @@
         xmlns:xz_popups="clr-namespace:XeZrunner.UI.Popups;assembly=XeZrunner.UI"
         xmlns:xz_controls="clr-namespace:XeZrunner.UI.Controls;assembly=XeZrunner.UI"
         xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
-        xmlns:buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
         xmlns:localization="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
         mc:Ignorable="d"
         Title="{x:Static localization:Resources.AppTitle}" Width="875" Height="667"
-        AllowsTransparency="True" Background="{x:Null}" Foreground="{DynamicResource Foreground}"
-        WindowStyle="None" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
+        Background="{x:Null}" Foreground="{DynamicResource Foreground}"
+        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
         
         Loaded="window_Loaded"
         PreviewKeyDown="window_PreviewKeyDown">
@@ -23,7 +22,8 @@
         <!-- Theme -->
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
@@ -44,68 +44,93 @@
             <!-- Temporary -->
             <ScrollViewer x:Name="temp_scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                           Margin="0,32,0,0" xz_controlfx:PointerTracker.Enabled="True">
-                <StackPanel>
+                <Grid>
+                    <StackPanel Visibility="Collapsed">
 
-                    <TextBlock Foreground="{DynamicResource Foreground}" FontSize="14"
+                        <TextBlock Foreground="{DynamicResource Foreground}" FontSize="14"
                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,10,18,0"
-                       TextWrapping="Wrap">
-                <TextBlock Foreground="{DynamicResource AccentColor}" FontFamily="/Fonts/#Google Sans" FontWeight="Medium" FontSize="22">Hello early tester!</TextBlock>
-                <LineBreak/>
-                Press
-                <TextBlock Foreground="{DynamicResource AccentColor}">Q</TextBlock>
-                to change the theme to 
-                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Light</TextBlock>
-                , or press 
-                <TextBlock Foreground="{DynamicResource AccentColor}">E</TextBlock>
-                to change the theme to 
-                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Dark</TextBlock>
+                       TextWrapping="Wrap"><TextBlock x:Name="helloTextBlock" Foreground="{DynamicResource Accent}" FontFamily="/Fonts/#Google Sans" FontWeight="Medium" FontSize="22">
+                           Hello early tester!</TextBlock>
+                           <LineBreak/>
+                           Press
+                           <TextBlock Foreground="{DynamicResource Accent}">Q</TextBlock>
+                           to change the theme to 
+                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Light</TextBlock>
+                           , or press 
+                           <TextBlock Foreground="{DynamicResource Accent}">E</TextBlock>
+                           to change the theme to 
+                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Dark</TextBlock>
+                           
+                           <LineBreak/>
                 
-                <LineBreak/>
-                
-                The changes you make <Italic>should</Italic> be saved, so be sure to test restarting the app after changing the theme!
+                           The changes you make <Italic>should</Italic> be saved, so be sure to test restarting the app after changing the theme!
                         
-                <LineBreak/>
-                <LineBreak/>
+                           <LineBreak/>
+                           <LineBreak/>
                         
-                Press
-                <TextBlock Foreground="{DynamicResource AccentColor}">Y</TextBlock>
-                to change the View to
-                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Home.</TextBlock>
-                Press
-                <TextBlock Foreground="{DynamicResource AccentColor}">X</TextBlock>
-                to change the View to 
-                <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Settings.</TextBlock>
-                
-                <LineBreak/>
-                <LineBreak/>
-                
-                Some notes for myself:
-                <LineBreak/>
-                • Use localization for actual non-placeholder text (that includes the application title!). Develop a development style where localization is strongly focused on, so we don't end up forgetting about localization like in the previous version of Webcam Viewer.
-                <LineBreak/>
-                • Implement proper window behavior. If you try and maximize this window, you'll notice it doesn't fully fit the screen... classic WPF basic borderless window implementation...
-                
-                
-                
-            </TextBlock>
+                           Press
+                           <TextBlock Foreground="{DynamicResource Accent}">Y</TextBlock>
+                           to change the View to
+                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Home.</TextBlock>
+                           Press
+                           <TextBlock Foreground="{DynamicResource Accent}">X</TextBlock>
+                           to change the View to 
+                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Settings.</TextBlock>
+                        <LineBreak />
+                        You may also press
+                        <TextBlock Foreground="{DynamicResource Accent}">V</TextBlock>
+                        to change back to this introduction page at any time.
+                        <LineBreak />
+                        
+                        <LineBreak />
+                        
+                        Press
+                           <TextBlock Foreground="{DynamicResource Accent}">C</TextBlock>
+                           to test
+                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">ContentDialogs.</TextBlock>
+                           
+                           <LineBreak/>
+                           <LineBreak/>
+                           
+                           Some notes for myself:
+                           <LineBreak/>
+                           • Use localization for actual non-placeholder text (that includes the application title!). Develop a development style where localization is strongly focused on, so we don't end up forgetting about localization like in the previous version of Webcam Viewer.
+                           <LineBreak/>
+                           • Implement proper window behavior. If you try and maximize this window, you'll notice it doesn't fully fit the screen... classic WPF basic borderless window implementation...
+                           
+                       </TextBlock>
 
-                    <StackPanel Background="{DynamicResource Background}" Margin="0,10,0,0">
+                        <StackPanel Background="{DynamicResource Background}" Margin="0,10,0,0">
 
-                        <Rectangle Fill="{DynamicResource Foreground}" Height="2" Margin="10" Opacity="0.1" />
+                            <Rectangle Fill="{DynamicResource Foreground}" Height="2" Margin="10" Opacity="0.1" />
 
-                        <TextBlock Text="Button debug" Margin="10,-5,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Text="Button debug" Margin="10,-5,0,0" HorizontalAlignment="Left" />
 
-                        <buttons:NavMenuItem Margin="0,10,0,0" IsActive="True" />
-                        <buttons:ListButton Text="ListButton" />
-                        <buttons:ActionButton Text="ActionButton" />
-                        <buttons:Button Text="Button" />
-                        <buttons:ShortcutButton Text="ShortcutButton" />
-                        <buttons:CircularActionButton Text="CircularActionButton" />
-                        <buttons:SettingsItemTile Title="SettingsItemTile" />
+                            <xz_buttons:NavMenuItem Margin="0,10,0,0" IsActive="True" />
+                            <xz_buttons:ListButton Text="ListButton" />
+                            <xz_buttons:ActionButton Text="ActionButton" />
+                            <xz_buttons:Button Text="Button" />
+                            <xz_buttons:ShortcutButton Text="ShortcutButton" />
+                            <xz_buttons:CircularActionButton Text="CircularActionButton" />
+                            <xz_buttons:SettingsItemTile Title="SettingsItemTile" />
+
+                        </StackPanel>
 
                     </StackPanel>
 
-                </StackPanel>
+                    <xz_controls:NavigationView Visibility="Collapsed">
+                        <xz_controls:NavigationView.NavButtons>
+                            <xz_buttons:NavButton />
+                            <xz_buttons:NavButton />
+                            <xz_buttons:NavButton />
+                        </xz_controls:NavigationView.NavButtons>
+                    </xz_controls:NavigationView>
+
+                    <StackPanel>
+                        <xz_controls:TextField Title="TextField #1" />
+                        <xz_controls:TextField Title="TextField #2" />
+                    </StackPanel>
+                </Grid>
             </ScrollViewer>
 
             <!-- Frames container-->
@@ -115,10 +140,11 @@
             <xz_popups:ContentDialogHost x:Name="contentdialogHost" />
 
             <!-- Titlebar -->
-                <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
-                                           Height="32"
-                                           MenuButtonVisibility="Collapsed"
-                                           MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"/>
+            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{Binding ElementName=window, Path=Title}"
+                                       FontWeight="Medium"
+                                       Height="32"
+                                       MenuButtonVisibility="Visible"
+                                       MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"/>
 
             <!-- theme changing image -->
             <Image x:Name="themechangeImage" Margin="-11" Visibility="Hidden" />

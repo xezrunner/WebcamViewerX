@@ -17,12 +17,20 @@ namespace WebcamViewerX.Settings.Subviews
 {
     public partial class WebcamEditorSubView : Page
     {
-        Theming.ThemeManager ThemeManager;
+        XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
         public WebcamEditorSubView()
         {
             InitializeComponent();
-            ThemeManager = new Theming.ThemeManager(themeDictionary);
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
+        }
+
+        MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
+        Engine.CameraConfiguration CameraConfig = new Engine.CameraConfiguration();
+
+        private void getconfigButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.ShowTextDialog("JSON user configuration debug", CameraConfig.Debug_GetUserCamerasAsString());
         }
     }
 }
