@@ -18,7 +18,7 @@ namespace WebcamViewerX.Settings
 {
     public partial class MainView : Page
     {
-        Theming.ThemeManager ThemeManager;
+        XeZrunner.UI.Theming.ThemeManager ThemeManager;
         SubViewManager SubViewManager = new SubViewManager();
         SubViews SubViews = new SubViews();
 
@@ -28,7 +28,7 @@ namespace WebcamViewerX.Settings
         {
             InitializeComponent();
 
-            ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)
@@ -39,20 +39,28 @@ namespace WebcamViewerX.Settings
         private void main_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             // temporary
-            if (this.IsVisible)
+            if (IsVisible)
             {
                 MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
+
+                // set image
+                top_Acrylic_Image.Source = MainWindow._settings_Screenshot;
             }
             else
-                MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
+            {
+                MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
+            }
         }
 
         private void NavigationMenu_SelectionChanged(object sender, EventArgs e)
         {
             int? id = Menu.GetNavigationMenu().CurrentSelection;
             if (id != null)
+            {
                 SwitchToSubView(SubViews.GetSubViewFromID(id.Value));
+                //Appbar.Title = CurrentSubView.Page.Title.ToString();
+            }
             else
             { /* error! */ }
         }
@@ -78,7 +86,7 @@ namespace WebcamViewerX.Settings
 
             if (frame == null)
             {
-                frame = new Frame() { Name = frame_name };
+                frame = new Frame() { Name = frame_name, Opacity = 0 };
                 FramesContainer.Children.Add(frame);
             }
 

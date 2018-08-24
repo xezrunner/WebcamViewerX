@@ -19,7 +19,7 @@
         <!-- Theme -->
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <sys:TimeSpan x:Key="Anim_Out_Duration">0</sys:TimeSpan>
@@ -142,11 +142,10 @@
                 <DropShadowEffect Direction="65" Opacity="0.1" BlurRadius="8" ShadowDepth="12" />
             </Rectangle.Effect> -->
             </Rectangle>
-            <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.005" />
+            <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.0" />
 
-            <xz_controls:MenuControl x:Name="Menu" Margin="0"
-                                 Background="Transparent" Foreground="{DynamicResource Foreground}" ExpandedWidth="335" TitlebarHeight="25" xz_controlfx:PointerTracker.Enabled="False">
-                <xz_controls:MenuControl.Top>
+            <!-- 
+            <xz_controls:MenuControl.Top>
                     <Grid Margin="0,0,0,0">
                         <StackPanel Orientation="Horizontal" Margin="0">
 
@@ -160,6 +159,10 @@
                         </StackPanel>
                     </Grid>
                 </xz_controls:MenuControl.Top>
+            -->
+
+            <xz_controls:MenuControl x:Name="Menu" Margin="0"
+                                 Background="Transparent" Foreground="{DynamicResource Foreground}" ExpandedWidth="335" TitlebarHeight="90" xz_controlfx:PointerTracker.Enabled="False">
 
                 <xz_controls:MenuControl.Middle>
                     <xz_controls:NavigationMenu CurrentSelection="0" Margin="0,0,0,15"
@@ -185,6 +188,22 @@
                     </Grid>
                 </xz_controls:MenuControl.Under>
             </xz_controls:MenuControl>
+
+            <Grid Grid.ColumnSpan="3" VerticalAlignment="Top" Height="80" ClipToBounds="True">
+                <Rectangle Fill="{DynamicResource Background}" />
+                <Image x:Name="top_Acrylic_Image" Stretch="None" Margin="0,-100,0,0" >
+                    <Image.Effect>
+                        <BlurEffect Radius="10" KernelType="Box" />
+                    </Image.Effect>
+                </Image>
+                <Rectangle Fill="{DynamicResource Background}" Opacity="0.93" />
+            </Grid>
+
+            <xz_controls:AppBar x:Name="Appbar" Grid.ColumnSpan="2" Title="{x:Static localization:Resources.Settings}" VerticalAlignment="Top" Margin="0,32,0,0">
+                <xz_controls:AppBar.Left>
+                    <xz_buttons:AppBarButton Foreground="{DynamicResource Titlebar_Foreground}" Icon="&#xe72b;" Click="menu_backButton_Click" />
+                </xz_controls:AppBar.Left>
+            </xz_controls:AppBar>
 
         </Grid>
 
