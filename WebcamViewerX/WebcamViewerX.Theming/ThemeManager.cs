@@ -65,8 +65,6 @@ namespace WebcamViewerX.Theming
         /// <param name="theme">The theme that we'll use to get its dictionary and swap it in.</param>
         public void RequestThemeChange(Theme theme)
         {
-            ThemeChangeRequested?.Invoke(this, null);
-
             // clear merged dictionaries of dictionary
             Dictionary.MergedDictionaries.Clear();
             // create new theme dictionary
@@ -75,6 +73,8 @@ namespace WebcamViewerX.Theming
             Dictionary.MergedDictionaries.Add(newMergedDictionary);
 
             XZ_ThemeManager.Config_SetTheme(XZ_ThemeManager.GetThemeFromString(Config.theme));
+
+            ThemeChangeRequested?.Invoke(this, null);
         }
 
         /// <summary>

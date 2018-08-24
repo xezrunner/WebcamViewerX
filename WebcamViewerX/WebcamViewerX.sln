@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Localization"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Configuration", "WebcamViewerX.Configuration\WebcamViewerX.Configuration.csproj", "{B8C556DC-3F56-4C98-84B1-445A2B11AF64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewerX.Engine", "WebcamViewerX.Engine\WebcamViewerX.Engine.csproj", "{422C4D02-1A71-490F-9F6C-1A7DF5404897}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,13 +41,17 @@ Global
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C556DC-3F56-4C98-84B1-445A2B11AF64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{422C4D02-1A71-490F-9F6C-1A7DF5404897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{422C4D02-1A71-490F-9F6C-1A7DF5404897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{422C4D02-1A71-490F-9F6C-1A7DF5404897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{422C4D02-1A71-490F-9F6C-1A7DF5404897}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_PrefixTranslations = False
-		RESX_AutoCreateNewLanguageFiles = False
 		SolutionGuid = {EE621625-AACF-4708-A5D1-BA717E12680C}
+		RESX_AutoCreateNewLanguageFiles = False
+		RESX_PrefixTranslations = False
 	EndGlobalSection
 EndGlobal

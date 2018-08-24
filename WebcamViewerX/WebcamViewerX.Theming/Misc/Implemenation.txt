@@ -3,7 +3,7 @@
 <!-- Theme -->
 <ResourceDictionary x:Name="themeDictionary">
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="pack://application:,,,/WebcamViewerX.Theming;component/Themes.xaml" />
+		<ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
 
