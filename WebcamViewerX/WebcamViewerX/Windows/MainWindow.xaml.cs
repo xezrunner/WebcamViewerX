@@ -31,6 +31,9 @@ namespace WebcamViewerX
             // MUI debug
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu");
 
+            // Exception handling
+            Application.Current.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+
             InitializeComponent();
 
             ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
@@ -174,6 +177,14 @@ namespace WebcamViewerX
             BackButtonClick?.Invoke(sender, e);
         }
         #endregion
+
+        private void Dispatcher_UnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            ShowTextDialog("An error has occured.",
+                "You may continue using the application, but it may no longer work as intended.\n\n" +
+                "Error: " + e.Exception.Message);
+            e.Handled = true;
+        }
 
         public void ShowTextDialog(string Text)
         {
