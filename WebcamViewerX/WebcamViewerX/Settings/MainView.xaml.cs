@@ -43,9 +43,6 @@ namespace WebcamViewerX.Settings
             {
                 MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
-
-                // set image
-                top_Acrylic_Image.Source = MainWindow._settings_Screenshot;
             }
             else
             {

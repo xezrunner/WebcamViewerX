@@ -83,16 +83,6 @@ namespace WebcamViewerX
                 frame.Content = view.Page;
 
             if (CurrentView != null)
-            {
-                if (view.DevName == "Settings")
-                {
-                    var homeview = (Home.MainView)CurrentView.Page;
-                    var cameraview = homeview.cameraView;
-                    _settings_Screenshot = Screenshot(cameraview);
-                }
-            }
-
-            if (CurrentView != null)
                 await CurrentView.RequestAnimOutAnimation();
 
             // Set CurrentView to our new View
@@ -214,8 +204,6 @@ namespace WebcamViewerX
         }
 
         #endregion
-
-        public RenderTargetBitmap _settings_Screenshot;
 
         RenderTargetBitmap Screenshot(FrameworkElement element)
         {

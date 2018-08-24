@@ -189,14 +189,17 @@
                 </xz_controls:MenuControl.Under>
             </xz_controls:MenuControl>
 
-            <Grid Grid.ColumnSpan="3" VerticalAlignment="Top" Height="80" ClipToBounds="True">
+            <Grid Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Top" Height="80" ClipToBounds="True">
                 <Rectangle Fill="{DynamicResource Background}" />
-                <Image x:Name="top_Acrylic_Image" Stretch="None" Margin="0,-100,0,0" >
-                    <Image.Effect>
-                        <BlurEffect Radius="10" KernelType="Box" />
-                    </Image.Effect>
-                </Image>
-                <Rectangle Fill="{DynamicResource Background}" Opacity="0.93" />
+                <Rectangle x:Name="top_Acrylic_Rectangle">
+                    <Rectangle.Effect>
+                        <BlurEffect Radius="0" KernelType="Box" />
+                    </Rectangle.Effect>
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Fill="{DynamicResource Background}" Opacity="0.93"/>
             </Grid>
 
             <xz_controls:AppBar x:Name="Appbar" Grid.ColumnSpan="2" Title="{x:Static localization:Resources.Settings}" VerticalAlignment="Top" Margin="0,32,0,0">
