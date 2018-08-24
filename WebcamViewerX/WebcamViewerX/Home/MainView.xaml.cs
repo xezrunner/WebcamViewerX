@@ -12,28 +12,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebcamViewerX.Engine;
 using WebcamViewerX.ViewManagement;
+using XeZrunner.UI.Controls;
+using XeZrunner.UI.Controls.Buttons;
 
 namespace WebcamViewerX.Home
 {
     public partial class MainView : Page
     {
-        Theming.ThemeManager ThemeManager;
+        XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
-        View View;
+        XeZrunner.UI.Utilities.UIDTools UIDTools = new XeZrunner.UI.Utilities.UIDTools();
+
+        CameraConfiguration CameraConfig = new CameraConfiguration();
+        CameraBitmapImageGatherer ImageGatherer = new CameraBitmapImageGatherer();
+        ImageCameraSaveUtils LocalSaveUtils = new ImageCameraSaveUtils();
+        ArchiveOrgUtils ArchiveorgUtils = new ArchiveOrgUtils();
+
         MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
 
         public MainView()
         {
             InitializeComponent();
 
-            ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
+
+            navMenu = (NavigationMenu)GetMenuUIElementFromUid("Menu_NavigationMenu");
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
-            View = (View)this.Tag;
-
             // close the menu by default
             Menu.Animations = false;
             Menu.Close();
@@ -43,20 +52,73 @@ namespace WebcamViewerX.Home
 
             MainWindow.titlebar.MenuButton_Click += MenuButtonClick;
             MainWindow.titlebar.BackButton_Click += BackButtonClick;
+
+            LoadConfiguration();
         }
 
         private void main_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.IsVisible)
+            if (IsVisible)
             {
-                MainWindow.RequestTitlebarThemeChange("Dark"); // force dark titlebar theme because of dark titlebar tint
-                MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
+                MainWindow.RequestTitlebarThemeChange("Dark"); // force dark titlebar theme
+                MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
             }
             else
                 MainWindow.RequestTitlebarThemeChange(); // reset titlebar theme
         }
 
+        #region Configuration
+
+        List<Camera> _cameraList;
+
+        void LoadConfiguration()
+        {
+            _cameraList = CameraConfig.GetUserCameras();
+
+            // Create "Cameras" StackPanel
+            StackPanel camerasPanel = new StackPanel() { Tag = "Cameras" };
+
+            foreach (Camera camera in _cameraList)
+                camerasPanel.Children.Add(Menu_CreateNavMenuItem(camera));
+
+            navMenu.Items.Clear();
+
+            navMenu.Items.Add(camerasPanel);
+        }
+
+        NavMenuItem Menu_CreateNavMenuItem(Camera camera)
+        {
+            return new NavMenuItem()
+            {
+                Text = camera.Name,
+                Icon = "",
+                Height = 35
+            };
+        }
+
+        #endregion
+
+        #region Window & titlebar
+
+        void MenuButtonClick(object sender, RoutedEventArgs e)
+        {
+            OpenMenu();
+        }
+
+        void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            CloseMenu();
+        }
+
+        #endregion
+
         #region Menu
+
+        NavigationMenu navMenu;
+        UIElement GetMenuUIElementFromUid(string uid)
+        {
+            return UIDTools.GetUIElementByUid(Menu, uid);
+        }
 
         bool IsMenuOpen
         {
@@ -67,38 +129,57 @@ namespace WebcamViewerX.Home
         {
             Menu.Open();
             anim_out_Icon_TextBlock.Visibility = Visibility.Visible;
+
+
+            MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
+            MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
         }
 
         public void CloseMenu()
         {
             Menu.Close();
             anim_out_Icon_TextBlock.Visibility = Visibility.Hidden;
-        }
 
-        void MenuButtonClick(object sender, RoutedEventArgs e)
-        {
-            OpenMenu();
-            MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
-            MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
-        }
-
-        void BackButtonClick(object sender, RoutedEventArgs e)
-        {
-            CloseMenu();
             MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
             MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
         }
 
-        #endregion
+        #region Info grid
 
-        private void menu_localSaveButton_Click(object sender, RoutedEventArgs e)
+        void SetInfoGrid(Camera camera)
         {
+            TextBlock infogridTextBlock = (TextBlock)GetMenuUIElementFromUid("Menu_infogridTextBlock");
 
+            infogridTextBlock.Inlines.Clear();
+
+            infogridTextBlock.Inlines.Add(new Run() { Text = camera.Name, FontWeight = FontWeights.Medium });
+            infogridTextBlock.Inlines.Add(new LineBreak());
+
+            infogridTextBlock.Inlines.Add(camera.URL);
+            infogridTextBlock.Inlines.Add(new LineBreak());
+
+            infogridTextBlock.Inlines.Add("Owner: " + camera.Owner);
+            infogridTextBlock.Inlines.Add(new LineBreak());
+
+            infogridTextBlock.Inlines.Add("Location: " + camera.Location);
         }
 
-        private void menu_archiveorgSaveButton_Click(object sender, RoutedEventArgs e)
-        {
+        #endregion
 
+        #region Info grid action buttons
+
+        private async void menu_localSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            cameraView.IsLoading = true;
+            await LocalSaveUtils.SaveImageFile(_cameraList[navMenu.CurrentSelection.Value]);
+            cameraView.IsLoading = false;
+        }
+
+        private async void menu_archiveorgSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            cameraView.IsLoading = true;
+            await ArchiveorgUtils.SaveOnArchiveOrg(_cameraList[navMenu.CurrentSelection.Value]);
+            cameraView.IsLoading = false;
         }
 
         private void menu_bothSaveButton_Click(object sender, RoutedEventArgs e)
@@ -106,9 +187,46 @@ namespace WebcamViewerX.Home
 
         }
 
+        #endregion
+
+        #region Middle
+
+        private async void Menu_SelectionChanged(object sender, EventArgs e)
+        {
+            await LoadImage(_cameraList[navMenu.CurrentSelection.Value]);
+        }
+
+        #endregion
+
+        #region Bottom
+
         private void menu_SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.SwitchToView(MainWindow.Views.Settings);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Engine
+
+        async Task LoadImage(Camera camera)
+        {
+            cameraView.IsLoading = true;
+            cameraView.Image = await ImageGatherer.GetCameraImage(camera);
+            cameraView.IsLoading = false;
+
+            SetInfoGrid(camera);
+
+            CloseMenu();
+        }
+
+        #endregion
+
+        private void cameraView_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_SelectionChanged(sender, null);
         }
     }
 }
