@@ -22,7 +22,7 @@ namespace WebcamViewerX
 {
     public partial class MainWindow : Window
     {
-        Theming.ThemeManager ThemeManager;
+        XeZrunner.UI.Theming.ThemeManager ThemeManager;
         ViewManager ViewManager = new ViewManager();
         public Views Views = new Views();
 
@@ -33,8 +33,8 @@ namespace WebcamViewerX
 
             InitializeComponent();
 
-            ThemeManager = new Theming.ThemeManager(themeDictionary); // initialize theme manager
-            ThemeManager.ThemeChangeRequested += this.ThemeManager_ThemeChangeRequested;
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
+            ThemeManager.ConfigChanged += ThemeManager_ConfigChanged;
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -139,10 +139,10 @@ namespace WebcamViewerX
         {
             // Themes
             if (e.Key == Key.Q)
-                ThemeManager.Config_SetTheme(Theming.ThemeManager.Theme.Light);
+                ThemeManager.Config_SetTheme(XeZrunner.UI.Theming.ThemeManager.Theme.Light);
 
             if (e.Key == Key.E)
-                ThemeManager.Config_SetTheme(Theming.ThemeManager.Theme.Dark);
+                ThemeManager.Config_SetTheme(XeZrunner.UI.Theming.ThemeManager.Theme.Dark);
 
             // View changing
             if (e.Key == Key.Y)
