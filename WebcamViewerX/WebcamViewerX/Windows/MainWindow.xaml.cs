@@ -205,12 +205,21 @@ namespace WebcamViewerX
 
         #endregion
 
-        private async void ThemeManager_ThemeChangeRequested(object sender, EventArgs e)
+        public RenderTargetBitmap _settings_Screenshot;
+
+        RenderTargetBitmap Screenshot(FrameworkElement element)
         {
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)Width, (int)Height, 96, 96, PixelFormats.Pbgra32);
-            renderTargetBitmap.Render(this);
-            PngBitmapEncoder pngimage = new PngBitmapEncoder();
-            themechangeImage.Source = BitmapFrame.Create(renderTargetBitmap);
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)element.ActualWidth, (int)element.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderTargetBitmap.Render(element);
+
+            //await Task.Delay(1);
+
+            return renderTargetBitmap;
+        }
+
+        private async void ThemeManager_ConfigChanged(object sender, EventArgs e)
+        {
+            themechangeImage.Source = Screenshot(this);
 
             themechangeImage.Visibility = Visibility.Visible;
 
