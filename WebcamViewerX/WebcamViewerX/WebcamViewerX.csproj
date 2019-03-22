@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Settings\Subviews\DebugSettingsSubView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings\Subviews\HomeSettingsSubView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +112,9 @@
     <Compile Include="Settings\SubViewManagement\SubViews.cs" />
     <Compile Include="Settings\Subviews\AboutApplicationSubView.xaml.cs">
       <DependentUpon>AboutApplicationSubView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\Subviews\DebugSettingsSubView.xaml.cs">
+      <DependentUpon>DebugSettingsSubView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Subviews\HomeSettingsSubView.xaml.cs">
       <DependentUpon>HomeSettingsSubView.xaml</DependentUpon>

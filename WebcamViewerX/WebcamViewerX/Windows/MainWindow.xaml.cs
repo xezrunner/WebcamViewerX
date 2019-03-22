@@ -22,7 +22,6 @@ namespace WebcamViewerX
 {
     public partial class MainWindow : Window
     {
-        XeZrunner.UI.Theming.ThemeManager ThemeManager;
         public XeZrunner.UI.Theming.ThemeManager ThemeManager;
         ViewManager ViewManager = new ViewManager();
         public Views Views = new Views();
@@ -94,7 +93,6 @@ namespace WebcamViewerX
             // Set Frame to be visible.
             //RequestFrameVisibility(frame_name);
 
-            await view.RequestAnimInAnimation();
             await view.RequestAnimInAnimation(animation_scale);
         }
 

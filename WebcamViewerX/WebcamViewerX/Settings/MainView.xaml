@@ -179,6 +179,10 @@
                         <StackPanel Tag="{x:Static localization:Resources.Section_AboutAndUpdates}">
                             <xz_buttons:NavMenuItem Text="{x:Static localization:Resources.AboutApplication}" Icon="&#xe946;" />
                         </StackPanel>
+
+                        <StackPanel Tag="Developer options">
+                            <xz_buttons:NavMenuItem Text="Debug settings" Icon=" " />
+                        </StackPanel>
                     </xz_controls:NavigationMenu>
                 </xz_controls:MenuControl.Middle>
 

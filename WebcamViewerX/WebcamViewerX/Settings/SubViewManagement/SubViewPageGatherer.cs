@@ -27,6 +27,9 @@ namespace WebcamViewerX.Settings
 
                 case "AboutApplication":
                     return new Subviews.AboutApplicationSubView();
+
+                case "DebugSettings":
+                    return new Subviews.DebugSettingsSubView();
             }
         }
     }

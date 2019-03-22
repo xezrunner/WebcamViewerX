@@ -23,6 +23,8 @@ namespace WebcamViewerX.Settings
                     return UserInterfaceSubView;
                 case 3:
                     return AboutSubView;
+                case 4:
+                    return DebugSettingsSubView;
             }
         }
 
@@ -53,6 +55,14 @@ namespace WebcamViewerX.Settings
         {
             Title = "About application",
             DevName = "AboutApplication"
+        };
+        #endregion
+
+        #region Developer options
+        public SubView DebugSettingsSubView = new SubView()
+        {
+            Title = "Debug settings",
+            DevName = "DebugSettings"
         };
         #endregion
     }
