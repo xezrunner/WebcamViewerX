@@ -13,12 +13,14 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using XeZrunner.UI.Theming;
 
 namespace WebcamViewerX.Settings
 {
     public partial class MainView : Page
     {
-        XeZrunner.UI.Theming.ThemeManager ThemeManager;
+        ThemeManager ThemeManager;
+
         SubViewManager SubViewManager = new SubViewManager();
         SubViews SubViews = new SubViews();
 
@@ -27,8 +29,7 @@ namespace WebcamViewerX.Settings
         public MainView()
         {
             InitializeComponent();
-
-            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
+            ThemeManager = new ThemeManager(themeDictionary);
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)

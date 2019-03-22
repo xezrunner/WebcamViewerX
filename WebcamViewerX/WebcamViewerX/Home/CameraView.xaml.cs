@@ -23,6 +23,7 @@ namespace WebcamViewerX.Home
         public CameraView()
         {
             InitializeComponent();
+            
             ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
 
             anim_in = new DoubleAnimation(1, TimeSpan.FromSeconds(.3));

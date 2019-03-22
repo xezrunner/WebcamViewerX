@@ -10,13 +10,12 @@
              d:DesignHeight="450" d:DesignWidth="800" Foreground="{DynamicResource Foreground}">
 
     <UserControl.Resources>
-
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </UserControl.Resources>
 
     <Grid>

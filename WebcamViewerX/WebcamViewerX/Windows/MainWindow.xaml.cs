@@ -200,7 +200,7 @@ namespace WebcamViewerX
                 PrimaryButtonText = "OK",
                 SecondaryButtonText = ""
             };
-            await contentdialogHost.ShowDialog(dialog);
+            await contentdialogHost.ShowDialogAsync(dialog);
         }
 
         #endregion

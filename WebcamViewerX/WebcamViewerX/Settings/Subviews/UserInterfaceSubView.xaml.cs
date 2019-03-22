@@ -138,7 +138,7 @@ namespace WebcamViewerX.Settings.Subviews
                 SecondaryButtonText = "Cancel"
             };
 
-            if (await MainWindow.contentdialogHost.ShowDialog(dialog) == ContentDialogHost.ContentDialogResult.Primary)
+            if (await MainWindow.contentdialogHost.ShowDialogAsync(dialog) == ContentDialogHost.ContentDialogResult.Primary)
             {
                 ThemeManager.Config.Reset();
                 ThemeManager.Config.Save();

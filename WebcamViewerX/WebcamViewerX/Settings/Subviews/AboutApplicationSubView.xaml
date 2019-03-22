@@ -28,6 +28,7 @@
 
     </Page.Resources>
 
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
@@ -122,4 +123,5 @@
         </Grid>
 
     </Grid>
+    </ScrollViewer>
 </Page>

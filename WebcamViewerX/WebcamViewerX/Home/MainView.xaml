@@ -17,10 +17,10 @@
 
     <Page.Resources>
 
-        <!-- Theme -->
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <sys:TimeSpan x:Key="Anim_Out_Duration">0:0:0.5</sys:TimeSpan>

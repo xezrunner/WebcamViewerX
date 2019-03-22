@@ -16,10 +16,10 @@
 
     <Page.Resources>
 
-        <!-- Theme -->
         <ResourceDictionary x:Name="themeDictionary">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <sys:TimeSpan x:Key="Anim_Out_Duration">0</sys:TimeSpan>
@@ -190,16 +190,16 @@
             </xz_controls:MenuControl>
 
             <Grid Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Top" Height="80" ClipToBounds="True">
-                <Rectangle Fill="{DynamicResource Background}" />
+                <Rectangle Fill="{DynamicResource Background}" Opacity="0" />
                 <Rectangle x:Name="top_Acrylic_Rectangle">
-                    <Rectangle.Effect>
-                        <BlurEffect Radius="0" KernelType="Box" />
-                    </Rectangle.Effect>
-                    <Rectangle.RenderTransform>
-                        <ScaleTransform ScaleX="1" ScaleY="1" />
-                    </Rectangle.RenderTransform>
+                    <Rectangle.BitmapEffect>
+                        <BlurBitmapEffect Radius="10" KernelType="Gaussian" />
+                    </Rectangle.BitmapEffect>
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=FramesContainer}" Stretch="None" AlignmentX="Right" AlignmentY="Top" />
+                    </Rectangle.Fill>
                 </Rectangle>
-                <Rectangle Fill="{DynamicResource Background}" Opacity="0.93"/>
+                <Rectangle Fill="{DynamicResource Background}" Opacity="0.68" />
             </Grid>
 
             <xz_controls:AppBar x:Name="Appbar" Grid.ColumnSpan="2" Title="{x:Static localization:Resources.Settings}" VerticalAlignment="Top" Margin="0,32,0,0">
