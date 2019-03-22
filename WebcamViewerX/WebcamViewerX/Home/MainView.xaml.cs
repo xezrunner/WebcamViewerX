@@ -60,7 +60,7 @@ namespace WebcamViewerX.Home
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
             }
             else
-                MainWindow.RequestTitlebarThemeChange(); // reset titlebar theme
+                MainWindow.RequestTitlebarThemeChange(MainWindow.ThemeManager.GetCurrentConfigTheme().ToString()); // reset titlebar theme
         }
 
         #region Configuration
