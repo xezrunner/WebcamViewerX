@@ -23,6 +23,7 @@ namespace WebcamViewerX
     public partial class MainWindow : Window
     {
         XeZrunner.UI.Theming.ThemeManager ThemeManager;
+        public XeZrunner.UI.Theming.ThemeManager ThemeManager;
         ViewManager ViewManager = new ViewManager();
         public Views Views = new Views();
 
@@ -46,6 +47,8 @@ namespace WebcamViewerX
         }
 
         #region View management
+
+        public double animation_scale = 1.0;
 
         public View CurrentView;
 
@@ -83,7 +86,7 @@ namespace WebcamViewerX
                 frame.Content = view.Page;
 
             if (CurrentView != null)
-                await CurrentView.RequestAnimOutAnimation();
+                await CurrentView.RequestAnimOutAnimation(animation_scale);
 
             // Set CurrentView to our new View
             CurrentView = view;
@@ -92,6 +95,7 @@ namespace WebcamViewerX
             //RequestFrameVisibility(frame_name);
 
             await view.RequestAnimInAnimation();
+            await view.RequestAnimInAnimation(animation_scale);
         }
 
         /// <summary>
@@ -223,6 +227,8 @@ namespace WebcamViewerX
 
             DoubleAnimation anim = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3));
             themechangeImage.BeginAnimation(OpacityProperty, anim);
+
+            RequestTitlebarThemeChange(ThemeManager.GetCurrentConfigTheme().ToString());
 
             await Task.Delay(TimeSpan.FromSeconds(.3));
             themechangeImage.Visibility = Visibility.Hidden;

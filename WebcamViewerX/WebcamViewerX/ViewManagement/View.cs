@@ -34,7 +34,7 @@ namespace WebcamViewerX.ViewManagement
         /// </summary>
         public ViewTitlebarBehavior TitlebarBehavior;
 
-        public async Task RequestAnimInAnimation()
+        public async Task RequestAnimInAnimation(double? scale = 1.0)
         {
             if (!GetHasTransitionAnimations().Value)
                 return;
@@ -52,11 +52,13 @@ namespace WebcamViewerX.ViewManagement
                 duration = board.Duration.TimeSpan;
 
             board.Begin();
+            if (scale.HasValue)
+                board.SetSpeedRatio(scale.Value);
 
             await Task.Delay(duration);
         }
 
-        public async Task RequestAnimOutAnimation()
+        public async Task RequestAnimOutAnimation(double? scale = 1.0)
         {
             if (!GetHasTransitionAnimations().Value)
                 return;
@@ -74,6 +76,8 @@ namespace WebcamViewerX.ViewManagement
                 duration = board.Duration.TimeSpan;
 
             board.Begin();
+            if (scale.HasValue)
+                board.SetSpeedRatio(scale.Value);
 
             await Task.Delay(duration);
         }
