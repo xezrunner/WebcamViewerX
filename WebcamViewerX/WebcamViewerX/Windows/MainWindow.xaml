@@ -122,8 +122,34 @@
             </ScrollViewer>
 
             <!-- Frames container-->
-            <Grid x:Name="frameContainer" />
+            <Grid x:Name="frameContainer" Background="{DynamicResource Background}">
+            </Grid>
+            
+            <!-- TEMP: Titlebar options panel -->
+            <Grid x:Name="titlebarContextPanel" Visibility="Hidden">
+                
+                <!-- background blur -->
+                <Rectangle x:Name="titlebar_context_background_Rectangle" ClipToBounds="True">
+                    <Rectangle.Effect>
+                        <BlurEffect x:Name="titlebar_context_background_blur" Radius="0" /> <!-- 35 -->
+                    </Rectangle.Effect>
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=frameContainer}" Stretch="None" />
+                    </Rectangle.Fill>
+                </Rectangle>
 
+                <Grid x:Name="titlebar_context_innerpanel" Margin="150,45" Height="250" VerticalAlignment="Top">
+
+                    <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.015" />
+
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Google Sans" FontSize="16">
+                        TITLEBAR_CONTEXT_MENU
+                    </TextBlock>
+
+                </Grid>
+                
+            </Grid>
+            
             <!-- ContentDialogHost -->
             <xz_popups:ContentDialogHost x:Name="contentdialogHost" />
 
@@ -132,7 +158,8 @@
                                        FontWeight="Medium"
                                        Height="32"
                                        MenuButtonVisibility="Visible"
-                                       MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"/>
+                                       MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"
+                                       MouseRightButtonUp="Titlebar_MouseRightButtonUp"/>
 
             <!-- theme changing image -->
             <Image x:Name="themechangeImage" Margin="-11" Visibility="Hidden" />

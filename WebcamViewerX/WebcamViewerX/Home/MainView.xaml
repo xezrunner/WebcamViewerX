@@ -30,11 +30,11 @@
                     <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.8" Value="{x:Static Visibility.Hidden}"/>
                 </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="mainContainer">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="mainContainer">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1.1"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
                         <EasingDoubleKeyFrame.EasingFunction>
@@ -42,7 +42,7 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="mainContainer">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1.1"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
                         <EasingDoubleKeyFrame.EasingFunction>
@@ -96,7 +96,7 @@
                         </EasingThicknessKeyFrame.EasingFunction>
                     </EasingThicknessKeyFrame>
                 </ThicknessAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="mainContainer">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1.1">
                         <EasingDoubleKeyFrame.EasingFunction>
@@ -104,7 +104,7 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="mainContainer">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1.1">
                         <EasingDoubleKeyFrame.EasingFunction>
@@ -112,9 +112,9 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="mainContainer">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1"/>
                 </DoubleAnimationUsingKeyFrames>
                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="anim_out_Icon">
                     <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -145,7 +145,7 @@
 
     </Page.Resources>
 
-    <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+    <Grid x:Name="grid" RenderTransformOrigin="0,1">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
@@ -167,9 +167,7 @@
             </Grid.RenderTransform>
 
             <!-- Content container -->
-            <Grid x:Name="grid_ContentContainer">
-
-                <Rectangle Fill="Black" />
+            <Grid x:Name="grid_ContentContainer" Background="Black">
 
                 <Grid x:Name="grid_Image">
                     <local:CameraView x:Name="cameraView" Click="cameraView_Click" />
@@ -178,37 +176,52 @@
             </Grid>
 
             <!-- Menu -->
-            <xz_controls:MenuControl x:Name="Menu" xz_controlfx:PointerTracker.Enabled="False"
+            <Grid x:Name="Menu_Grid" ClipToBounds="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle x:Name="Menu_BlurBehind_Rectangle" Grid.Column="0">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=grid_ContentContainer}" Stretch="None" AlignmentX="Left" />
+                    </Rectangle.Fill>
+                    <Rectangle.Effect>
+                        <BlurEffect x:Name="Menu_BlurBehind" Radius="35" />
+                    </Rectangle.Effect>
+                </Rectangle>
+
+                <xz_controls:MenuControl x:Name="Menu" Grid.Column="0" xz_controlfx:PointerTracker.Enabled="False"
                                  Background="{DynamicResource Menu_Background}" Foreground="{DynamicResource Foreground}"
                                  HorizontalAlignment="Left" ExpandedWidth="365" TitlebarHeight="0">
 
-                <xz_controls:MenuControl.Top>
-                    <!-- Info grid -->
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="32"/>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <Rectangle Fill="#8F000000" Grid.Row="0" />
-
-                        <Grid Grid.Row="1" Margin="15,10">
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="14" />
-                                    <Setter Property="Margin" Value="0,0,0,3" />
-                                </Style>
-                            </Grid.Resources>
+                    <xz_controls:MenuControl.Top>
+                        <!-- Info grid -->
+                        <Grid>
                             <Grid.RowDefinitions>
-                                <!-- Info Text -->
-                                <RowDefinition />
-
-                                <!-- Actions-->
+                                <RowDefinition Height="32"/>
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <!-- Info text-->
-                            <TextBlock x:Uid="Menu_infogridTextBlock" LineHeight="23">
+                            <Rectangle Fill="#8F000000" Grid.Row="0" />
+
+                            <Grid Grid.Row="1" Margin="15,10">
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="Margin" Value="0,0,0,3" />
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <!-- Info Text -->
+                                    <RowDefinition />
+
+                                    <!-- Actions-->
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <!-- Info text-->
+                                <TextBlock x:Uid="Menu_infogridTextBlock" LineHeight="23">
                             <Bold>Camera name</Bold>
                             <LineBreak />
                             Camera URL
@@ -216,63 +229,65 @@
                             Camera owner
                             <LineBreak />
                             Camera location
-                            </TextBlock>
+                                </TextBlock>
 
-                            <!-- Actions -->
+                                <!-- Actions -->
 
-                            <Grid Grid.Row="4" HorizontalAlignment="Center"
+                                <Grid Grid.Row="4" HorizontalAlignment="Center"
                                   Margin="0,10,0,0">
-                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
 
-                                    <xz_buttons:CircularActionButton Icon="&#xe74e;" Text="Save image"
+                                        <xz_buttons:CircularActionButton Icon="&#xe74e;" Text="Save image"
                                                              
                                                              Click="menu_localSaveButton_Click"/>
 
-                                    <xz_buttons:CircularActionButton Margin="8,0,0,0"
+                                        <xz_buttons:CircularActionButton Margin="8,0,0,0"
                                                              Icon="&#xe78b;" Text="Save on archive.org"
                                                              
                                                              Click="menu_archiveorgSaveButton_Click"/>
 
-                                    <xz_buttons:CircularActionButton Margin="8,0,0,0" IsEnabled="False"
+                                        <xz_buttons:CircularActionButton Margin="8,0,0,0" IsEnabled="False"
                                                              Icon="&#xe17d;" Text="Save everywhere"
                                                              
                                                              Click="menu_bothSaveButton_Click"/>
 
-                                </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
                             </Grid>
-
                         </Grid>
-                    </Grid>
-                </xz_controls:MenuControl.Top>
+                    </xz_controls:MenuControl.Top>
 
-                <xz_controls:MenuControl.Middle>
-                    <!-- Camera list-->
-                    <xz_controls:NavigationMenu x:Uid="Menu_NavigationMenu" CurrentSelection="0" SelectionChanged="Menu_SelectionChanged" Margin="0,0">
-                        <xz_controls:NavigationMenu.Items>
-                            <StackPanel Tag="Cameras">
-                                <!-- <TextBlock Foreground="{DynamicResource Foreground_Secondary}" HorizontalAlignment="Left" Text="Cameras" FontSize="14" Margin="23,0,0,10" /> -->
-                                <xz_buttons:NavMenuItem Icon="" Text="Camera #1" Height="35" />
-                                <xz_buttons:NavMenuItem Icon="" Text="Camera #2" Height="35" />
-                                <xz_buttons:NavMenuItem Icon="" Text="Camera #3" Height="35" />
-                            </StackPanel>
-                        </xz_controls:NavigationMenu.Items>
-                    </xz_controls:NavigationMenu>
-                </xz_controls:MenuControl.Middle>
+                    <xz_controls:MenuControl.Middle>
+                        <!-- Camera list-->
+                        <xz_controls:NavigationMenu x:Uid="Menu_NavigationMenu" CurrentSelection="0" SelectionChanged="Menu_SelectionChanged" Margin="0,0">
+                            <xz_controls:NavigationMenu.Items>
+                                <StackPanel Tag="Cameras">
+                                    <!-- <TextBlock Foreground="{DynamicResource Foreground_Secondary}" HorizontalAlignment="Left" Text="Cameras" FontSize="14" Margin="23,0,0,10" /> -->
+                                    <xz_buttons:NavMenuItem Icon="" Text="Camera #1" Height="35" />
+                                    <xz_buttons:NavMenuItem Icon="" Text="Camera #2" Height="35" />
+                                    <xz_buttons:NavMenuItem Icon="" Text="Camera #3" Height="35" />
+                                </StackPanel>
+                            </xz_controls:NavigationMenu.Items>
+                        </xz_controls:NavigationMenu>
+                    </xz_controls:MenuControl.Middle>
 
-                <xz_controls:MenuControl.Bottom>
-                    <!-- Bottom shortcuts -->
-                    <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                        <xz_buttons:ShortcutButton Icon="&#xe713;" Text="Settings"
+                    <xz_controls:MenuControl.Bottom>
+                        <!-- Bottom shortcuts -->
+                        <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+                            <xz_buttons:ShortcutButton Icon="&#xe713;" Text="Settings"
                                                
                                                Click="menu_SettingsButton_Click"/>
-                    </StackPanel>
-                </xz_controls:MenuControl.Bottom>
-            </xz_controls:MenuControl>
+                        </StackPanel>
+                    </xz_controls:MenuControl.Bottom>
 
+                </xz_controls:MenuControl>
+
+            </Grid>
         </Grid>
 
         <Grid x:Name="anim_out_Icon"
-              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-751,560,0,0" Visibility="Hidden"
+              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-751,560,0,0" Visibility="Visible"
               RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -282,11 +297,20 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Grid.RenderTransform>
-            <TextBlock x:Name="anim_out_Icon_TextBlock" Text="&#xe713;"
+            <TextBlock x:Name="anim_out_Icon_TextBlock" Text="&#xe713;" Foreground="{DynamicResource Foreground}"
                        FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="18">
 
             </TextBlock>
         </Grid>
+
+        <Rectangle x:Name="settings_transition_blurrectangle" Visibility="Hidden" ClipToBounds="True">
+            <Rectangle.Fill>
+                <VisualBrush Visual="{Binding ElementName=mainContainer}" Stretch="None" />
+            </Rectangle.Fill>
+            <Rectangle.Effect>
+                <BlurEffect x:Name="settings_transition_blur" Radius="0" />
+            </Rectangle.Effect>
+        </Rectangle>
 
     </Grid>
 </Page>

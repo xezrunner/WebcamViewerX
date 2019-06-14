@@ -231,5 +231,33 @@ namespace WebcamViewerX
             await Task.Delay(TimeSpan.FromSeconds(.3));
             themechangeImage.Visibility = Visibility.Hidden;
         }
+
+        private async void Titlebar_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            double anim_duration = 0.35;
+
+            DoubleAnimation bluranim_in = new DoubleAnimation(0, 35, TimeSpan.FromSeconds(anim_duration));
+            DoubleAnimation opacity_in = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(anim_duration));
+
+            DoubleAnimation bluranim_out = new DoubleAnimation(35, 0, TimeSpan.FromSeconds(anim_duration));
+            DoubleAnimation opacity_out = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(anim_duration));
+
+            if (titlebarContextPanel.IsVisible != true)
+            {
+                titlebarContextPanel.Visibility = Visibility.Visible;
+
+                titlebar_context_background_blur.BeginAnimation(System.Windows.Media.Effects.BlurEffect.RadiusProperty, bluranim_in);
+                titlebar_context_innerpanel.BeginAnimation(OpacityProperty, opacity_in);
+            }
+            else
+            {
+                titlebar_context_background_blur.BeginAnimation(System.Windows.Media.Effects.BlurEffect.RadiusProperty, bluranim_out);
+                titlebar_context_innerpanel.BeginAnimation(OpacityProperty, opacity_out);
+
+                await Task.Delay(TimeSpan.FromSeconds(anim_duration));
+
+                titlebarContextPanel.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
