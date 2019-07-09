@@ -41,60 +41,7 @@
             <ScrollViewer x:Name="temp_scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                           Margin="0,32,0,0" xz_controlfx:PointerTracker.Enabled="True">
                 <Grid>
-                    <StackPanel Visibility="Collapsed">
-
-                        <TextBlock Foreground="{DynamicResource Foreground}" FontSize="14"
-                       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="18,10,18,0"
-                       TextWrapping="Wrap"><TextBlock x:Name="helloTextBlock" Foreground="{DynamicResource Accent}" FontFamily="/Fonts/#Google Sans" FontWeight="Medium" FontSize="22">
-                           Hello early tester!</TextBlock>
-                           <LineBreak/>
-                           Press
-                           <TextBlock Foreground="{DynamicResource Accent}">Q</TextBlock>
-                           to change the theme to 
-                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Light</TextBlock>
-                           , or press 
-                           <TextBlock Foreground="{DynamicResource Accent}">E</TextBlock>
-                           to change the theme to 
-                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Dark</TextBlock>
-                           
-                           <LineBreak/>
-                
-                           The changes you make <Italic>should</Italic> be saved, so be sure to test restarting the app after changing the theme!
-                        
-                           <LineBreak/>
-                           <LineBreak/>
-                        
-                           Press
-                           <TextBlock Foreground="{DynamicResource Accent}">Y</TextBlock>
-                           to change the View to
-                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Home.</TextBlock>
-                           Press
-                           <TextBlock Foreground="{DynamicResource Accent}">X</TextBlock>
-                           to change the View to 
-                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">Settings.</TextBlock>
-                        <LineBreak />
-                        You may also press
-                        <TextBlock Foreground="{DynamicResource Accent}">V</TextBlock>
-                        to change back to this introduction page at any time.
-                        <LineBreak />
-                        
-                        <LineBreak />
-                        
-                        Press
-                           <TextBlock Foreground="{DynamicResource Accent}">C</TextBlock>
-                           to test
-                           <TextBlock Foreground="{DynamicResource Foreground_Secondary}">ContentDialogs.</TextBlock>
-                           
-                           <LineBreak/>
-                           <LineBreak/>
-                           
-                           Some notes for myself:
-                           <LineBreak/>
-                           • Use localization for actual non-placeholder text (that includes the application title!). Develop a development style where localization is strongly focused on, so we don't end up forgetting about localization like in the previous version of Webcam Viewer.
-                           <LineBreak/>
-                           • Implement proper window behavior. If you try and maximize this window, you'll notice it doesn't fully fit the screen... classic WPF basic borderless window implementation...
-                           
-                       </TextBlock>
+                    <StackPanel Visibility="Visible">
 
                         <StackPanel Background="{DynamicResource Background}" Margin="0,10,0,0">
 
@@ -124,14 +71,15 @@
             <!-- Frames container-->
             <Grid x:Name="frameContainer" Background="{DynamicResource Background}">
             </Grid>
-            
+
             <!-- TEMP: Titlebar options panel -->
             <Grid x:Name="titlebarContextPanel" Visibility="Hidden">
-                
+
                 <!-- background blur -->
                 <Rectangle x:Name="titlebar_context_background_Rectangle" ClipToBounds="True">
                     <Rectangle.Effect>
-                        <BlurEffect x:Name="titlebar_context_background_blur" Radius="0" /> <!-- 35 -->
+                        <BlurEffect x:Name="titlebar_context_background_blur" Radius="0" />
+                        <!-- 35 -->
                     </Rectangle.Effect>
                     <Rectangle.Fill>
                         <VisualBrush Visual="{Binding ElementName=frameContainer}" Stretch="None" />
@@ -140,21 +88,17 @@
 
                 <Grid x:Name="titlebar_context_innerpanel" Margin="150,45" Height="250" VerticalAlignment="Top">
 
-                    <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.015" />
 
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Google Sans" FontSize="16">
-                        TITLEBAR_CONTEXT_MENU
-                    </TextBlock>
 
                 </Grid>
-                
+
             </Grid>
-            
+
             <!-- ContentDialogHost -->
             <xz_popups:ContentDialogHost x:Name="contentdialogHost" />
 
             <!-- Titlebar -->
-            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{Binding ElementName=window, Path=Title}"
+            <xz_window:TitlebarControl x:Name="titlebar" AppTitle=""
                                        FontWeight="Medium"
                                        Height="32"
                                        MenuButtonVisibility="Visible"

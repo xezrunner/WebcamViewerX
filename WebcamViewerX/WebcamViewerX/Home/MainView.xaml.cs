@@ -24,6 +24,7 @@ namespace WebcamViewerX.Home
     public partial class MainView : Page
     {
         XeZrunner.UI.Utilities.UIDTools UIDTools = new XeZrunner.UI.Utilities.UIDTools();
+        public XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
         CameraConfiguration CameraConfig = new CameraConfiguration();
         CameraBitmapImageGatherer ImageGatherer = new CameraBitmapImageGatherer();
@@ -35,6 +36,8 @@ namespace WebcamViewerX.Home
         public MainView()
         {
             InitializeComponent();
+
+            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
 
             navMenu = (NavigationMenu)GetMenuUIElementFromUid("Menu_NavigationMenu");
         }
@@ -58,18 +61,14 @@ namespace WebcamViewerX.Home
         {
             if (IsVisible)
             {
-                MainWindow.RequestTitlebarThemeChange("Dark"); // force dark titlebar theme
+                MainWindow.RequestTitlebarThemeChange(null);
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
 
-                DoubleAnimation anim_blur = new DoubleAnimation(0, TimeSpan.FromSeconds(.35));
                 DoubleAnimation anim_blur_menu = new DoubleAnimation(35, TimeSpan.FromSeconds(.35));
-                settings_transition_blur.BeginAnimation(BlurEffect.RadiusProperty, anim_blur);
 
-                await Task.Delay(TimeSpan.FromSeconds(.15));
+                await Task.Delay(TimeSpan.FromSeconds(0.5));
 
                 Menu_BlurBehind.BeginAnimation(BlurEffect.RadiusProperty, anim_blur_menu);
-
-                settings_transition_blurrectangle.Visibility = Visibility.Hidden;
             }
             else
                 MainWindow.RequestTitlebarThemeChange(MainWindow.ThemeManager.GetCurrentConfigTheme().ToString()); // reset titlebar theme
@@ -222,12 +221,8 @@ namespace WebcamViewerX.Home
 
         private void menu_SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation anim_blur = new DoubleAnimation(35, TimeSpan.FromSeconds(.35));
-            DoubleAnimation anim_blur_menu = new DoubleAnimation(0, TimeSpan.FromSeconds(.15));
+            DoubleAnimation anim_blur_menu = new DoubleAnimation(0, TimeSpan.FromSeconds(.35));
             Menu_BlurBehind.BeginAnimation(BlurEffect.RadiusProperty, anim_blur_menu);
-
-            settings_transition_blurrectangle.Visibility = Visibility.Visible;
-            settings_transition_blur.BeginAnimation(BlurEffect.RadiusProperty, anim_blur);
 
             MainWindow.SwitchToView(MainWindow.Views.Settings);
         }

@@ -167,7 +167,7 @@
             </Grid.RenderTransform>
 
             <!-- Content container -->
-            <Grid x:Name="grid_ContentContainer" Background="Black">
+            <Grid x:Name="grid_ContentContainer" Background="{DynamicResource Background}">
 
                 <Grid x:Name="grid_Image">
                     <local:CameraView x:Name="cameraView" Click="cameraView_Click" />
@@ -203,7 +203,7 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
 
-                            <Rectangle Fill="#8F000000" Grid.Row="0" />
+                            <Rectangle Fill="#8F000000" Grid.Row="0" Visibility="Hidden" />
 
                             <Grid Grid.Row="1" Margin="15,10">
                                 <Grid.Resources>
