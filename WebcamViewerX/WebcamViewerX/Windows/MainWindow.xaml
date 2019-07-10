@@ -98,7 +98,7 @@
             <xz_popups:ContentDialogHost x:Name="contentdialogHost" />
 
             <!-- Titlebar -->
-            <xz_window:TitlebarControl x:Name="titlebar" AppTitle=""
+            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
                                        FontWeight="Medium"
                                        Height="32"
                                        MenuButtonVisibility="Visible"
