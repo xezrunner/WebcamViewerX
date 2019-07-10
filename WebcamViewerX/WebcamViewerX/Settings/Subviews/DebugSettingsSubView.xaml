@@ -64,6 +64,22 @@
 
                             <TextBlock Foreground="{DynamicResource Accent}"
                            FontSize="13" FontWeight="Medium" Padding="12,0,5,5"
+                           Text="Feature control" />
+
+                            <xezui_buttons:NavMenuItem x:Name="FCDebugReadButton" Icon="" Text="Read Feature Control File" Click="FCDebugReadButton_Click"/>
+
+                            <xezui_buttons:NavMenuItem x:Name="FCDebugCreateButton" Icon="" Text="(DEBUG) Create Feature Control File" Click="FCDebugCreateButton_Click"/>
+
+                            <xezui_buttons:NavMenuItem x:Name="FCChangeFeatureButton" Icon="" Text="(DEBUG) Change feature value" Click="FCChangeFeatureButton_Click"/>
+
+                        </StackPanel>
+
+                        <StackPanel>
+
+                            <Rectangle Height="25" />
+
+                            <TextBlock Foreground="{DynamicResource Accent}"
+                           FontSize="13" FontWeight="Medium" Padding="12,0,5,5"
                            Text="Animations" />
 
                             <xezui_buttons:NavMenuItem x:Name="animscaleButton" Icon="" Text="Change animation scale" Click="AnimscaleButton_Click"/>
