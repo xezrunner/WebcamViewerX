@@ -142,6 +142,8 @@ namespace WebcamViewerX
         // temporary debug stuff
         private void window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            if (!Keyboard.IsKeyDown(Key.LeftCtrl))
+                return;
             // Themes
             if (e.Key == Key.Q)
                 ThemeManager.Config_SetTheme(XeZrunner.UI.Theming.ThemeManager.Theme.Light);
