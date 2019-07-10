@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebcamViewerX.Configuration;
+using WebcamViewerX.Configuration.CameraConfiguration;
 
 namespace WebcamViewerX.Settings.Subviews
 {
@@ -26,7 +28,7 @@ namespace WebcamViewerX.Settings.Subviews
         }
 
         MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
-        Engine.CameraConfiguration CameraConfig = new Engine.CameraConfiguration();
+        CameraConfigurationManager CameraConfig = new CameraConfigurationManager();
 
         private void getconfigButton_Click(object sender, RoutedEventArgs e)
         {

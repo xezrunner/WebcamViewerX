@@ -36,6 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -52,20 +55,34 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraConfiguration\CameraConfigurationManager.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Config.settings</DependentUpon>
     </Compile>
+    <Compile Include="FeatureControl\Feature.cs" />
+    <Compile Include="FeatureControl\FeatureCollection.cs" />
+    <Compile Include="FeatureControl\FeatureControlManager.cs" />
+    <Compile Include="FeatureControl\FeatureGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Config.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Config.Designer.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebcamViewerX.Engine\WebcamViewerX.Engine.csproj">
+      <Project>{422C4D02-1A71-490F-9F6C-1A7DF5404897}</Project>
+      <Name>WebcamViewerX.Engine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

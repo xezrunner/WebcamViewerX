@@ -5,31 +5,24 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using WebcamViewerX.Engine;
 
-namespace WebcamViewerX.Engine
+namespace WebcamViewerX.Configuration.CameraConfiguration
 {
-    public class CameraConfiguration
+    public class CameraConfigurationManager
     {
-        /// <summary>
-        /// AppDirectory\Configuration\...
-        /// </summary>
-        public string GetPathForConfigurationFile(string file)
-        {
-            // Configuration directory path
-            string configDir = AppDomain.CurrentDomain.BaseDirectory + @"Configuration\";
+        Utilities Utilities = new Utilities();
 
-            // If the configuration directory doesn't exist, create it.
-            if (!Directory.Exists(configDir))
-                Directory.CreateDirectory(configDir);
-
-            return configDir + file;
-        }
-        
         public List<Camera> GetUserCameras()
         {
-            string file = File.ReadAllText(GetPathForConfigurationFile("UserConfig.json"));
+            string file = File.ReadAllText(Utilities.GetPathForConfigurationFile("CameraConfig.json", Utilities.ConfigCategories.User));
             return JsonConvert.DeserializeObject<List<Camera>>(file);
+        }
+
+        // TODO: Download default camera config from GitHub Repo
+        public void DownloadDefaultCameraConfig()
+        {
+            
         }
 
         #region Debug stuff
@@ -85,7 +78,7 @@ namespace WebcamViewerX.Engine
                 _list.Add(camera);
             }
 
-            using (StreamWriter file = File.CreateText(GetPathForConfigurationFile("UserConfig.json")))
+            using (StreamWriter file = File.CreateText(Utilities.GetPathForConfigurationFile("CameraConfig.json", Utilities.ConfigCategories.User)))
             {
                 JsonSerializer serializer = new JsonSerializer() { Formatting = Formatting.Indented };
                 serializer.Serialize(file, _list);

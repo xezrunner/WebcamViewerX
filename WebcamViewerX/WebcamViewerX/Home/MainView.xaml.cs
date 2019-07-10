@@ -14,6 +14,8 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebcamViewerX.Configuration;
+using WebcamViewerX.Configuration.CameraConfiguration;
 using WebcamViewerX.Engine;
 using WebcamViewerX.ViewManagement;
 using XeZrunner.UI.Controls;
@@ -26,7 +28,7 @@ namespace WebcamViewerX.Home
         XeZrunner.UI.Utilities.UIDTools UIDTools = new XeZrunner.UI.Utilities.UIDTools();
         public XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
-        CameraConfiguration CameraConfig = new CameraConfiguration();
+        CameraConfigurationManager CameraConfig = new CameraConfigurationManager();
         CameraBitmapImageGatherer ImageGatherer = new CameraBitmapImageGatherer();
         ImageCameraSaveUtils LocalSaveUtils = new ImageCameraSaveUtils();
         ArchiveOrgUtils ArchiveorgUtils = new ArchiveOrgUtils();
