@@ -213,7 +213,7 @@ namespace WebcamViewerX.Home
             }
             catch (Exception ex)
             {
-                await MainWindow.contentdialogHost.TextContentDialog("Could not load image", ex.Message);
+                MainWindow.contentdialogHost.TextContentDialog("Could not load image", ex.Message);
             }
         }
 

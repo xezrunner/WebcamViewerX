@@ -43,6 +43,7 @@ namespace WebcamViewerX.Settings.Subviews
                 {
                     MessageBox.Show(ex.Message);
                     return;
+                    mainwindow.contentdialogHost.TextContentDialog("", ex.Message, true);
                 }
             }
         }
