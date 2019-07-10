@@ -94,6 +94,8 @@
 
                         </StackPanel>
 
+                        <Rectangle Height="500" />
+
                     </StackPanel>
 
                 </StackPanel>

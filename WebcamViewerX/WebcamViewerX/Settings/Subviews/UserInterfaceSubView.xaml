@@ -92,7 +92,7 @@
                     </Style>
                 </Grid.Resources>
 
-                <StackPanel Background="{DynamicResource Background}" Margin="1">
+                <StackPanel Background="{DynamicResource Background}" Margin="8">
                     <StackPanel.Effect>
                         <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
                     </StackPanel.Effect>
@@ -100,18 +100,19 @@
                     <StackPanel Margin="10">
 
                         <TextBlock>
-                    <Run Foreground="{DynamicResource Accent}" Text="Theme" />
+                    <Run Foreground="{DynamicResource Accent}" FontWeight="Medium" Text="Theme" />
                     <LineBreak />
                     Choose between a lighter or darker shade of background.
                         </TextBlock>
 
                         <StackPanel x:Name="themeStackPanel" Orientation="Horizontal" Margin="4,5,0,0">
-                            <xz_controls:RadioButton x:Name="theme_0" Text="Light" IsActiveChanged="theme_Click" />
-                            <xz_controls:RadioButton x:Name="theme_1" Text="Dark" IsActiveChanged="theme_Click" />
+                            <xz_controls:RadioButton x:Name="theme_0" Text="Light" IsActiveChanged="theme_Click" Visibility="Collapsed" />
+                            <xz_controls:RadioButton x:Name="theme_1" Text="Dark" IsActiveChanged="theme_Click" Visibility="Collapsed" />
+                            <xezui_buttons:ToggleSwitchButton x:Name="themeToggleButton" Icon="" Margin="-10,0" Title="Dark mode" Description="Use darker background colors for dark work environments" IsActiveChanged="ThemeToggleButton_IsActiveChanged" />
                         </StackPanel>
 
                         <TextBlock Margin="0,10,0,0">
-                    <Run Foreground="{DynamicResource Accent}" Text="Accent color" />
+                    <Run Foreground="{DynamicResource Accent}" FontWeight="Medium" Text="Accent color" />
                     <LineBreak />
                     The colorful elements of the application will follow this choice.
                         </TextBlock>
@@ -126,7 +127,7 @@
                         </StackPanel>
 
                         <TextBlock Margin="0,10,0,0">
-                    <Run Foreground="{DynamicResource Accent}" Text="Control effects" />
+                    <Run Foreground="{DynamicResource Accent}" FontWeight="Medium" Text="Control effects" />
                     <LineBreak />
                     You can have fun with either a flashlight, or a puddle of water.
                         </TextBlock>

@@ -35,9 +35,9 @@ namespace WebcamViewerX.Settings.Subviews
             switch (Theme_Config.theme)
             {
                 case "Light":
-                    theme_0.IsActive = true; break;
+                    themeToggleButton.IsActive = false; break;
                 case "Dark":
-                    theme_1.IsActive = true; break;
+                    themeToggleButton.IsActive = true; break;
             }
 
             switch (Config.controlfx)
@@ -57,11 +57,14 @@ namespace WebcamViewerX.Settings.Subviews
 
         void ValidateThemeChanges()
         {
+            /*
             foreach (XeZrunner.UI.Controls.RadioButton button in themeStackPanel.Children)
             {
                 if (button.IsActive)
                     Theme_Config.theme = (string)button.Text;
             }
+            */
+            Theme_Config.theme = themeToggleButton.IsActive ? "Dark" : "Light";
         }
 
         void ValidateControlFXChanges()
@@ -146,6 +149,11 @@ namespace WebcamViewerX.Settings.Subviews
                 // reload this page
                 main_Loaded(this, null);
             }
+        }
+
+        private void ThemeToggleButton_IsActiveChanged(object sender, EventArgs e)
+        {
+            ValidateThemeChanges();
         }
     }
 }
