@@ -22,7 +22,6 @@ namespace WebcamViewerX.Settings.Subviews
         public AboutApplicationSubView()
         {
             InitializeComponent();
-            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
         }
     }
 }

@@ -17,12 +17,13 @@ using System.Runtime.InteropServices;
 using WebcamViewerX.ViewManagement;
 using System.Windows.Media.Animation;
 using XeZrunner.UI.Popups;
+using XeZrunner.UI.Theming;
 
 namespace WebcamViewerX
 {
     public partial class MainWindow : Window
     {
-        public XeZrunner.UI.Theming.ThemeManager ThemeManager;
+        public ThemeManager ThemeManager;
         ViewManager ViewManager = new ViewManager();
         public Views Views = new Views();
 
@@ -34,10 +35,10 @@ namespace WebcamViewerX
             // Exception handling
             Application.Current.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
 
-            InitializeComponent();
-
-            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
+            ThemeManager = new ThemeManager(Application.Current.Resources);
             ThemeManager.ConfigChanged += ThemeManager_ConfigChanged;
+
+            InitializeComponent();
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -219,7 +220,7 @@ namespace WebcamViewerX
             return renderTargetBitmap;
         }
 
-        private async void ThemeManager_ConfigChanged(object sender, EventArgs e)
+        public async void ThemeManager_ConfigChanged(object sender, EventArgs e)
         {
             themechangeImage.Source = Screenshot(this);
 

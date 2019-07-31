@@ -24,7 +24,6 @@ namespace WebcamViewerX.Settings.Subviews
         public WebcamEditorSubView()
         {
             InitializeComponent();
-            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
         }
 
         MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;

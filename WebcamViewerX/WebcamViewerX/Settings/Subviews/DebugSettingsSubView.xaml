@@ -13,17 +13,9 @@
 
     <Page.Resources>
 
-        <ResourceDictionary x:Name="themeDictionary">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <Style TargetType="TextBlock">
+        <Style TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14" />
             </Style>
-
-        </ResourceDictionary>
 
     </Page.Resources>
 

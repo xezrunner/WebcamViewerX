@@ -19,7 +19,7 @@ namespace WebcamViewerX.Settings
 {
     public partial class MainView : Page
     {
-        ThemeManager ThemeManager;
+        //ThemeManager ThemeManager;
 
         SubViewManager SubViewManager = new SubViewManager();
         SubViews SubViews = new SubViews();
@@ -29,7 +29,7 @@ namespace WebcamViewerX.Settings
         public MainView()
         {
             InitializeComponent();
-            ThemeManager = new ThemeManager(themeDictionary);
+            //ThemeManager = new ThemeManager(themeDictionary);
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)

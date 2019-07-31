@@ -25,8 +25,6 @@ namespace WebcamViewerX.Settings.Subviews
         public DebugSettingsSubView()
         {
             InitializeComponent();
-
-            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary);
         }
 
         private async void AnimscaleButton_Click(object sender, RoutedEventArgs e)

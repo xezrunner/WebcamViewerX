@@ -18,12 +18,7 @@
         PreviewKeyDown="window_PreviewKeyDown">
 
     <Window.Resources>
-        <ResourceDictionary x:Name="themeDictionary">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Themes.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/XeZrunner.UI;component/Theming/Accents.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        
     </Window.Resources>
 
     <!-- This is our shadow for now. -->

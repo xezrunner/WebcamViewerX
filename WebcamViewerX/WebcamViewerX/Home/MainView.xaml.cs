@@ -26,7 +26,6 @@ namespace WebcamViewerX.Home
     public partial class MainView : Page
     {
         XeZrunner.UI.Utilities.UIDTools UIDTools = new XeZrunner.UI.Utilities.UIDTools();
-        public XeZrunner.UI.Theming.ThemeManager ThemeManager;
 
         CameraConfigurationManager CameraConfig = new CameraConfigurationManager();
         CameraBitmapImageGatherer ImageGatherer = new CameraBitmapImageGatherer();
@@ -38,9 +37,6 @@ namespace WebcamViewerX.Home
         public MainView()
         {
             InitializeComponent();
-
-            ThemeManager = new XeZrunner.UI.Theming.ThemeManager(themeDictionary); // initialize theme manager
-
             navMenu = (NavigationMenu)GetMenuUIElementFromUid("Menu_NavigationMenu");
         }
 
