@@ -30,8 +30,12 @@ namespace WebcamViewerX.Settings.Subviews
         XeZrunner.UI.Configuration.Config Config = XeZrunner.UI.Configuration.Config.Default;
         XeZrunner.UI.Theming.Config Theme_Config = XeZrunner.UI.Theming.Config.Default;
 
+        bool _isLoaded;
+
         private void main_Loaded(object sender, EventArgs e)
         {
+            _isLoaded = false;
+
             switch (Theme_Config.theme)
             {
                 case "Light":
@@ -53,10 +57,15 @@ namespace WebcamViewerX.Settings.Subviews
             foreach (XeZrunner.UI.Controls.RadioButton button in accentStackPanel.Children)
                 if ((string)button.Text == Theme_Config.accent)
                     button.IsActive = true;
+
+            _isLoaded = true;
         }
 
         void ValidateThemeChanges()
         {
+            if (!_isLoaded)
+                return;
+
             /*
             foreach (XeZrunner.UI.Controls.RadioButton button in themeStackPanel.Children)
             {
@@ -69,6 +78,9 @@ namespace WebcamViewerX.Settings.Subviews
 
         void ValidateControlFXChanges()
         {
+            if (!_isLoaded)
+                return;
+
             int counter = 0;
             foreach (XeZrunner.UI.Controls.RadioButton button in controlfxStackPanel.Children)
             {
@@ -89,6 +101,9 @@ namespace WebcamViewerX.Settings.Subviews
 
         void ValidateAccentChanges()
         {
+            if (!_isLoaded)
+                return;
+
             foreach (XeZrunner.UI.Controls.RadioButton button in accentStackPanel.Children)
             {
                 if (button.IsActive)
