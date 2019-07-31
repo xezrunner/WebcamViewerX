@@ -77,10 +77,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Settings\Subviews\UserInterface2SubView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Settings\Subviews\UserInterfaceSubView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,9 +114,6 @@
     </Compile>
     <Compile Include="Settings\Subviews\HomeSettingsSubView.xaml.cs">
       <DependentUpon>HomeSettingsSubView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Subviews\UserInterface2SubView.xaml.cs">
-      <DependentUpon>UserInterface2SubView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Subviews\UserInterfaceSubView.xaml.cs">
       <DependentUpon>UserInterfaceSubView.xaml</DependentUpon>
