@@ -22,7 +22,7 @@
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="32" />
+                <RowDefinition Height="25" />
                 <!-- Generic header -->
                 <RowDefinition Height="0" />
                 <!-- Content -->
@@ -45,14 +45,15 @@
 
                 <StackPanel Background="{DynamicResource Background}" Margin="1">
                     <StackPanel.Effect>
-                        <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
+                        <!-- <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" /> -->
+                        <DropShadowEffect Opacity="0.03" BlurRadius="0" ShadowDepth="3" />
                     </StackPanel.Effect>
 
                     <StackPanel Margin="8">
 
                         <StackPanel>
 
-                            <Rectangle Height="25" />
+                            <Rectangle Height="10" />
 
                             <TextBlock Foreground="{DynamicResource Accent}"
                            FontSize="13" FontWeight="Medium" Padding="12,0,5,5"

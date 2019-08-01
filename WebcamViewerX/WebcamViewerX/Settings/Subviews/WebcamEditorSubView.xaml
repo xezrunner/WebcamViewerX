@@ -21,25 +21,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <!-- Generic header -->
             <RowDefinition Height="48" />
+            <!-- Generic header -->
+            <RowDefinition Height="0" />
             <!-- Content -->
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <!-- titlebar tint -->
-        <Rectangle Grid.Row="0" Fill="{DynamicResource Background}" />
-
-        <!-- Content -->
-        <!-- 25,15,15,15 -->
-        <Grid Margin="0" Grid.Row="2" Visibility="Collapsed">
-
-            <StackPanel Visibility="Visible">
-                <xezui_buttons:Button x:Name="getconfigButton" Text="Get user camera configuration" Click="getconfigButton_Click"/>
-            </StackPanel>
-
-        </Grid>
 
         <!-- Content 2-->
         <Grid Margin="25,15,15,15" Grid.Row="2" Visibility="Visible">
@@ -54,14 +41,16 @@
 
             <Grid Background="{DynamicResource Background}" Margin="1">
                 <Grid.Effect>
-                    <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
+                    <DropShadowEffect Opacity="0.03" BlurRadius="0" ShadowDepth="3" />
                 </Grid.Effect>
 
-                <xezui_controls:ArcProgress Foreground="{DynamicResource Accent}" />
+                <StackPanel Visibility="Visible">
+                    <xezui_buttons:Button x:Name="getconfigButton" Text="Get user camera configuration" Click="getconfigButton_Click"/>
+                </StackPanel>
+
+                <xezui_controls:ArcProgress Grid.RowSpan="3" Foreground="{DynamicResource Accent}" />
 
             </Grid>
-
-            <Border BorderThickness="1" BorderBrush="{DynamicResource Foreground_Secondary}" Opacity="0.00"/>
 
         </Grid>
 

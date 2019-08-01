@@ -33,5 +33,10 @@ namespace WebcamViewerX.Settings.Subviews
         {
             MainWindow.ShowTextDialog("JSON user configuration debug", CameraConfig.Debug_GetUserCamerasAsString());
         }
+
+        private void SettingsPage_WebcamEditorPage_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

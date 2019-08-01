@@ -23,9 +23,9 @@
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <!-- Generic header -->
             <RowDefinition Height="48" />
+            <!-- Generic header -->
+            <RowDefinition Height="0" />
             <!-- Content -->
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -58,7 +58,7 @@
         </Grid>
         
         <!-- Content 2-->
-        <Grid Margin="25,15,15,15" VerticalAlignment="Top" Grid.Row="2" Visibility="Visible">
+        <Grid Margin="25,15,15,15" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="2" Visibility="Visible">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground" Value="{DynamicResource Foreground_Secondary}" />
@@ -70,7 +70,7 @@
 
             <StackPanel Background="{DynamicResource Background}" Margin="1">
                 <StackPanel.Effect>
-                    <DropShadowEffect Opacity="0.13" BlurRadius="12" ShadowDepth="6" />
+                    <DropShadowEffect Opacity="0.03" BlurRadius="0" ShadowDepth="3" />
                 </StackPanel.Effect>
 
                 <TextBlock HorizontalAlignment="Center"
@@ -85,7 +85,7 @@
                            Margin="0,-3,0,0"
                            Text="by Xesign Software Inc."/>
 
-                <StackPanel Margin="14,0,0,0">
+                <StackPanel Margin="14,0,0,0" HorizontalAlignment="Left">
                 <TextBlock Margin="0,8,0,0">
                     Application version:
                     <Run Foreground="{DynamicResource Accent}" Text=" 0.1 alpha" />
@@ -102,7 +102,7 @@
                 </TextBlock>
                 </StackPanel>
 
-                <TextBlock Foreground="{DynamicResource Foreground}" Margin="0,10,0,18" HorizontalAlignment="Center" TextAlignment="Left">
+                <TextBlock Foreground="{DynamicResource Foreground}" Margin="14,10,14,18" HorizontalAlignment="Center" TextAlignment="Left">
                     This application is free and open source.
                     <LineBreak/>
                     Feel free to check out the project repository at <Hyperlink Foreground="{DynamicResource Accent}">github.com/XesignSoftware/WebcamViewerX</Hyperlink>

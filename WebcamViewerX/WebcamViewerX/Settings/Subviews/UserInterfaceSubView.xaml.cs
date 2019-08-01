@@ -28,7 +28,8 @@ namespace WebcamViewerX.Settings.Subviews
             ThemeManager = ((MainWindow)Application.Current.MainWindow).ThemeManager;
         }
 
-        XeZrunner.UI.Configuration.Config Config = XeZrunner.UI.Configuration.Config.Default;
+        Configuration.Config Config = Configuration.Config.Default;
+        XeZrunner.UI.Configuration.Config XZ_Config = XeZrunner.UI.Configuration.Config.Default;
         XeZrunner.UI.Theming.Config Theme_Config = XeZrunner.UI.Theming.Config.Default;
 
         bool _isLoaded;
@@ -45,7 +46,7 @@ namespace WebcamViewerX.Settings.Subviews
                     themeToggleButton.IsActive = true; break;
             }
 
-            switch (Config.controlfx)
+            switch (XZ_Config.controlfx)
             {
                 case "P":
                     controlfx_P.IsActive = true; break;
@@ -53,6 +54,14 @@ namespace WebcamViewerX.Settings.Subviews
                     controlfx_MM.IsActive = true; break;
                 case "Reveal":
                     controlfx_Reveal.IsActive = true; break;
+            }
+
+            switch (Config.blurfx)
+            {
+                case "full":
+                    blurToggleButton.IsActive = true; break;
+                case "off":
+                    blurToggleButton.IsActive = false; break;
             }
 
             foreach (XeZrunner.UI.Controls.RadioButton button in accentStackPanel.Children)
@@ -88,16 +97,25 @@ namespace WebcamViewerX.Settings.Subviews
                 if (button.IsActive)
                 {
                     if (counter == 0)
-                        Config.controlfx = "P";
+                        XZ_Config.controlfx = "P";
                     if (counter == 1)
-                        Config.controlfx = "MM";
+                        XZ_Config.controlfx = "MM";
                     if (counter == 2)
-                        Config.controlfx = "Reveal";
+                        XZ_Config.controlfx = "Reveal";
 
                     break;
                 }
                 counter++;
             }
+        }
+
+        void ValidateBlurFXChanges()
+        {
+            if (!_isLoaded)
+                return;
+
+            Config.blurfx = blurToggleButton.IsActive ? "full" : "off";
+            Config.Save();
         }
 
         void ValidateAccentChanges()
@@ -115,13 +133,13 @@ namespace WebcamViewerX.Settings.Subviews
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             Theme_Config.Save();
-            Config.Save();
+            XZ_Config.Save();
 
             MainWindow.ShowTextDialog("Changes saved",
                 "Current config values: \n\n" +
                 "theme: " + Theme_Config.theme + "\n" +
                 "accent: " + "" + Theme_Config.accent + "\n" +
-                "controlfx: " + Config.controlfx + "\n"
+                "controlfx: " + XZ_Config.controlfx + "\n"
                 );
         }
 
@@ -170,6 +188,11 @@ namespace WebcamViewerX.Settings.Subviews
         private void ThemeToggleButton_IsActiveChanged(object sender, EventArgs e)
         {
             ValidateThemeChanges();
+        }
+
+        private void BlurToggleButton_IsActiveChanged(object sender, EventArgs e)
+        {
+            ValidateBlurFXChanges();
         }
     }
 }
