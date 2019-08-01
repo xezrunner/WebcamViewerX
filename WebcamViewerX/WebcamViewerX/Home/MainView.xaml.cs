@@ -27,6 +27,7 @@ namespace WebcamViewerX.Home
     {
         XeZrunner.UI.Utilities.UIDTools UIDTools = new XeZrunner.UI.Utilities.UIDTools();
 
+        Config Config = Config.Default;
         CameraConfigurationManager CameraConfig = new CameraConfigurationManager();
         CameraBitmapImageGatherer ImageGatherer = new CameraBitmapImageGatherer();
         ImageCameraSaveUtils LocalSaveUtils = new ImageCameraSaveUtils();
@@ -55,6 +56,17 @@ namespace WebcamViewerX.Home
             LoadConfiguration();
         }
 
+        double GetMenuBlurAmount()
+        {
+            switch (Config.blurfx)
+            {
+                default: return 35;
+                case "full": return 35;
+                case "lite": return 15;
+                case "off": return 0;
+            }
+        }
+
         private async void main_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (IsVisible)
@@ -62,7 +74,7 @@ namespace WebcamViewerX.Home
                 MainWindow.RequestTitlebarThemeChange(null);
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
 
-                DoubleAnimation anim_blur_menu = new DoubleAnimation(35, TimeSpan.FromSeconds(.35));
+                DoubleAnimation anim_blur_menu = new DoubleAnimation(GetMenuBlurAmount(), TimeSpan.FromSeconds(.35));
 
                 await Task.Delay(TimeSpan.FromSeconds(0.5));
 
@@ -89,6 +101,8 @@ namespace WebcamViewerX.Home
             navMenu.Items.Clear();
 
             navMenu.Items.Add(camerasPanel);
+
+            Menu.GetNavigationMenu().SelectID(0);
         }
 
         NavMenuItem Menu_CreateNavMenuItem(Camera camera)
@@ -132,7 +146,7 @@ namespace WebcamViewerX.Home
 
         public void OpenMenu()
         {
-            DoubleAnimation blur_in = new DoubleAnimation(35, TimeSpan.FromSeconds(.35));
+            DoubleAnimation blur_in = new DoubleAnimation(GetMenuBlurAmount(), TimeSpan.FromSeconds(.35));
             Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, blur_in);
 
             Menu.Open();

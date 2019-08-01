@@ -13,7 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using XeZrunner.UI.Theming;
+using WebcamViewerX.Configuration;
 
 namespace WebcamViewerX.Settings
 {
@@ -24,16 +24,19 @@ namespace WebcamViewerX.Settings
         SubViewManager SubViewManager = new SubViewManager();
         SubViews SubViews = new SubViews();
 
+        Config Config = Config.Default;
         MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
 
         public MainView()
         {
             InitializeComponent();
-            //ThemeManager = new ThemeManager(themeDictionary);
+
+            Config.PropertyChanged += Config_PropertyChanged;
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
+            blurEffect.Radius = GetBlurAmount();
             Menu.GetNavigationMenu().SelectID(0);
         }
 
@@ -49,6 +52,22 @@ namespace WebcamViewerX.Settings
             {
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
             }
+        }
+
+        double GetBlurAmount()
+        {
+            switch (Config.blurfx)
+            {
+                default: return 35;
+                case "full": return 10;
+                case "lite": return 8;
+                case "off": return 0;
+            }
+        }
+
+        private void Config_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            blurEffect.Radius = GetBlurAmount();
         }
 
         private void NavigationMenu_SelectionChanged(object sender, EventArgs e)

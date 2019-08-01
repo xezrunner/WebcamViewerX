@@ -26,6 +26,7 @@ namespace WebcamViewerX
         public ThemeManager ThemeManager;
         ViewManager ViewManager = new ViewManager();
         public Views Views = new Views();
+        Configuration.Config Config = Configuration.Config.Default;
 
         public MainWindow()
         {
@@ -235,15 +236,25 @@ namespace WebcamViewerX
             themechangeImage.Visibility = Visibility.Hidden;
         }
 
+        double GetBlurAmount()
+        {
+            switch (Config.blurfx)
+            {
+                default: return 35;
+                case "full": return 35;
+                case "lite": return 15;
+                case "off": return 0;
+            }
+        }
         private async void Titlebar_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             double anim_duration = 0.35;
 
-            DoubleAnimation bluranim_in = new DoubleAnimation(0, 35, TimeSpan.FromSeconds(anim_duration));
-            DoubleAnimation opacity_in = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(anim_duration));
+            DoubleAnimation bluranim_in = new DoubleAnimation(GetBlurAmount(), TimeSpan.FromSeconds(anim_duration));
+            DoubleAnimation opacity_in = new DoubleAnimation(1, TimeSpan.FromSeconds(anim_duration));
 
-            DoubleAnimation bluranim_out = new DoubleAnimation(35, 0, TimeSpan.FromSeconds(anim_duration));
-            DoubleAnimation opacity_out = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(anim_duration));
+            DoubleAnimation bluranim_out = new DoubleAnimation(0, TimeSpan.FromSeconds(anim_duration));
+            DoubleAnimation opacity_out = new DoubleAnimation(0, TimeSpan.FromSeconds(anim_duration));
 
             if (titlebarContextPanel.IsVisible != true)
             {
