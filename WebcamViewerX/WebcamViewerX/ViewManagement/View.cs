@@ -76,10 +76,14 @@ namespace WebcamViewerX.ViewManagement
                 duration = board.Duration.TimeSpan;
 
             board.Begin();
-            if (scale.HasValue)
-                board.SetSpeedRatio(scale.Value);
 
-            await Task.Delay(duration);
+            if (!scale.HasValue)
+                await Task.Delay(duration);
+            else // if animation is scaled, scale the delay as well
+            {
+                board.SetSpeedRatio(scale.Value);
+                await Task.Delay(TimeSpan.FromMilliseconds(duration.Milliseconds / scale.Value));
+            }
         }
 
         /// <summary>
