@@ -249,12 +249,12 @@ namespace WebcamViewerX
             {
                 titlebarContextPanel.Visibility = Visibility.Visible;
 
-                titlebar_context_background_blur.BeginAnimation(System.Windows.Media.Effects.BlurEffect.RadiusProperty, bluranim_in);
+                titlebar_context_background_blur.BeginAnimation(System.Windows.Media.Effects.BlurBitmapEffect.RadiusProperty, bluranim_in);
                 titlebar_context_innerpanel.BeginAnimation(OpacityProperty, opacity_in);
             }
             else
             {
-                titlebar_context_background_blur.BeginAnimation(System.Windows.Media.Effects.BlurEffect.RadiusProperty, bluranim_out);
+                titlebar_context_background_blur.BeginAnimation(System.Windows.Media.Effects.BlurBitmapEffect.RadiusProperty, bluranim_out);
                 titlebar_context_innerpanel.BeginAnimation(OpacityProperty, opacity_out);
 
                 await Task.Delay(TimeSpan.FromSeconds(anim_duration));

@@ -72,10 +72,10 @@
 
                 <!-- background blur -->
                 <Rectangle x:Name="titlebar_context_background_Rectangle" ClipToBounds="True">
-                    <Rectangle.Effect>
-                        <BlurEffect x:Name="titlebar_context_background_blur" Radius="0" />
+                    <Rectangle.BitmapEffect>
+                        <BlurBitmapEffect x:Name="titlebar_context_background_blur" Radius="0" />
                         <!-- 35 -->
-                    </Rectangle.Effect>
+                    </Rectangle.BitmapEffect>
                     <Rectangle.Fill>
                         <VisualBrush Visual="{Binding ElementName=frameContainer}" Stretch="None" />
                     </Rectangle.Fill>

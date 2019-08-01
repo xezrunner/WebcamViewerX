@@ -189,7 +189,7 @@
                 <Rectangle Fill="{DynamicResource Background}" Opacity="0" />
                 <Rectangle x:Name="top_Acrylic_Rectangle">
                     <Rectangle.BitmapEffect>
-                        <BlurBitmapEffect Radius="10" KernelType="Gaussian" />
+                        <BlurBitmapEffect x:Name="blurEffect" Radius="0" KernelType="Gaussian" />
                     </Rectangle.BitmapEffect>
                     <Rectangle.Fill>
                         <VisualBrush Visual="{Binding ElementName=FramesContainer}" Stretch="None" AlignmentX="Right" AlignmentY="Top" />

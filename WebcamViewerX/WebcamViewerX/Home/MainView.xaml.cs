@@ -66,7 +66,7 @@ namespace WebcamViewerX.Home
 
                 await Task.Delay(TimeSpan.FromSeconds(0.5));
 
-                Menu_BlurBehind.BeginAnimation(BlurEffect.RadiusProperty, anim_blur_menu);
+                Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, anim_blur_menu);
             }
             else
                 MainWindow.RequestTitlebarThemeChange(MainWindow.ThemeManager.GetCurrentConfigTheme().ToString()); // reset titlebar theme
@@ -133,7 +133,7 @@ namespace WebcamViewerX.Home
         public void OpenMenu()
         {
             DoubleAnimation blur_in = new DoubleAnimation(35, TimeSpan.FromSeconds(.35));
-            Menu_BlurBehind.BeginAnimation(BlurEffect.RadiusProperty, blur_in);
+            Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, blur_in);
 
             Menu.Open();
             anim_out_Icon_TextBlock.Visibility = Visibility.Visible;
@@ -145,7 +145,7 @@ namespace WebcamViewerX.Home
         public void CloseMenu()
         {
             DoubleAnimation blur_in = new DoubleAnimation(0, TimeSpan.FromSeconds(.25));
-            Menu_BlurBehind.BeginAnimation(BlurEffect.RadiusProperty, blur_in);
+            Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, blur_in);
 
             Menu.Close();
             anim_out_Icon_TextBlock.Visibility = Visibility.Hidden;
@@ -220,7 +220,7 @@ namespace WebcamViewerX.Home
         private void menu_SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             DoubleAnimation anim_blur_menu = new DoubleAnimation(0, TimeSpan.FromSeconds(.35));
-            Menu_BlurBehind.BeginAnimation(BlurEffect.RadiusProperty, anim_blur_menu);
+            Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, anim_blur_menu);
 
             MainWindow.SwitchToView(MainWindow.Views.Settings);
         }

@@ -24,11 +24,11 @@
                     <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
                     <DiscreteObjectKeyFrame KeyTime="0:0:0.8" Value="{x:Static Visibility.Hidden}"/>
                 </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="mainContainer">
                     <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="mainContainer">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1.1"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
                         <EasingDoubleKeyFrame.EasingFunction>
@@ -36,7 +36,7 @@
                         </EasingDoubleKeyFrame.EasingFunction>
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="mainContainer">
                     <EasingDoubleKeyFrame KeyTime="0" Value="1.1"/>
                     <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1">
                         <EasingDoubleKeyFrame.EasingFunction>
@@ -49,7 +49,7 @@
                 </ObjectAnimationUsingKeyFrames>
                 <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="anim_out_Icon">
                     <EasingThicknessKeyFrame KeyTime="0" Value="0"/>
-                    <EasingThicknessKeyFrame KeyTime="0:0:0.8" Value="-802,606,0,0">
+                    <EasingThicknessKeyFrame KeyTime="0:0:0.8" Value="-830,620,0,0">
                         <EasingThicknessKeyFrame.EasingFunction>
                             <QuinticEase EasingMode="EaseOut"/>
                         </EasingThicknessKeyFrame.EasingFunction>
@@ -83,14 +83,14 @@
                 <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="anim_out_Icon">
-                <EasingThicknessKeyFrame KeyTime="0" Value="-802,606,0,0"/>
+                <EasingThicknessKeyFrame KeyTime="0" Value="-830,619,0,0"/>
                 <EasingThicknessKeyFrame KeyTime="0:0:1" Value="0">
                     <EasingThicknessKeyFrame.EasingFunction>
                         <QuinticEase EasingMode="EaseInOut"/>
                     </EasingThicknessKeyFrame.EasingFunction>
                 </EasingThicknessKeyFrame>
             </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="grid">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="mainContainer">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1.1">
                     <EasingDoubleKeyFrame.EasingFunction>
@@ -98,7 +98,7 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="grid">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="mainContainer">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1.1">
                     <EasingDoubleKeyFrame.EasingFunction>
@@ -106,7 +106,7 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="mainContainer">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.9" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
@@ -178,9 +178,9 @@
                     <Rectangle.Fill>
                         <VisualBrush Visual="{Binding ElementName=grid_ContentContainer}" Stretch="None" AlignmentX="Left" />
                     </Rectangle.Fill>
-                    <Rectangle.Effect>
-                        <BlurEffect x:Name="Menu_BlurBehind" Radius="35" />
-                    </Rectangle.Effect>
+                    <Rectangle.BitmapEffect>
+                        <BlurBitmapEffect x:Name="Menu_BlurBehind" Radius="15" />
+                    </Rectangle.BitmapEffect>
                 </Rectangle>
 
                 <xz_controls:MenuControl x:Name="Menu" Grid.Column="0" xz_controlfx:PointerTracker.Enabled="False"
