@@ -10,21 +10,22 @@
         xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
         xmlns:localization="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
         mc:Ignorable="d"
-        Title="{x:Static localization:Resources.AppTitle}" Width="875" Height="667"
-        Background="{x:Null}" Foreground="{DynamicResource Foreground}"
-        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
+        Title="{x:Static localization:Resources.AppTitle}" Width="895" Height="699"
+        Background="{DynamicResource Background}" Foreground="{DynamicResource Foreground}"
+        WindowStyle="SingleBorderWindow" AllowsTransparency="False" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
+        
         
         Loaded="window_Loaded"
         PreviewKeyDown="window_PreviewKeyDown">
 
     <Window.Resources>
-        
+
     </Window.Resources>
 
-    <!-- This is our shadow for now. -->
+    <!-- This is our shadow for now. 10/1 -->
     <!-- TODO: use proper, native OS window behavior -->
-    <Border Margin="10" Background="{DynamicResource Background}"
-            BorderBrush="#1F3F3F3F" BorderThickness="1">
+    <Border Margin="0" Background="{DynamicResource Background}"
+            BorderBrush="#1F3F3F3F" BorderThickness="0">
         <!-- <Border.Effect>
             <DropShadowEffect Opacity="0.3" BlurRadius="10" ShadowDepth="0" />
         </Border.Effect> -->
@@ -93,15 +94,20 @@
             <xz_popups:ContentDialogHost x:Name="contentdialogHost" />
 
             <!-- Titlebar -->
-            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="{x:Static localization:Resources.AppTitle}"
+            <!-- {x:Static localization:Resources.AppTitle} -->
+            <xz_window:TitlebarControl x:Name="titlebar" AppTitle=""
                                        FontWeight="Medium"
                                        Height="32"
                                        MenuButtonVisibility="Visible"
                                        MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"
-                                       MouseRightButtonUp="Titlebar_MouseRightButtonUp"/>
+                                       MouseRightButtonUp="Titlebar_MouseRightButtonUp"
+                                       
+                                       CloseButtonVisibility="Collapsed"
+                                       MaximizeButtonVisibility="Collapsed"
+                                       MinimizeButtonVisibility="Collapsed"/>
 
-            <!-- theme changing image -->
-            <Image x:Name="themechangeImage" Margin="-11" Visibility="Hidden" />
+            <!-- theme changing image -11 -->
+            <Image x:Name="themechangeImage" Margin="0" Stretch="None" Visibility="Hidden" />
 
         </Grid>
 

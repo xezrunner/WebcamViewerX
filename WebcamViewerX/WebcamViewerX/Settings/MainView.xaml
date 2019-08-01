@@ -63,7 +63,7 @@
                     </EasingDoubleKeyFrame>
                 </DoubleAnimationUsingKeyFrames>
                 <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="anim_out_Icon">
-                    <EasingThicknessKeyFrame KeyTime="0" Value="-401,303,0,0"/>
+                    <EasingThicknessKeyFrame KeyTime="0" Value="-315,245,0,0"/>
                     <EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="0">
                         <EasingThicknessKeyFrame.EasingFunction>
                             <QuinticEase EasingMode="EaseOut"/>
