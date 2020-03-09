@@ -10,7 +10,7 @@
       xmlns:localization="clr-namespace:WebcamViewerX.Localization.Settings.UserInterface;assembly=WebcamViewerX.Localization"
       mc:Ignorable="d" 
       d:DesignWidth="600" d:DesignHeight="600"
-      Title="{x:Static localization:Resources.Title}" Background="Transparent" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True"
+      Title="{x:Static localization:Resources.Title}" Background="{DynamicResource Background}" Foreground="{DynamicResource Foreground}" xezui_controlfx:PointerTracker.Enabled="True"
       
       Loaded="main_Loaded">
     <Page.Resources>
@@ -28,7 +28,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Hidden">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
+                <RowDefinition Height="42" />
                 <!-- Generic header -->
                 <RowDefinition Height="0" />
                 <!-- Content -->
@@ -36,7 +36,7 @@
             </Grid.RowDefinitions>
 
             <!-- titlebar tint -->
-            <Rectangle Grid.Row="0" Fill="{DynamicResource Background}" />
+            <Rectangle Grid.Row="0" Fill="{DynamicResource Background}" Visibility="Hidden" />
 
             <!-- Content
         <Grid Margin="25,15,15,15" Grid.Row="2" Visibility="Collapsed">

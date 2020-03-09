@@ -22,7 +22,7 @@
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
+                <RowDefinition Height="42" />
                 <!-- Generic header -->
                 <RowDefinition Height="0" />
                 <!-- Content -->

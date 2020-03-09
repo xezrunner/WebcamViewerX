@@ -11,7 +11,7 @@
       xmlns:local="clr-namespace:WebcamViewerX.Home"
       mc:Ignorable="d" 
       d:DesignWidth="800" d:DesignHeight="600"
-      Title="Home" Foreground="{DynamicResource Foreground}" ClipToBounds="True" xz_controlfx:PointerTracker.Enabled="True"
+      Title="Home" Background="{DynamicResource Background}" Foreground="{DynamicResource Foreground}" ClipToBounds="True" xz_controlfx:PointerTracker.Enabled="True"
       
       Loaded="main_Loaded" IsVisibleChanged="main_IsVisibleChanged" RenderTransformOrigin="0.5,0.5">
 
@@ -148,7 +148,7 @@
         </Grid.RenderTransform>
 
         <!-- Main container -->
-        <Grid x:Name="mainContainer" Background="{DynamicResource Background}" RenderTransformOrigin="0,1">
+        <Grid x:Name="mainContainer" Background="Transparent" RenderTransformOrigin="0,1">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
