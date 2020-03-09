@@ -47,12 +47,12 @@ namespace WebcamViewerX.Settings
             {
                 MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
-                MainWindow.titlebar.Visibility = Visibility.Hidden;
+                //MainWindow.titlebar.Visibility = Visibility.Hidden;
             }
             else
             {
                 MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
-                MainWindow.titlebar.Visibility = Visibility.Visible;
+                //MainWindow.titlebar.Visibility = Visibility.Visible;
             }
         }
 

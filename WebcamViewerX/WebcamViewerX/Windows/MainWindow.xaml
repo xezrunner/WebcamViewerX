@@ -1,8 +1,9 @@
-﻿<Window x:Name="window" x:Class="WebcamViewerX.MainWindow"
+﻿<mahapps:MetroWindow x:Name="window" x:Class="WebcamViewerX.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:xz_window="clr-namespace:XeZrunner.UI.Controls.Window_components;assembly=XeZrunner.UI"
         xmlns:xz_controlfx="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
         xmlns:xz_popups="clr-namespace:XeZrunner.UI.Popups;assembly=XeZrunner.UI"
@@ -10,10 +11,10 @@
         xmlns:xz_buttons="clr-namespace:XeZrunner.UI.Controls.Buttons;assembly=XeZrunner.UI"
         xmlns:localization="clr-namespace:WebcamViewerX.Localization.Application;assembly=WebcamViewerX.Localization"
         mc:Ignorable="d"
-        Title="{x:Static localization:Resources.AppTitle}" Width="895" Height="699"
-        Background="{DynamicResource Background}" Foreground="{DynamicResource Foreground}"
-        WindowStyle="SingleBorderWindow" AllowsTransparency="False" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
-        
+        Title="{x:Static localization:Resources.AppTitle}" Width="882" Height="660"
+        Background="#01000000" Foreground="{DynamicResource Foreground}" 
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen" xz_controlfx:PointerTracker.Enabled="True"
+        ShowTitleBar="False" ShowCloseButton="False" ShowMinButton="False" ShowMaxRestoreButton="False" GlowBrush="#3F000000" BorderThickness="0" WindowTransitionsEnabled="False"
         
         Loaded="window_Loaded"
         PreviewKeyDown="window_PreviewKeyDown">
@@ -24,8 +25,8 @@
 
     <!-- This is our shadow for now. 10/1 -->
     <!-- TODO: use proper, native OS window behavior -->
-    <Border Margin="0" Background="{DynamicResource Background}"
-            BorderBrush="#1F3F3F3F" BorderThickness="0">
+    <Border Margin="0" Background="Transparent"
+            BorderBrush="#1F3F3F3F" BorderThickness="0" Visibility="Visible">
         <!-- <Border.Effect>
             <DropShadowEffect Opacity="0.3" BlurRadius="10" ShadowDepth="0" />
         </Border.Effect> -->
@@ -65,7 +66,7 @@
             </ScrollViewer>
 
             <!-- Frames container-->
-            <Grid x:Name="frameContainer" Background="{DynamicResource Background}">
+            <Grid x:Name="frameContainer" Background="Transparent">
             </Grid>
 
             <!-- TEMP: Titlebar options panel -->
@@ -95,22 +96,22 @@
 
             <!-- Titlebar -->
             <!-- {x:Static localization:Resources.AppTitle} -->
-            <xz_window:TitlebarControl x:Name="titlebar" AppTitle=""
+            <xz_window:TitlebarControl x:Name="titlebar" AppTitle="Webcam Viewer X"
                                        FontWeight="Medium"
                                        Height="32"
                                        MenuButtonVisibility="Visible"
                                        MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"
                                        MouseRightButtonUp="Titlebar_MouseRightButtonUp"
                                        
-                                       CloseButtonVisibility="Collapsed"
-                                       MaximizeButtonVisibility="Collapsed"
-                                       MinimizeButtonVisibility="Collapsed"/>
+                                       CloseButtonVisibility="Visible"
+                                       MaximizeButtonVisibility="Visible"
+                                       MinimizeButtonVisibility="Visible"/>
 
             <!-- theme changing image -11 -->
-            <Image x:Name="themechangeImage" Margin="0" Stretch="None" Visibility="Hidden" />
+            <Image x:Name="themechangeImage" Margin="-1" Stretch="None" Visibility="Hidden" />
 
         </Grid>
 
     </Border>
 
-</Window>
+</mahapps:MetroWindow>
