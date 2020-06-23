@@ -154,7 +154,7 @@
             -->
 
             <xz_controls:MenuControl x:Name="Menu" Margin="0,0,0,0"
-                                 Background="Transparent" Foreground="{DynamicResource Foreground}" ExpandedWidth="335" TitlebarHeight="58" xz_controlfx:PointerTracker.Enabled="False">
+                                 Background="{DynamicResource Background}" Foreground="{DynamicResource Foreground}" ExpandedWidth="335" TitlebarHeight="58" xz_controlfx:PointerTracker.Enabled="False">
 
                 <xz_controls:MenuControl.Middle>
                     <xz_controls:NavigationMenu CurrentSelection="0" Margin="0,18,0,15"
@@ -180,7 +180,7 @@
 
                 <xz_controls:MenuControl.Under>
                     <Grid>
-                        <Rectangle Fill="{DynamicResource Background}" Opacity="0.75" />
+                        <Rectangle Fill="{DynamicResource Foreground}" Opacity="0.015" Visibility="Visible" />
                     </Grid>
                 </xz_controls:MenuControl.Under>
             </xz_controls:MenuControl>
