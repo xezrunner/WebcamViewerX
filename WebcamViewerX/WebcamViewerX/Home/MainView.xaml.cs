@@ -33,7 +33,7 @@ namespace WebcamViewerX.Home
         ImageCameraSaveUtils LocalSaveUtils = new ImageCameraSaveUtils();
         ArchiveOrgUtils ArchiveorgUtils = new ArchiveOrgUtils();
 
-        MainWindow MainWindow = (MainWindow)Application.Current.MainWindow;
+        MainWindow mainwindow = (MainWindow)Application.Current.MainWindow;
 
         public MainView()
         {
@@ -47,11 +47,12 @@ namespace WebcamViewerX.Home
             Menu.Animations = false;
             Menu.Close();
             Menu.Animations = true;
+            mainwindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
 
             anim_out_Icon_TextBlock.Visibility = Visibility.Hidden;
 
-            MainWindow.titlebar.MenuButton_Click += MenuButtonClick;
-            MainWindow.titlebar.BackButton_Click += BackButtonClick;
+            mainwindow.titlebar.MenuButton_Click += MenuButtonClick;
+            mainwindow.titlebar.BackButton_Click += BackButtonClick;
 
             LoadConfiguration();
         }
@@ -71,8 +72,8 @@ namespace WebcamViewerX.Home
         {
             if (IsVisible)
             {
-                MainWindow.RequestTitlebarThemeChange(null);
-                MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
+                mainwindow.RequestTitlebarThemeChange(null);
+                mainwindow.titlebar.BackButtonVisibility = Visibility.Visible;
 
                 DoubleAnimation anim_blur_menu = new DoubleAnimation(GetMenuBlurAmount(), TimeSpan.FromSeconds(.35));
 
@@ -81,7 +82,7 @@ namespace WebcamViewerX.Home
                 Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, anim_blur_menu);
             }
             else
-                MainWindow.RequestTitlebarThemeChange(MainWindow.ThemeManager.GetCurrentConfigTheme().ToString()); // reset titlebar theme
+                mainwindow.RequestTitlebarThemeChange(mainwindow.ThemeManager.GetCurrentConfigTheme().ToString()); // reset titlebar theme
         }
 
         #region Configuration
@@ -102,7 +103,7 @@ namespace WebcamViewerX.Home
 
             navMenu.Items.Add(camerasPanel);
 
-            Menu.GetNavigationMenu().SelectID(0);
+            //Menu.GetNavigationMenu().SelectID(0);
         }
 
         NavMenuItem Menu_CreateNavMenuItem(Camera camera)
@@ -152,8 +153,8 @@ namespace WebcamViewerX.Home
             Menu.Open();
             anim_out_Icon_TextBlock.Visibility = Visibility.Visible;
 
-            MainWindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
-            MainWindow.titlebar.BackButtonVisibility = Visibility.Visible;
+            mainwindow.titlebar.MenuButtonVisibility = Visibility.Collapsed;
+            mainwindow.titlebar.BackButtonVisibility = Visibility.Visible;
         }
 
         public void CloseMenu()
@@ -164,8 +165,8 @@ namespace WebcamViewerX.Home
             Menu.Close();
             anim_out_Icon_TextBlock.Visibility = Visibility.Hidden;
 
-            MainWindow.titlebar.MenuButtonVisibility = Visibility.Visible;
-            MainWindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
+            mainwindow.titlebar.MenuButtonVisibility = Visibility.Visible;
+            mainwindow.titlebar.BackButtonVisibility = Visibility.Collapsed;
         }
 
         #region Info grid
@@ -217,14 +218,7 @@ namespace WebcamViewerX.Home
 
         private async void Menu_SelectionChanged(object sender, EventArgs e)
         {
-            try
-            {
-                await LoadImage(_cameraList[navMenu.CurrentSelection.Value]);
-            }
-            catch (Exception ex)
-            {
-                MainWindow.contentdialogHost.TextContentDialog("Could not load image", ex.Message);
-            }
+            await LoadImage(_cameraList[navMenu.CurrentSelection.Value]);
         }
 
         #endregion
@@ -236,7 +230,7 @@ namespace WebcamViewerX.Home
             DoubleAnimation anim_blur_menu = new DoubleAnimation(0, TimeSpan.FromSeconds(.35));
             Menu_BlurBehind.BeginAnimation(BlurBitmapEffect.RadiusProperty, anim_blur_menu);
 
-            MainWindow.SwitchToView(MainWindow.Views.Settings);
+            mainwindow.SwitchToView(mainwindow.Views.Settings);
         }
 
         #endregion
@@ -248,11 +242,19 @@ namespace WebcamViewerX.Home
         async Task LoadImage(Camera camera)
         {
             cameraView.IsLoading = true;
-            cameraView.Image = await ImageGatherer.GetCameraImage(camera);
+            try
+            {
+                cameraView.Image = await ImageGatherer.GetCameraImage(camera);
+                cameraView.IsError = false;
+            }
+            catch (Exception ex)
+            {
+                await mainwindow.contentdialogHost.TextContentDialogAsync("Could not load image", ex.Message);
+                cameraView.IsError = true;
+            }
             cameraView.IsLoading = false;
 
             SetInfoGrid(camera);
-
             CloseMenu();
         }
 

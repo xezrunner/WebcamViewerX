@@ -135,7 +135,7 @@ namespace WebcamViewerX.Settings.Subviews
             Theme_Config.Save();
             XZ_Config.Save();
 
-            MainWindow.ShowTextDialog("Changes saved",
+            MainWindow.TextContentDialog("Changes saved",
                 "Current config values: \n\n" +
                 "theme: " + Theme_Config.theme + "\n" +
                 "accent: " + "" + Theme_Config.accent + "\n" +

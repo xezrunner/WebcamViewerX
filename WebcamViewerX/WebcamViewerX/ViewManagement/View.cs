@@ -12,9 +12,8 @@ namespace WebcamViewerX.ViewManagement
     public enum ViewTitlebarBehavior
     {
         ExtendsUnderTitlebar,
-        ExtendsAboveTitlebar,
-        ExtendsBeyondWindow,
-        NoTitlebar
+        ExtendsToTitlebar,
+        NoExtending
     }
 
     public class View

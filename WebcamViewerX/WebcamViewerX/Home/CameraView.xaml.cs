@@ -18,11 +18,11 @@ namespace WebcamViewerX.Home
 {
     public partial class CameraView : UserControl
     {
-        XeZrunner.UI.Theming.ThemeManager ThemeManager;
-
         public CameraView()
         {
             InitializeComponent();
+
+            errorGrid.Opacity = 0;
 
             anim_in = new DoubleAnimation(1, TimeSpan.FromSeconds(.3));
             anim_out = new DoubleAnimation(0, TimeSpan.FromSeconds(.3));
@@ -75,6 +75,19 @@ namespace WebcamViewerX.Home
                     ProgressGrid.BeginAnimation(OpacityProperty, anim_in);
                 else
                     ProgressGrid.BeginAnimation(OpacityProperty, anim_out);
+            }
+        }
+
+        bool _isError;
+        public bool IsError
+        {
+            get { return _isError; }
+            set
+            {
+                _isError = value;
+
+                imageGrid.BeginAnimation(OpacityProperty, value ? anim_out : anim_in);
+                errorGrid.BeginAnimation(OpacityProperty, value ? anim_in : anim_out);
             }
         }
 

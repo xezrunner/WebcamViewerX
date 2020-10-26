@@ -31,7 +31,7 @@ namespace WebcamViewerX.Settings.Subviews
 
         private void getconfigButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ShowTextDialog("JSON user configuration debug", CameraConfig.Debug_GetUserCamerasAsString());
+            MainWindow.TextContentDialog("JSON user configuration debug", CameraConfig.Debug_GetUserCamerasAsString());
         }
 
         private void SettingsPage_WebcamEditorPage_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)

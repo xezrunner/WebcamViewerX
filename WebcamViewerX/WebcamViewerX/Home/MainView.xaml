@@ -160,8 +160,16 @@
 
             <!-- Content container -->
             <Grid x:Name="grid_ContentContainer" Background="{DynamicResource Background}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="42" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-                <Grid x:Name="grid_Image">
+                <Grid x:Name="grid_Titlebar" Margin="92,0,145,0">
+                    <local:SearchBar />
+                </Grid>
+
+                <Grid x:Name="grid_Image" Grid.Row="1">
                     <local:CameraView x:Name="cameraView" Click="cameraView_Click" />
                 </Grid>
 
