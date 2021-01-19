@@ -10,12 +10,39 @@
              d:DesignHeight="450" d:DesignWidth="800" Foreground="{DynamicResource Foreground}">
 
     <UserControl.Resources>
-        
+
     </UserControl.Resources>
 
     <Grid>
 
-        <Grid x:Name="imageGrid" Margin="0,32,0,0">
+        <Grid x:Name="errorGrid" Visibility="Visible">
+
+            <Ellipse Stretch="UniformToFill" VerticalAlignment="Center" >
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#0aFF0000" Offset="0"/>
+                        <GradientStop Offset="1" Color="#00000000"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="errorIcon" Text="&#xe814;"
+                           FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="48"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="An error occured"
+                           FontFamily="Segoe UI Semibold" FontSize="26" Margin="0,12,0,0"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Check your internet connection and try again."
+                           FontSize="18" Margin="0,0,0,0"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid x:Name="imageGrid" Margin="0,0,0,0">
             <Image x:Name="image" />
         </Grid>
 

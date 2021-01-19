@@ -35,8 +35,10 @@ namespace WebcamViewerX
             // MUI debug
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu");
 
+#if RELEASE
             // Exception handling
             Application.Current.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+#endif
 
             ThemeManager = new ThemeManager(Application.Current.Resources);
             ThemeManager.ConfigChanged += ThemeManager_ConfigChanged;
@@ -48,8 +50,12 @@ namespace WebcamViewerX
         {
             SwitchToView(Views.Home);
         }
+        private void window_Initialized(object sender, EventArgs e)
+        {
 
-        #region View management
+        }
+
+#region View management
 
         public double animation_scale = 1.0;
 
@@ -113,11 +119,11 @@ namespace WebcamViewerX
             }
         }
 
-        #endregion
+#endregion
 
-        #region Window & Titlebar
+#region Window & Titlebar
 
-        #region Window events
+#region Window events
 
         public event RoutedEventHandler MenuButtonClick;
         public event RoutedEventHandler BackButtonClick;
@@ -162,12 +168,12 @@ namespace WebcamViewerX
 
             // Popup test
             if (e.Key == Key.C)
-                ShowTextDialog("ContentDialog testing", "Hello!");
+                TextContentDialog("ContentDialog testing", "Hello!");
         }
 
-        #endregion
+#endregion
 
-        #region Button click events
+#region Button click events
         private void titlebar_MenuButton_Click(object sender, RoutedEventArgs e)
         {
             MenuButtonClick?.Invoke(sender, e);
@@ -177,22 +183,22 @@ namespace WebcamViewerX
         {
             BackButtonClick?.Invoke(sender, e);
         }
-        #endregion
+#endregion
 
         private void Dispatcher_UnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            ShowTextDialog("An error has occured.",
+            TextContentDialog("An error has occured.",
                 "You may continue using the application, but it may no longer work as intended.\n\n" +
                 "Error: " + e.Exception.Message);
             e.Handled = true;
         }
 
-        public void ShowTextDialog(string Text)
+        public void TextContentDialog(string Text)
         {
-            ShowTextDialog("", Text);
+            TextContentDialog("", Text);
         }
 
-        public async void ShowTextDialog(string Title, string Text)
+        public async void TextContentDialog(string Title, string Text)
         {
             ContentDialog dialog = new ContentDialog()
             {
@@ -204,7 +210,7 @@ namespace WebcamViewerX
             await contentdialogHost.ShowDialogAsync(dialog);
         }
 
-        #endregion
+#endregion
 
         RenderTargetBitmap Screenshot(FrameworkElement element)
         {

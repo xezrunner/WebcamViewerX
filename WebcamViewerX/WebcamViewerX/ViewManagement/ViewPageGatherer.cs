@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WebcamViewerX.ViewManagement
@@ -13,20 +14,40 @@ namespace WebcamViewerX.ViewManagement
     /// </summary>
     public class ViewPageGatherer
     {
+        MainWindow mainwindow;
+
         public Page GetViewPage(View view)
         {
+            if (mainwindow == null)
+                mainwindow = (MainWindow)Application.Current.MainWindow;
+
+            Page pageToReturn;
 
             switch (view.DevName)
             {
                 default:
-                    return new Page();
+                    pageToReturn = new Page();
+                    break;
 
                 case "Home":
-                    return new Home.MainView();
+                    pageToReturn = new Home.MainView();
+                    break;
 
                 case "Settings":
-                    return new Settings.MainView();
+                    pageToReturn = new Settings.MainView();
+                    break;
             }
+
+            switch (view.TitlebarBehavior)
+            {
+                // push margin to titlebar height
+                case ViewTitlebarBehavior.ExtendsToTitlebar:
+                case ViewTitlebarBehavior.ExtendsUnderTitlebar:
+                    pageToReturn.Margin = new Thickness(0, -mainwindow.titlebar.Height, 0, 0);
+                    break;
+            }
+
+            return pageToReturn;
         }
     }
 }

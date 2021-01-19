@@ -16,7 +16,7 @@
         AllowsTransparency="False" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" xz_controlfx:PointerTracker.Enabled="True"
         ShowTitleBar="False" ShowCloseButton="False" ShowMinButton="False" ShowMaxRestoreButton="False" GlowBrush="#3F000000" BorderThickness="0" WindowTransitionsEnabled="False"
         
-        Loaded="window_Loaded"
+        Loaded="window_Loaded" Initialized="window_Initialized"
         PreviewKeyDown="window_PreviewKeyDown">
 
     <Window.Resources>
@@ -34,8 +34,16 @@
         <!-- Main container -->
         <Grid>
 
-            <!-- Frames container-->
-            <Grid x:Name="frameContainer" Background="Transparent">
+            <!-- User content container -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{Binding ElementName=titlebar, Path=Height}" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!-- Frames container-->
+                <Grid x:Name="frameContainer" Background="Transparent" Grid.Row="1">
+                </Grid>
             </Grid>
 
             <!-- TEMP: Titlebar options panel -->
@@ -66,11 +74,13 @@
             <!-- Titlebar -->
             <!-- {x:Static localization:Resources.AppTitle} -->
             <xz_window:TitlebarControl x:Name="titlebar" AppTitle="Webcam Viewer X"
+                                       AppTitle_Position="Left"
                                        FontWeight="Medium"
-                                       Height="32"
-                                       MenuButtonVisibility="Visible"
+                                       Height="38"
+                                       MenuButtonVisibility="Visible" BackButtonVisibility="Collapsed"
                                        MenuButton_Click="titlebar_MenuButton_Click" BackButton_Click="titlebar_BackButton_Click"
                                        MouseRightButtonUp="Titlebar_MouseRightButtonUp"
+                                       IsTitlebarFullyDraggable="False"
                                        
                                        CloseButtonVisibility="Visible"
                                        MaximizeButtonVisibility="Visible"
