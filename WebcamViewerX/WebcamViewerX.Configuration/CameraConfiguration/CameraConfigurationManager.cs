@@ -15,8 +15,13 @@ namespace WebcamViewerX.Configuration.CameraConfiguration
 
         public List<Camera> GetUserCameras()
         {
-            string file = File.ReadAllText(Utilities.GetPathForConfigurationFile("CameraConfig.json", Utilities.ConfigCategories.User));
-            return JsonConvert.DeserializeObject<List<Camera>>(file);
+            var filePath = Utilities.GetPathForConfigurationFile("CameraConfig.json", Utilities.ConfigCategories.User);
+            string json = null;
+
+            if (!File.Exists(filePath)) json = Debug_CreateTestCameraConfig();
+            else json = File.ReadAllText(filePath);
+
+            return JsonConvert.DeserializeObject<List<Camera>>(json);
         }
 
         // TODO: Download default camera config from GitHub Repo
@@ -60,7 +65,7 @@ namespace WebcamViewerX.Configuration.CameraConfiguration
             return finalstring;
         }
 
-        public void Debug_CreateTestCameraConfig()
+        public string Debug_CreateTestCameraConfig()
         {
             List<Camera> _list = new List<Camera>();
 
@@ -78,11 +83,16 @@ namespace WebcamViewerX.Configuration.CameraConfiguration
                 _list.Add(camera);
             }
 
+            string json = null;
+
             using (StreamWriter file = File.CreateText(Utilities.GetPathForConfigurationFile("CameraConfig.json", Utilities.ConfigCategories.User)))
             {
                 JsonSerializer serializer = new JsonSerializer() { Formatting = Formatting.Indented };
                 serializer.Serialize(file, _list);
+                json = JsonConvert.SerializeObject(_list);
             }
+
+            return json;
         }
 
         #endregion

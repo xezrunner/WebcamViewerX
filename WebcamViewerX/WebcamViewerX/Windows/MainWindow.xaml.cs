@@ -33,7 +33,7 @@ namespace WebcamViewerX
         public MainWindow()
         {
             // MUI debug
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu");
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu");
 
 #if RELEASE
             // Exception handling

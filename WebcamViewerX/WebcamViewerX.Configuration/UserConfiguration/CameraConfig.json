@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "Námestie osloboditeľov 01",
+    "URL": "http://gw.msumi.sk:8001/jpg/1/image.jpg",
+    "Owner": "Gecom s.r.o",
+    "Location": "Michalovce, Slovakia",
+	"Type": 0
+  },
+  {
+    "Name": "Weather station \"Funsat\"",
+    "URL": "http://funsat.sk/meteo/webcam/funsat.jpg",
+    "Owner": "Funsat",
+    "Location": "Poprad, Slovakia",
+	"Type": 0
+  },
+  {
+    "Name": "Żywiec lake",
+    "URL": "http://www.megasurf.pl/cam/Video01.jpg",
+    "Owner": "megasurf PL",
+    "Location": "Żywiec, Poland",
+	"Type": 0
+  },
+  {
+    "Name": "Levoča, Slovakia - www.pocasielevoca.sk",
+    "URL": "http://www.pocasielevoca.sk/data/snimek.jpg",
+    "Owner": "www.pocasielevoca.sk",
+    "Location": "Levoča, Slovakia",
+	"Type": 0
+  },
+  {
+    "Name": "Local Image Test",
+    "URL": "file://H:/Wallpapers/101060419_582688675713945_3278380629032435712_o.jpg",
+    "Owner": "",
+    "Location": "",
+	"Type": 0
+  }
+]

@@ -1,0 +1,3 @@
+[submodule "XeZrunner.UI"]
+	path = XeZrunner.UI
+	url = git@github.com:xezrunner/XeZrunner.UI.git

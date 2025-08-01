@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WebcamViewerX</RootNamespace>
     <AssemblyName>WebcamViewerX</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -184,7 +185,7 @@
     <Resource Include="Fonts\GoogleSansCondensed-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
+    <ProjectReference Include="..\..\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
       <Name>XeZrunner.UI</Name>
     </ProjectReference>
