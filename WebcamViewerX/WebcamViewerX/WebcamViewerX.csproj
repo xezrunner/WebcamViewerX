@@ -185,10 +185,6 @@
     <Resource Include="Fonts\GoogleSansCondensed-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
-      <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
-      <Name>XeZrunner.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WebcamViewerX.Configuration\WebcamViewerX.Configuration.csproj">
       <Project>{b8c556dc-3f56-4c98-84b1-445a2b11af64}</Project>
       <Name>WebcamViewerX.Configuration</Name>
@@ -200,6 +196,10 @@
     <ProjectReference Include="..\WebcamViewerX.Localization\WebcamViewerX.Localization.csproj">
       <Project>{c843e00a-25d6-4047-aafe-499d0fd2edb6}</Project>
       <Name>WebcamViewerX.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
+      <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
+      <Name>XeZrunner.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
